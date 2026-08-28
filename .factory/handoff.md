@@ -14,6 +14,7 @@
 - SHA256-checking shell and PowerShell installers with calm no-release and offline states.
 - Release workflow for Linux x64/arm64, macOS Intel/Apple Silicon, and Windows x64.
 - Release assets include tar/zip, `.deb`, `.rpm`, unsigned `.pkg`, checksums, `latest.json`, Scoop, Winget, and Homebrew files.
+- GitHub Release `v0.1.0` is published with 13 assets.
 
 ## Run and verify
 
@@ -41,6 +42,9 @@ Verification completed on 2026-08-28:
 - `cargo package --locked --allow-dirty`: passed and verified the packaged crate.
 - `npm audit --audit-level=high`: zero vulnerabilities.
 - `yaml-lint` on both GitHub workflows: passed.
+- GitHub Actions: test workflow and all five release matrix jobs passed.
+- Published Linux x64 archive matched `SHA256SUMS`; its demo returned `ready` with nine checks.
+- Published `latest.json`: valid version 0.1.0 with five platform URLs.
 - `verify-url.sh`: HTTP 200, one H1, main landmark, `lang=en`, zero missing alt text, and zero console errors.
 - Lighthouse mobile: Performance 99, Accessibility 100, Best Practices 100, SEO 100.
 - Lighthouse lab metrics: FCP 1.0 s, LCP 1.6 s, CLS 0. INP was unavailable for the non-interactive lab run.
@@ -56,13 +60,12 @@ The demo uses synthetic records and `demo:` session-storage keys. The normal sit
 ## Known gaps
 
 - The local sandbox verified declaration handling with no-op hooks. It did not launch a real Docker or kind cluster.
-- The browser download button stays in its calm publishing state until the first GitHub Release exists.
 - INP needs field data or an interactive Lighthouse run. The lab run had no qualifying interaction.
 
 ## Needs operator action
 
 - Register the `selfhost-upgrade-rehearsal` billing product and its return URL in the Sociobot billing system.
-- Add `FACTORY_GITHUB_TOKEN` if the release workflow should update the separate Homebrew tap automatically.
+- Create the public Homebrew tap repository and add `FACTORY_GITHUB_TOKEN` before the next automatic tap update.
 - Submit the generated Winget manifest archive to `microsoft/winget-pkgs` after release.
 - macOS and Windows packages are unsigned. Add signing credentials later if distribution policy requires them.
 
