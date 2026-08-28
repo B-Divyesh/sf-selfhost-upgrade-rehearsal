@@ -1,0 +1,26 @@
+schema: 1
+product: Your product
+adapter: kubernetes
+source:
+  version: 1.0.0
+  config_schema: schemas/1.0.yml
+target:
+  version: 2.0.0
+  config_schema: schemas/2.0.yml
+environment:
+  operating_systems: [linux]
+  architectures: [x86_64, aarch64]
+  notes: kind 0.24 or later
+resources:
+  memory_mb: 2048
+  disk_mb: 6144
+hooks:
+  preflight: [kind, create, cluster, --name, rehearsal]
+  start_source: [kubectl, apply, -f, "{source_dir}/k8s/v1"]
+  seed: [sh, "{source_dir}/hooks/seed.sh"]
+  backup: [sh, "{source_dir}/hooks/backup.sh"]
+  stop_source: [kubectl, delete, -f, "{source_dir}/k8s/v1"]
+  start_target: [kubectl, apply, -f, "{source_dir}/k8s/v2"]
+  restore: [sh, "{source_dir}/hooks/restore.sh"]
+  health: [sh, "{source_dir}/hooks/health.sh"]
+  cleanup: [kind, delete, cluster, --name, rehearsal]

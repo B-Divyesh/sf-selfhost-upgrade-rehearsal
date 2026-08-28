@@ -1,0 +1,7 @@
+database:
+  pool_size: 10
+  ssl_mode: required
+mail:
+  from: robot@example.test
+workers:
+  count: 2

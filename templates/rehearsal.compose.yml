@@ -1,0 +1,26 @@
+schema: 1
+product: Your product
+adapter: compose
+source:
+  version: 1.0.0
+  config_schema: schemas/1.0.yml
+target:
+  version: 2.0.0
+  config_schema: schemas/2.0.yml
+environment:
+  operating_systems: [linux]
+  architectures: [x86_64, aarch64]
+  notes: Docker Engine 26 or later
+resources:
+  memory_mb: 1024
+  disk_mb: 4096
+hooks:
+  preflight: [docker, compose, -f, "{source_dir}/compose.yml", config, --quiet]
+  start_source: [docker, compose, -f, "{source_dir}/compose.yml", up, -d]
+  seed: [sh, "{source_dir}/hooks/seed.sh"]
+  backup: [sh, "{source_dir}/hooks/backup.sh"]
+  stop_source: [docker, compose, -f, "{source_dir}/compose.yml", down]
+  start_target: [docker, compose, -f, "{source_dir}/compose.next.yml", up, -d]
+  restore: [sh, "{source_dir}/hooks/restore.sh"]
+  health: [sh, "{source_dir}/hooks/health.sh"]
+  cleanup: [docker, compose, -f, "{source_dir}/compose.next.yml", down, --volumes]
