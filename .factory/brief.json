@@ -1,0 +1,17 @@
+{
+  "slug": "selfhost-upgrade-rehearsal",
+  "title": "Self-Host Upgrade Rehearsal",
+  "summary": "Rehearse self-hosted upgrades and issue a customer-safe readiness receipt.",
+  "territory": "devtools-data",
+  "user": "A small company offering or operating a Docker-based self-hosted product that must make upgrades supportable across unknown customer environments.",
+  "smallest_useful_product": "A distributable CLI kit that validates a declared Compose or Kubernetes upgrade path in an ephemeral environment, captures config schema changes, verifies backup and restore, records required disk and memory, and produces a customer-safe readiness report.",
+  "non_goals": ["control plane", "hosting", "remote access", "automatic customer upgrades", "customer data collection"],
+  "monetization": "subscription",
+  "artifact_class": "cli-installers",
+  "constraints": [
+    "Test artifacts must not include customer data.",
+    "The vendor supplies migration and health hooks.",
+    "No SSH collection.",
+    "Reports separate tested versions from unsupported environments."
+  ]
+}
