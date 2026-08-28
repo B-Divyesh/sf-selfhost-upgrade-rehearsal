@@ -16,7 +16,7 @@ The analogy fits the job. A vendor cannot know every customer environment, just 
 | `--ink-muted` | `#53655E` | Supporting copy; 5.1:1 on paper |
 | `--fern` | `#315E49` | Primary actions and positive state |
 | `--moss` | `#76956C` | Secondary marks and illustration |
-| `--orange` | `#C84B2F` | Inspection stamps, focus, warnings |
+| `--orange` | `#A63A24` | Inspection stamps, focus, warnings; 5.5:1 on paper |
 | `--yellow` | `#E9C95F` | Caution wash only, never sole status cue |
 | `--danger` | `#9D2E2E` | Failure text and borders |
 | `--night` | `#12231F` | Terminal and dark treatment |

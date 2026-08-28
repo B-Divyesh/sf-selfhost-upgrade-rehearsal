@@ -1,0 +1,11 @@
+{
+  "version": "__VERSION__",
+  "description": "Rehearse self-hosted upgrades and issue readiness receipts",
+  "homepage": "https://selfhost-upgrade-rehearsal.sociobot.in",
+  "license": "MIT",
+  "url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v__VERSION__/rehearsal-windows-x86_64.zip",
+  "hash": "__WINDOWS_SHA256__",
+  "bin": "rehearsal.exe",
+  "checkver": { "github": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal" },
+  "autoupdate": { "url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v$version/rehearsal-windows-x86_64.zip" }
+}

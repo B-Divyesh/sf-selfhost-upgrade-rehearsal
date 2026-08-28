@@ -1,0 +1,22 @@
+{
+  "name": "selfhost-upgrade-rehearsal",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config site/vite.config.ts",
+    "build:assets": "node scripts/build-images.mjs",
+    "build:site": "npm run build:assets && vite build --config site/vite.config.ts",
+    "build": "cargo build --release && npm run build:site",
+    "test": "cargo test && npm run build:site && playwright test",
+    "test:site": "playwright test",
+    "preview": "vite preview --config site/vite.config.ts"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.58.2",
+    "sharp": "0.35.4",
+    "typescript": "5.9.2",
+    "vite": "7.3.6"
+  }
+}

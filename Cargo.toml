@@ -5,6 +5,7 @@ edition = "2021"
 license = "MIT"
 description = "Rehearse self-hosted upgrades and issue customer-safe readiness receipts"
 repository = "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal"
+include = ["src/**", "templates/**", "examples/**", "README.md", "LICENSE", "CHANGELOG.md", "Cargo.lock"]
 
 [[bin]]
 name = "rehearsal"

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "demo-receipt",
+    "claim": "The sample demo produces a readiness receipt.",
+    "where": "demo, landing primary action",
+    "test": "npm test -- --grep @claim:demo-receipt",
+    "sandbox": "fresh browser context at /demo; bundled Arbor Desk sample; download and parse JSON"
+  },
+  {
+    "id": "offline-demo",
+    "claim": "The bundled demo runs offline after the page loads.",
+    "where": "landing facts",
+    "test": "npm test -- --grep @claim:offline-demo",
+    "sandbox": "fresh browser context at /demo; set context offline; reset and complete recording"
+  },
+  {
+    "id": "demo-network-privacy",
+    "claim": "No project data is uploaded during the demo.",
+    "where": "landing facts, privacy",
+    "test": "npm test -- --grep @claim:demo-network-privacy",
+    "sandbox": "fresh browser context; intercept every request during the complete demo; assert same-origin only"
+  },
+  {
+    "id": "cli-receipts",
+    "claim": "The CLI writes JSON and HTML readiness receipts.",
+    "where": "landing, README",
+    "test": "npm test -- --grep @claim:cli-receipts",
+    "sandbox": "fresh temporary directory; rehearsal demo; parse JSON and inspect HTML"
+  },
+  {
+    "id": "upgrade-hooks",
+    "claim": "The CLI checks backup, restore, and health hooks.",
+    "where": "landing, README",
+    "test": "npm test -- --grep @claim:upgrade-hooks",
+    "sandbox": "fresh temporary directory; bundled synthetic fixture; assert each receipt check passed"
+  },
+  {
+    "id": "compose-kubernetes-declarations",
+    "claim": "The CLI validates Compose and Kubernetes declarations before launch.",
+    "where": "landing, README",
+    "test": "npm test -- --grep @claim:compose-kubernetes-declarations",
+    "sandbox": "fresh temporary directory for each adapter; valid schemas and no-op hooks; run check"
+  },
+  {
+    "id": "installer-checksum",
+    "claim": "Installers verify SHA256 before placing the binary on PATH.",
+    "where": "install section, README",
+    "test": "npm test -- --grep @claim:installer-checksum",
+    "sandbox": "read both shipped installers; assert checksum verification precedes installation"
+  },
+  {
+    "id": "mit-core",
+    "claim": "The core CLI is free under the MIT License.",
+    "where": "landing facts, README",
+    "test": "npm test -- --grep @claim:mit-core",
+    "sandbox": "fresh clone; inspect LICENSE and Cargo package metadata"
+  }
+]

@@ -294,7 +294,8 @@ fn run_hook(name: &str, hook: &[String], source_dir: &Path, work_dir: &Path) -> 
         .map(|arg| OsString::from(replace(arg)))
         .collect();
     let start = Instant::now();
-    let status = Command::new(&program)
+    let mut command = Command::new(&program);
+    command
         .args(args)
         .current_dir(work_dir)
         .env_clear()
@@ -303,12 +304,21 @@ fn run_hook(name: &str, hook: &[String], source_dir: &Path, work_dir: &Path) -> 
         .env("REHEARSAL_WORK_DIR", work_dir)
         .stdin(Stdio::null())
         .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .status()
-        .with_context(|| format!("{name} could not start; check the executable in that hook"))?;
+        .stderr(Stdio::null());
+    for key in ["SYSTEMROOT", "COMSPEC", "PATHEXT", "TEMP", "TMP"] {
+        if let Some(value) = std::env::var_os(key) {
+            command.env(key, value);
+        }
+    }
+    let status = command.status();
     Ok(Check {
         name: name.into(),
-        status: if status.success() { "passed" } else { "failed" }.into(),
+        status: if status.is_ok_and(|value| value.success()) {
+            "passed"
+        } else {
+            "failed"
+        }
+        .into(),
         duration_ms: start.elapsed().as_millis(),
     })
 }

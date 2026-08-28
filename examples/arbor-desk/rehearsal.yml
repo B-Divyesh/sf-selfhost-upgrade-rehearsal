@@ -1,0 +1,26 @@
+schema: 1
+product: Arbor Desk
+adapter: fixture
+source:
+  version: 1.8.4
+  config_schema: schema-1.8.yml
+target:
+  version: 2.0.0
+  config_schema: schema-2.0.yml
+environment:
+  operating_systems: [linux, macos, windows]
+  architectures: [x86_64, aarch64]
+  notes: Synthetic records only
+resources:
+  memory_mb: 768
+  disk_mb: 2048
+hooks:
+  preflight: [rehearsal, fixture-step, preflight]
+  start_source: [rehearsal, fixture-step, start-source]
+  seed: [rehearsal, fixture-step, seed]
+  backup: [rehearsal, fixture-step, backup]
+  stop_source: [rehearsal, fixture-step, stop-source]
+  start_target: [rehearsal, fixture-step, start-target]
+  restore: [rehearsal, fixture-step, restore]
+  health: [rehearsal, fixture-step, health]
+  cleanup: [rehearsal, fixture-step, cleanup]

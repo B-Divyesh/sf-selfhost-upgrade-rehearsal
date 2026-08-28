@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://selfhost-upgrade-rehearsal.sociobot.in/sitemap.xml

@@ -1,0 +1,138 @@
+name: Release CLI packages
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.label }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, target: x86_64-unknown-linux-musl, label: linux-x86_64, binary: rehearsal }
+          - { os: ubuntu-latest, target: aarch64-unknown-linux-musl, label: linux-aarch64, binary: rehearsal }
+          - { os: macos-latest, target: x86_64-apple-darwin, label: macos-x86_64, binary: rehearsal }
+          - { os: macos-latest, target: aarch64-apple-darwin, label: macos-aarch64, binary: rehearsal }
+          - { os: windows-latest, target: x86_64-pc-windows-msvc, label: windows-x86_64, binary: rehearsal.exe }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: houseabsolute/actions-rust-cross@v1
+        with:
+          command: build
+          target: ${{ matrix.target }}
+          args: --locked --release
+          strip: true
+      - name: Make Unix archive
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          mkdir -p package
+          cp "target/${{ matrix.target }}/release/${{ matrix.binary }}" package/rehearsal
+          cp README.md LICENSE package/
+          tar -C package -czf "rehearsal-${{ matrix.label }}.tar.gz" rehearsal README.md LICENSE
+      - name: Make Windows archive
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory package
+          Copy-Item "target/${{ matrix.target }}/release/rehearsal.exe" package/
+          Copy-Item README.md, LICENSE package/
+          Compress-Archive package/* "rehearsal-${{ matrix.label }}.zip"
+      - name: Make Linux packages
+        if: runner.os == 'Linux' && matrix.label == 'linux-x86_64'
+        shell: bash
+        run: |
+          sudo gem install --no-document fpm
+          mkdir -p pkgroot/usr/bin
+          cp package/rehearsal pkgroot/usr/bin/rehearsal
+          version="${GITHUB_REF_NAME#v}"
+          fpm -s dir -t deb -n rehearsal -v "$version" --architecture amd64 --license MIT --description "Self-hosted upgrade rehearsal CLI" -C pkgroot usr/bin/rehearsal
+          fpm -s dir -t rpm -n rehearsal -v "$version" --architecture x86_64 --license MIT --description "Self-hosted upgrade rehearsal CLI" -C pkgroot usr/bin/rehearsal
+          mv rehearsal_*.deb "rehearsal-${version}-linux-amd64.deb"
+          mv rehearsal-*.rpm "rehearsal-${version}-linux-x86_64.rpm"
+      - name: Make macOS installer
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          mkdir -p pkgroot/usr/local/bin
+          cp package/rehearsal pkgroot/usr/local/bin/rehearsal
+          pkgbuild --root pkgroot --identifier in.sociobot.selfhost-upgrade-rehearsal --version "${GITHUB_REF_NAME#v}" "rehearsal-${{ matrix.label }}.pkg"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.label }}
+          path: |
+            rehearsal-${{ matrix.label }}.tar.gz
+            rehearsal-${{ matrix.label }}.zip
+            rehearsal-*.deb
+            rehearsal-*.rpm
+            rehearsal-${{ matrix.label }}.pkg
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Write checksums and release manifest
+        shell: bash
+        run: |
+          cd release-assets
+          sha256sum rehearsal-* | sort > SHA256SUMS
+          version="${GITHUB_REF_NAME#v}"
+          base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}"
+          jq -n --arg version "$version" --arg base "$base" '{version:$version,platforms:{linux_x86_64:($base+"/rehearsal-linux-x86_64.tar.gz"),linux_aarch64:($base+"/rehearsal-linux-aarch64.tar.gz"),macos_x86_64:($base+"/rehearsal-macos-x86_64.tar.gz"),macos_aarch64:($base+"/rehearsal-macos-aarch64.tar.gz"),windows_x86_64:($base+"/rehearsal-windows-x86_64.zip")}}' > latest.json
+      - name: Build package-manager manifests
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          sums="release-assets/SHA256SUMS"
+          win_hash="$(awk '/windows-x86_64.zip$/ {print $1}' "$sums")"
+          mac_arm_hash="$(awk '/macos-aarch64.tar.gz$/ {print $1}' "$sums")"
+          mac_intel_hash="$(awk '/macos-x86_64.tar.gz$/ {print $1}' "$sums")"
+          linux_hash="$(awk '/linux-x86_64.tar.gz$/ {print $1}' "$sums")"
+          sed -e "s/__VERSION__/$version/g" -e "s/__WINDOWS_SHA256__/$win_hash/g" packaging/scoop/rehearsal.json > release-assets/rehearsal-scoop.json
+          sed -e "s/__VERSION__/$version/g" -e "s/__MAC_ARM_SHA256__/$mac_arm_hash/g" -e "s/__MAC_INTEL_SHA256__/$mac_intel_hash/g" -e "s/__LINUX_SHA256__/$linux_hash/g" packaging/homebrew/rehearsal.rb > release-assets/rehearsal.rb
+          mkdir -p release-assets/winget
+          sed -e "s/__VERSION__/$version/g" packaging/winget/publisher.yaml > release-assets/winget/Sociobot.Rehearsal.yaml
+          sed -e "s/__VERSION__/$version/g" packaging/winget/locale.yaml > release-assets/winget/Sociobot.Rehearsal.locale.en-US.yaml
+          sed -e "s/__VERSION__/$version/g" -e "s/__WINDOWS_SHA256__/$win_hash/g" packaging/winget/installer.yaml > release-assets/winget/Sociobot.Rehearsal.installer.yaml
+          (cd release-assets && zip -r "rehearsal-winget-${version}.zip" winget)
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: release-assets/*
+
+  update-tap:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Publish Homebrew formula
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then echo "FACTORY_GITHUB_TOKEN is not set; skipping tap update."; exit 0; fi
+          gh repo clone "${GITHUB_REPOSITORY_OWNER}/homebrew-selfhost-upgrade-rehearsal" tap
+          mkdir -p tap/Formula
+          cp release-assets/rehearsal.rb tap/Formula/rehearsal.rb
+          cd tap
+          git config user.name "Param Factory"
+          git config user.email "factory@sociobot.in"
+          git add Formula/rehearsal.rb
+          git commit -m "rehearsal ${GITHUB_REF_NAME}"
+          git push

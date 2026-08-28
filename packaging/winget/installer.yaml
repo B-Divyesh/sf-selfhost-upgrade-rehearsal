@@ -1,0 +1,13 @@
+PackageIdentifier: Sociobot.Rehearsal
+PackageVersion: __VERSION__
+InstallerType: zip
+NestedInstallerType: portable
+NestedInstallerFiles:
+  - RelativeFilePath: rehearsal.exe
+    PortableCommandAlias: rehearsal
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v__VERSION__/rehearsal-windows-x86_64.zip
+    InstallerSha256: __WINDOWS_SHA256__
+ManifestType: installer
+ManifestVersion: 1.6.0

@@ -1,0 +1,10 @@
+PackageIdentifier: Sociobot.Rehearsal
+PackageVersion: __VERSION__
+PackageLocale: en-US
+Publisher: Sociobot
+PackageName: Self-Host Upgrade Rehearsal
+License: MIT
+ShortDescription: Rehearse self-hosted upgrades and issue readiness receipts.
+PackageUrl: https://selfhost-upgrade-rehearsal.sociobot.in
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
