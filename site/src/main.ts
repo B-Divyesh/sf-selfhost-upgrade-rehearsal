@@ -66,7 +66,7 @@ function landing(): string {
           <span>Runs a complete synthetic upgrade and opens its receipt.</span>
         </div>
         <ul class="plain-facts" aria-label="Product facts">
-          <li>No project data is uploaded.</li>
+          <li>The demo uploads no project data.</li>
           <li>The bundled demo runs offline after this page loads.</li>
           <li>The core CLI is free under the MIT License.</li>
         </ul>
@@ -127,7 +127,7 @@ rehearsal run --output release-proof</code></pre></div>
 
     <section class="paid ruled-section" aria-labelledby="paid-title">
       <div class="paid-mark" aria-hidden="true">TEAM<br>FIELD<br>KIT</div>
-      <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Reuse the check in release CI</h2><p>The $79 one-time Team kit adds a release-matrix workflow and six-month compatibility calendar.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
+      <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Reuse the check in release CI</h2><p>The $79 one-time Team kit adds a release-matrix workflow and upgrade checklist.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
       <div class="license-box">
         <a class="button primary" href="${BILLING}/checkout">Buy the Team kit — $79</a>
         <form id="license-form"><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false"><button type="submit">Verify license</button></div></form>
@@ -322,7 +322,7 @@ async function loadRelease(): Promise<void> {
     button.textContent = `Download ${asset.name.replace('rehearsal-', '')}`;
     button.classList.remove('disabled');
     platformNote.textContent = `Release ${release.tag_name} is ready for this device.`;
-    note.textContent = 'The download comes from the signed GitHub release record.';
+    note.textContent = 'The download comes from the matching GitHub release.';
   } catch {
     platformNote.textContent = 'Downloads are being published or this device is offline.';
     note.innerHTML = `Try again later or <a href="https://github.com/${REPO}/releases" rel="external">open the release page <span class="sr-only">(external site)</span></a>.`;
@@ -377,7 +377,7 @@ function downloadSample(): void {
 }
 
 function downloadTeamKit(): void {
-  const workflow = `name: Upgrade rehearsal\non: [workflow_dispatch]\njobs:\n  rehearse:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        path: [stable-to-current, previous-to-current]\n    steps:\n      - uses: actions/checkout@v4\n      - run: rehearsal run --file "rehearsals/\${{ matrix.path }}.yml" --output "receipts/\${{ matrix.path }}"\n      - uses: actions/upload-artifact@v4\n        with:\n          name: "readiness-\${{ matrix.path }}"\n          path: "receipts/\${{ matrix.path }}"\n`;
+  const workflow = `# Upgrade checklist\n# 1. Update both version labels and schemas.\n# 2. Confirm the fixture contains no customer data.\n# 3. Review every not-run or failed receipt check.\nname: Upgrade rehearsal\non: [workflow_dispatch]\njobs:\n  rehearse:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        path: [stable-to-current, previous-to-current]\n    steps:\n      - uses: actions/checkout@v4\n      - run: rehearsal run --file "rehearsals/\${{ matrix.path }}.yml" --output "receipts/\${{ matrix.path }}"\n      - uses: actions/upload-artifact@v4\n        with:\n          name: "readiness-\${{ matrix.path }}"\n          path: "receipts/\${{ matrix.path }}"\n`;
   downloadFile('rehearsal-team-ci.yml', workflow, 'text/yaml');
 }
 

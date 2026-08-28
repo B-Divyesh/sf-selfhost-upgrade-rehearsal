@@ -4,6 +4,14 @@ on:
   push:
     tags: ['v*']
   workflow_dispatch:
+    inputs:
+      version:
+        description: Release version without the v prefix
+        required: true
+        default: 0.1.0
+
+env:
+  RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || github.ref_name }}
 
 permissions:
   contents: write
@@ -52,7 +60,7 @@ jobs:
           sudo gem install --no-document fpm
           mkdir -p pkgroot/usr/bin
           cp package/rehearsal pkgroot/usr/bin/rehearsal
-          version="${GITHUB_REF_NAME#v}"
+          version="${RELEASE_TAG#v}"
           fpm -s dir -t deb -n rehearsal -v "$version" --architecture amd64 --license MIT --description "Self-hosted upgrade rehearsal CLI" -C pkgroot usr/bin/rehearsal
           fpm -s dir -t rpm -n rehearsal -v "$version" --architecture x86_64 --license MIT --description "Self-hosted upgrade rehearsal CLI" -C pkgroot usr/bin/rehearsal
           mv rehearsal_*.deb "rehearsal-${version}-linux-amd64.deb"
@@ -63,7 +71,7 @@ jobs:
         run: |
           mkdir -p pkgroot/usr/local/bin
           cp package/rehearsal pkgroot/usr/local/bin/rehearsal
-          pkgbuild --root pkgroot --identifier in.sociobot.selfhost-upgrade-rehearsal --version "${GITHUB_REF_NAME#v}" "rehearsal-${{ matrix.label }}.pkg"
+          pkgbuild --root pkgroot --identifier in.sociobot.selfhost-upgrade-rehearsal --version "${RELEASE_TAG#v}" "rehearsal-${{ matrix.label }}.pkg"
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.label }}
@@ -89,13 +97,13 @@ jobs:
         run: |
           cd release-assets
           sha256sum rehearsal-* | sort > SHA256SUMS
-          version="${GITHUB_REF_NAME#v}"
-          base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}"
+          version="${RELEASE_TAG#v}"
+          base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${RELEASE_TAG}"
           jq -n --arg version "$version" --arg base "$base" '{version:$version,platforms:{linux_x86_64:($base+"/rehearsal-linux-x86_64.tar.gz"),linux_aarch64:($base+"/rehearsal-linux-aarch64.tar.gz"),macos_x86_64:($base+"/rehearsal-macos-x86_64.tar.gz"),macos_aarch64:($base+"/rehearsal-macos-aarch64.tar.gz"),windows_x86_64:($base+"/rehearsal-windows-x86_64.zip")}}' > latest.json
       - name: Build package-manager manifests
         shell: bash
         run: |
-          version="${GITHUB_REF_NAME#v}"
+          version="${RELEASE_TAG#v}"
           sums="release-assets/SHA256SUMS"
           win_hash="$(awk '/windows-x86_64.zip$/ {print $1}' "$sums")"
           mac_arm_hash="$(awk '/macos-aarch64.tar.gz$/ {print $1}' "$sums")"
@@ -110,6 +118,7 @@ jobs:
           (cd release-assets && zip -r "rehearsal-winget-${version}.zip" winget)
       - uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ env.RELEASE_TAG }}
           generate_release_notes: true
           files: release-assets/*
 
@@ -127,6 +136,7 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_GITHUB_TOKEN }}
         run: |
           if [ -z "$GH_TOKEN" ]; then echo "FACTORY_GITHUB_TOKEN is not set; skipping tap update."; exit 0; fi
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern rehearsal.rb --dir release-assets
           gh repo clone "${GITHUB_REPOSITORY_OWNER}/homebrew-selfhost-upgrade-rehearsal" tap
           mkdir -p tap/Formula
           cp release-assets/rehearsal.rb tap/Formula/rehearsal.rb
@@ -134,5 +144,5 @@ jobs:
           git config user.name "Param Factory"
           git config user.email "factory@sociobot.in"
           git add Formula/rehearsal.rb
-          git commit -m "rehearsal ${GITHUB_REF_NAME}"
+          git commit -m "rehearsal ${RELEASE_TAG}"
           git push

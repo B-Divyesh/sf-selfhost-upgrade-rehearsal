@@ -95,6 +95,7 @@ test('@claim:installer-checksum installers verify the package before installatio
   const shell = await readFile(join(root, 'site/public/install.sh'), 'utf8');
   const powershell = await readFile(join(root, 'site/public/install.ps1'), 'utf8');
   expect(shell.indexOf('sha256sum -c')).toBeGreaterThan(-1);
+  expect(shell).toContain('shasum -a 256 -c');
   expect(shell.indexOf('sha256sum -c')).toBeLessThan(shell.indexOf('install -m 755'));
   expect(powershell.indexOf('Get-FileHash')).toBeLessThan(powershell.indexOf('Copy-Item'));
 });
@@ -102,6 +103,44 @@ test('@claim:installer-checksum installers verify the package before installatio
 test('@claim:mit-core core CLI is MIT licensed', async () => {
   expect(await readFile(join(root, 'LICENSE'), 'utf8')).toContain('MIT License');
   expect(await readFile(join(root, 'Cargo.toml'), 'utf8')).toContain('license = "MIT"');
+});
+
+test('@claim:schema-redaction receipt schema changes exclude values', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-redaction-'));
+  try {
+    await writeFile(join(dir, 'old.yml'), 'database:\n  password: old-secret\n  port: 5432\n');
+    await writeFile(join(dir, 'new.yml'), 'database:\n  password: new-secret\n  port: "5432"\n');
+    const hook = process.platform === 'win32' ? '[cmd, /c, exit, "0"]' : '[/usr/bin/true]';
+    await writeFile(join(dir, 'rehearsal.yml'), `schema: 1\nproduct: Redaction test\nadapter: compose\nsource: { version: 1.0.0, config_schema: old.yml }\ntarget: { version: 2.0.0, config_schema: new.yml }\nenvironment: { operating_systems: [linux], architectures: [x86_64] }\nresources: { memory_mb: 512, disk_mb: 1024 }\nhooks:\n  preflight: ${hook}\n  start_source: ${hook}\n  seed: ${hook}\n  backup: ${hook}\n  stop_source: ${hook}\n  start_target: ${hook}\n  restore: ${hook}\n  health: ${hook}\n  cleanup: ${hook}\n`);
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
+    const receipt = await readFile(join(dir, 'report/readiness.json'), 'utf8');
+    expect(receipt).not.toContain('old-secret');
+    expect(receipt).not.toContain('new-secret');
+    expect(receipt).toContain('database.port');
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:cli-no-upload CLI contains no network client or telemetry path', async () => {
+  const cargo = await readFile(join(root, 'Cargo.toml'), 'utf8');
+  const source = `${await readFile(join(root, 'src/lib.rs'), 'utf8')}\n${await readFile(join(root, 'src/main.rs'), 'utf8')}`;
+  expect(cargo).not.toMatch(/reqwest|hyper|ureq|telemetry|analytics/i);
+  expect(source).not.toMatch(/TcpStream|UdpSocket|http:\/\/|https:\/\//);
+});
+
+test('@claim:team-kit-license valid license restores the Team CI kit', async ({ page }) => {
+  await page.route('https://api.sociobot.in/**', route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ valid: true, reason: 'ok', expires_at: null }) }));
+  await page.goto('/?license=test-license');
+  await expect(page).not.toHaveURL(/license=/);
+  expect(await page.evaluate(() => localStorage.getItem('sb_license:selfhost-upgrade-rehearsal'))).toBe('test-license');
+  await expect(page.getByRole('button', { name: 'Download Team CI kit' })).toBeVisible();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download Team CI kit' }).focus();
+  await page.keyboard.press('Enter');
+  const stream = await (await download).createReadStream();
+  let text = '';
+  for await (const chunk of stream!) text += chunk.toString();
+  expect(text).toContain('Upgrade checklist');
+  expect(text).toContain('matrix:');
 });
 
 test('routes update title, focus, and history', async ({ page }) => {

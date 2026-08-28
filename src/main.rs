@@ -1,4 +1,4 @@
-use anyhow::{bail, Context, Result};
+use anyhow::{bail, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use rehearsal::{fixture_step, read_declaration, run_declaration, starter_declaration, Adapter};
 use std::fs;
@@ -104,8 +104,12 @@ fn run() -> Result<ExitCode> {
                 std::env::temp_dir().join(format!("rehearsal-demo-{}", std::process::id()))
             });
             if root.exists() {
-                fs::remove_dir_all(&root)
-                    .with_context(|| format!("could not reset {}", root.display()))?;
+                if fs::read_dir(&root)?.next().is_some() {
+                    bail!(
+                        "{} is not empty; choose a new demo output directory",
+                        root.display()
+                    );
+                }
             }
             fs::create_dir_all(&root)?;
             write_demo(&root)?;

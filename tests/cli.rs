@@ -31,3 +31,19 @@ fn bad_declaration_explains_the_next_step() {
             "not a valid rehearsal declaration",
         ));
 }
+
+#[test]
+fn demo_refuses_to_overwrite_a_nonempty_directory() {
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::write(temp.path().join("keep.txt"), "keep me").unwrap();
+    Command::cargo_bin("rehearsal")
+        .unwrap()
+        .args(["demo", "--output", temp.path().to_str().unwrap()])
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains("is not empty"));
+    assert_eq!(
+        std::fs::read_to_string(temp.path().join("keep.txt")).unwrap(),
+        "keep me"
+    );
+}

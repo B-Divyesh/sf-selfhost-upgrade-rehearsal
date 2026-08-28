@@ -103,7 +103,7 @@ Use `--json` with `check`, `run`, or `demo` for scripts. A failed check returns 
 
 ## Privacy and limits
 
-The CLI has no telemetry and makes no network requests. Your hook commands may use the network when your test requires it.
+The CLI has no built-in network client or telemetry path. Your hook commands may use the network when your test requires it.
 
 Schema comparison records paths and value types. It does not copy schema values into the receipt.
 
@@ -111,7 +111,7 @@ A receipt covers only the versions and environments printed on it. It is not pro
 
 ## Team kit
 
-The free CLI includes both receipt formats. The optional $79 Team kit adds a release-matrix workflow and compatibility calendar.
+The free CLI includes both receipt formats. The optional $79 Team kit adds a release-matrix workflow and upgrade checklist.
 
 License purchase and verification use the Sociobot billing API. No payment provider is embedded in this repository.
 

@@ -54,5 +54,26 @@
     "where": "landing facts, README",
     "test": "npm test -- --grep @claim:mit-core",
     "sandbox": "fresh clone; inspect LICENSE and Cargo package metadata"
+  },
+  {
+    "id": "schema-redaction",
+    "claim": "Schema comparison records paths and types without copying values.",
+    "where": "README, receipt privacy copy",
+    "test": "npm test -- --grep @claim:schema-redaction",
+    "sandbox": "fresh temporary declaration with distinct secret values; run all no-op hooks; inspect JSON receipt"
+  },
+  {
+    "id": "cli-no-upload",
+    "claim": "The CLI has no built-in network client or telemetry path.",
+    "where": "README, privacy",
+    "test": "npm test -- --grep @claim:cli-no-upload",
+    "sandbox": "fresh clone; inspect dependencies and all Rust source for network clients, sockets, telemetry, and URLs"
+  },
+  {
+    "id": "team-kit-license",
+    "claim": "A valid license restores the Team CI kit.",
+    "where": "paid section",
+    "test": "npm test -- --grep @claim:team-kit-license",
+    "sandbox": "fresh browser context; recorded valid verify response; return URL token; download and inspect CI kit"
   }
 ]
