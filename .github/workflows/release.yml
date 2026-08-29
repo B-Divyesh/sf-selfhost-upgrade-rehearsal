@@ -135,7 +135,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.FACTORY_GITHUB_TOKEN }}
         run: |
-          if [ -z "$GH_TOKEN" ]; then echo "FACTORY_GITHUB_TOKEN is not set; skipping tap update."; exit 0; fi
+          if [ -z "$GH_TOKEN" ]; then echo "FACTORY_GITHUB_TOKEN is required to update the Homebrew tap."; exit 1; fi
           gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern rehearsal.rb --dir release-assets
           gh repo clone "${GITHUB_REPOSITORY_OWNER}/homebrew-selfhost-upgrade-rehearsal" tap
           mkdir -p tap/Formula

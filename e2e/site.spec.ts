@@ -410,6 +410,8 @@ test('@claim:release-workflow version tags run the cross-platform release workfl
   expect(workflow).toContain("tags: ['v*']");
   for (const platform of ['ubuntu-latest', 'macos-latest', 'windows-latest']) expect(workflow).toContain(platform);
   expect(workflow).toContain('softprops/action-gh-release');
+  expect(workflow).toContain('FACTORY_GITHUB_TOKEN is required to update the Homebrew tap.');
+  expect(workflow).not.toContain('skipping tap update');
 });
 
 test('@claim:sample-demo-parity browser and CLI use the Arbor Desk sample demo', async ({ page }) => {
