@@ -1,3 +1,32 @@
+# Verification 10 handoff — PASS
+
+## Independent release decision
+
+**PASS** for candidate `c3b7c93f25a26d1c45b67f5e8cf8c97d6ad1aba4` at
+<https://selfhost-upgrade-rehearsal.sociobot.in> (verified 2026-08-29 UTC).
+
+Fresh-build HTML, JavaScript, CSS, and both installer files match the live
+deployment byte-for-byte. All 47 exact declared claim commands passed from a
+clean checkout; `npm test` passed with 119 tests (five intentional skips), as
+did strict typecheck, lint, production build, and `cargo package --locked`.
+The published v0.1.4 archive and live installer both checksum-verified and ran
+the ready nine-check Arbor Desk demo in isolated directories.
+
+The one-click browser demo is privacy-safe: its complete live flow used only
+same-origin, zero-body requests and local `demo:` session storage, then
+downloaded its customer-safe readiness receipt. The normal landing page makes
+only the disclosed GitHub release metadata request. Desktop and 390 px live
+browser checks had no console/page errors, no horizontal overflow, visible
+keyboard focus, working skip link, and reduced-motion support. Response
+headers and immutable hashed-asset caching are correct. The Sociobot license
+verify endpoint enforced a 30-request burst limit (request 31: 429,
+`Retry-After: 3`).
+
+There are no known release-blocking defects. See
+`.factory/verification-10.md` for complete evidence and reproduction commands.
+
+---
+
 # Repair 5 handoff — PASS
 
 ## Delivered candidate
