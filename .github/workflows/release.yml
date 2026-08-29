@@ -144,5 +144,11 @@ jobs:
           git config user.name "Param Factory"
           git config user.email "factory@sociobot.in"
           git add Formula/rehearsal.rb
+          # A dispatch retry can find the formula already at this release.
+          # Treat that as the successful, idempotent result it is.
+          if git diff --cached --quiet; then
+            echo "Homebrew formula already publishes ${RELEASE_TAG}."
+            exit 0
+          fi
           git commit -m "rehearsal ${RELEASE_TAG}"
           git push
