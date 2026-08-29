@@ -132,7 +132,7 @@ function landing(): string {
     </section>
 
     <section id="install" class="install ruled-section" aria-labelledby="install-title">
-      <div class="section-heading"><p class="eyebrow">CLI installation</p><h2 id="install-title">Install one binary</h2><p id="platform-note">Checking published downloads…</p></div>
+      <div class="section-heading"><p class="eyebrow">CLI installation</p><h2 id="install-title" tabindex="-1">Install one binary</h2><p id="platform-note">Checking published downloads…</p></div>
       <div class="install-card">
         <a id="platform-download" class="button primary disabled" href="https://github.com/${REPO}/releases" rel="external">Downloads are being published</a>
         <p id="release-note">You can open the release page while packages are prepared.</p>
@@ -264,7 +264,9 @@ function render(focus = false): void {
   bindNavigation();
   if (route === '/') setupLanding();
   if (route === '/demo') setupDemo();
-  if (focus) {
+  if (route === '/' && window.location.hash === '#install') {
+    requestAnimationFrame(focusInstallSection);
+  } else if (focus) {
     const heading = document.querySelector<HTMLElement>('h1');
     heading?.focus();
     document.querySelector('#route-status')!.textContent = heading?.textContent ?? '';
@@ -279,7 +281,27 @@ function bindNavigation(): void {
     history.pushState({}, '', link.href);
     render(true);
   }));
+  document.querySelectorAll<HTMLAnchorElement>('a[href="/#install"]').forEach(link => link.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    Object.keys(sessionStorage).filter(key => key.startsWith('demo:')).forEach(key => sessionStorage.removeItem(key));
+    history.pushState({}, '', '/#install');
+    render();
+  }));
   document.querySelectorAll<HTMLButtonElement>('[data-terminal]').forEach(button => button.addEventListener('click', () => playTerminal(button.dataset.terminal!, button)));
+}
+
+function focusInstallSection(): void {
+  const section = document.querySelector<HTMLElement>('#install');
+  const heading = document.querySelector<HTMLElement>('#install-title');
+  if (!section || !heading) return;
+  const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  section.scrollIntoView({ block: 'start' });
+  document.documentElement.style.scrollBehavior = previousScrollBehavior;
+  heading.focus({ preventScroll: true });
+  const status = document.querySelector('#route-status');
+  if (status) status.textContent = 'CLI installation';
 }
 
 function playTerminal(id: string, button: HTMLButtonElement): void {

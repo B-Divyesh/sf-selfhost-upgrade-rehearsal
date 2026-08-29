@@ -86,6 +86,27 @@ test('@regression:first-screen-facts all three facts fit common desktop first sc
   }
 });
 
+test('@regression:install-navigation header Install link reveals and focuses the installation section', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Install' }).click();
+
+  await expect(page).toHaveURL(/\/#install$/);
+  await expect(page.locator('#install-title')).toBeFocused();
+  const position = await page.locator('#install').evaluate(section => {
+    const box = section.getBoundingClientRect();
+    return { top: box.top, bottom: box.bottom, viewportHeight: innerHeight };
+  });
+  expect(position.top).toBeGreaterThanOrEqual(-1);
+  expect(position.top).toBeLessThan(position.viewportHeight);
+  expect(position.bottom).toBeGreaterThan(0);
+});
+
+test('@regression:install-deep-link direct install URL restores the same focused destination', async ({ page }) => {
+  await page.goto('/#install');
+  await expect(page.locator('#install-title')).toBeFocused();
+  await expect(page.locator('#install')).toBeInViewport();
+});
+
 test('@regression:404-wordmark standalone 404 wordmark is a 44px target on desktop and mobile', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium', 'standalone page geometry is covered once at both required viewport sizes');
 
@@ -489,6 +510,8 @@ test('@claim:demo-storage-isolation sample demo uses only demo session storage a
   }))).toEqual({ realProject: 'keep', realSession: 'keep', demoKeys: ['demo:active'] });
   await page.getByRole('link', { name: 'Start for real' }).click();
   await expect(page).toHaveURL(/\/#install$/);
+  await expect(page.locator('#install-title')).toBeFocused();
+  await expect(page.locator('#install')).toBeInViewport();
   expect(await page.evaluate(() => sessionStorage.getItem('demo:active'))).toBeNull();
   expect(await page.evaluate(() => localStorage.getItem('real:project'))).toBe('keep');
 });
