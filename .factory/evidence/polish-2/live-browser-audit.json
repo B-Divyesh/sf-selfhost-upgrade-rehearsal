@@ -1,0 +1,253 @@
+{
+  "checkedAt": "2026-08-29T17:53:40.187Z",
+  "routes": [
+    {
+      "viewport": "desktop",
+      "path": "/",
+      "status": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "description": "Rehearse Compose or Kubernetes upgrades and issue customer-safe readiness receipts.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "description": "Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/demo",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "description": "Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "description": "See what the local CLI, browser demo, release lookup, and license check handle.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "description": "Read the receipt limits, Team kit purchase terms, and operator responsibilities.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/terms",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/cold-missing-page",
+      "status": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "description": "This link does not point to a page in Self-Host Upgrade Rehearsal.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/404.html",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/",
+      "status": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "description": "Rehearse Compose or Kubernetes upgrades and issue customer-safe readiness receipts.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "description": "Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/demo",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "description": "Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "description": "See what the local CLI, browser demo, release lookup, and license check handle.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "description": "Read the receipt limits, Team kit purchase terms, and operator responsibilities.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/terms",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/cold-missing-page",
+      "status": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "description": "This link does not point to a page in Self-Host Upgrade Rehearsal.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/404.html",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": 0,
+      "serious": 0,
+      "errors": []
+    }
+  ],
+  "install": [
+    {
+      "viewport": "desktop",
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install",
+      "focus": "install-title",
+      "top": 0.4375,
+      "bottom": 858.3125,
+      "viewportHeight": 900
+    },
+    {
+      "viewport": "mobile",
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install",
+      "focus": "install-title",
+      "top": 0.21875,
+      "bottom": 1083.28125,
+      "viewportHeight": 844
+    }
+  ],
+  "demo": {
+    "banner": true,
+    "keysBefore": {
+      "local": [
+        "real:sentinel"
+      ],
+      "session": [
+        "demo:active"
+      ]
+    },
+    "requestOrigins": [
+      "https://selfhost-upgrade-rehearsal.sociobot.in"
+    ],
+    "receipt": {
+      "schema": 1,
+      "status": "ready",
+      "checks": 9,
+      "customerSafe": true
+    },
+    "after": {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install",
+      "focus": "install-title",
+      "sentinel": "intact",
+      "demoKeys": []
+    }
+  }
+}

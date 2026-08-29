@@ -1,0 +1,138 @@
+[
+  {
+    "rel": "404.css",
+    "url": "/404.css",
+    "status": 200,
+    "bytes": 3513,
+    "match": true,
+    "sha256": "f048a8e4be4d09e4de8071147e0acb950230c6ed8c8fb5c471f2b63abd3e86fc"
+  },
+  {
+    "rel": "404.html",
+    "url": "/polish-2-missing",
+    "status": 404,
+    "bytes": 2831,
+    "match": true,
+    "sha256": "f73c53997a341dcc0822c820c94b1b9719f8e088bcfcc85c251131793e85313f"
+  },
+  {
+    "rel": "apple-touch-icon.png",
+    "url": "/apple-touch-icon.png",
+    "status": 200,
+    "bytes": 4371,
+    "match": true,
+    "sha256": "3313ebb0a3d114a540df77b16f0febfa4e610d1e3a9aa8b35f16925f037b5e4b"
+  },
+  {
+    "rel": "assets/index-BFP1aa3d.css",
+    "url": "/assets/index-BFP1aa3d.css",
+    "status": 200,
+    "bytes": 13227,
+    "match": true,
+    "sha256": "c76242d7417beef275374f906ea20d235377ac301facc10b709b2ac9ca1df0cb"
+  },
+  {
+    "rel": "assets/index-BQsNSVCW.js",
+    "url": "/assets/index-BQsNSVCW.js",
+    "status": 200,
+    "bytes": 22418,
+    "match": true,
+    "sha256": "88ae3ded0beef3722344e36f4430b7d16c81f8a5aec6c66e31ef1929368894b3"
+  },
+  {
+    "rel": "demo/index.html",
+    "url": "/demo",
+    "status": 200,
+    "bytes": 1751,
+    "match": true,
+    "sha256": "985a14bfcea27d3e219b0a6abb981b246ab02e43382821b1c1aa84a465d5acd7"
+  },
+  {
+    "rel": "favicon.svg",
+    "url": "/favicon.svg",
+    "status": 200,
+    "bytes": 353,
+    "match": true,
+    "sha256": "33494b9c54494a02a18dc79beab375c6ae84cf94daccfe8cbd3d34d9d7de7f00"
+  },
+  {
+    "rel": "index.html",
+    "url": "/?parity=2",
+    "status": 200,
+    "bytes": 1782,
+    "match": true,
+    "sha256": "aaf8483420e99d83450e78170e46453cd5f09a9f947d4b629f3ee2e5bc30d906"
+  },
+  {
+    "rel": "install.ps1",
+    "url": "/install.ps1",
+    "status": 200,
+    "bytes": 1220,
+    "match": true,
+    "sha256": "7c97f02e16527f9885c105e309b664aae1747954dc0f3628983a05acde991ae8"
+  },
+  {
+    "rel": "install.sh",
+    "url": "/install.sh",
+    "status": 200,
+    "bytes": 1088,
+    "match": true,
+    "sha256": "40e965f4056bea2048c59b58a820adbecb280ddf716fe6cb5f9c94ba10319547"
+  },
+  {
+    "rel": "latest.json",
+    "url": "/latest.json",
+    "status": 200,
+    "bytes": 736,
+    "match": true,
+    "sha256": "f7f32c39e4e0e2e255e9a32289e1cded9a6a7c158204224a7e4eadc29241f950"
+  },
+  {
+    "rel": "og-card.webp",
+    "url": "/og-card.webp",
+    "status": 200,
+    "bytes": 57158,
+    "match": true,
+    "sha256": "7f1ddb589b4cd28193080c3e041c8882638b7282bd3ad7ed01321c0248e7ee97"
+  },
+  {
+    "rel": "privacy/index.html",
+    "url": "/privacy",
+    "status": 200,
+    "bytes": 1733,
+    "match": true,
+    "sha256": "b5b10af8f765b10cf3670b0362270db8834ccf60e1c29596a9d761a900e5d90f"
+  },
+  {
+    "rel": "robots.txt",
+    "url": "/robots.txt",
+    "status": 200,
+    "bytes": 92,
+    "match": true,
+    "sha256": "971283ac60c501587ccfcde9a3d917310704b30e509031d21651a21faa95a4bf"
+  },
+  {
+    "rel": "sitemap.xml",
+    "url": "/sitemap.xml",
+    "status": 200,
+    "bytes": 417,
+    "match": true,
+    "sha256": "62243dbb11dd30d72c35184e9b20404b2f365a6754fce377e4227b67adc941e7"
+  },
+  {
+    "rel": "specimen-upgrade.webp",
+    "url": "/specimen-upgrade.webp",
+    "status": 200,
+    "bytes": 70902,
+    "match": true,
+    "sha256": "278b1f35e76f0680afcbb9b96914f6d3ba33d4500e0c48e37e961945de8d560e"
+  },
+  {
+    "rel": "terms/index.html",
+    "url": "/terms",
+    "status": 200,
+    "bytes": 1728,
+    "match": true,
+    "sha256": "afb878148620e79d6af59af090b077e771dca61048612418ed1f6b45f717d7de"
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "viewport": "desktop",
+    "path": "/",
+    "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "path": "/?demo=1",
+    "title": "Demo — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "path": "/demo",
+    "title": "Demo — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "path": "/privacy",
+    "title": "Privacy — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "path": "/terms",
+    "title": "Terms — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "path": "/404.html",
+    "title": "Page not found — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "path": "/#install",
+    "headingFocused": true,
+    "box": {
+      "top": 0.4375,
+      "bottom": 858.3125,
+      "height": 900
+    }
+  },
+  {
+    "viewport": "mobile",
+    "path": "/",
+    "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "path": "/?demo=1",
+    "title": "Demo — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "path": "/demo",
+    "title": "Demo — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "path": "/privacy",
+    "title": "Privacy — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "path": "/terms",
+    "title": "Terms — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "path": "/404.html",
+    "title": "Page not found — Self-Host Upgrade Rehearsal",
+    "lang": "en",
+    "h1": 1,
+    "main": 1,
+    "overflow": 0,
+    "serious": 0,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "path": "/#install",
+    "headingFocused": true,
+    "box": {
+      "top": 0.21875,
+      "bottom": 1083.28125,
+      "height": 844
+    }
+  }
+]
