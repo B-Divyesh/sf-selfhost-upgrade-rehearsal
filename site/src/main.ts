@@ -8,6 +8,7 @@ const INACTIVE_LICENSE_NOTICE = 'License no longer active. You can buy a new lic
 
 type Route = '/' | '/demo' | '/privacy' | '/terms' | '/404';
 type ReleaseAsset = { name: string; browser_download_url: string };
+type ReleaseManifest = { version: string; platforms: Record<string, string> };
 type RouteMetadata = { title: string; description: string; canonical: string };
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
@@ -195,7 +196,7 @@ function demo(): string {
 }
 
 function privacy(): string {
-  return legalPage('Privacy', 'Keep rehearsal data on your machine', `<p>The CLI runs on your machine. It does not send project files, hook output, or receipts to us.</p><h2>Website requests</h2><p>The website requests release metadata from GitHub. GitHub receives your IP address and browser details.</p><p>License checks send the license token to Sociobot. We store the token and a daily verdict in your browser.</p><h2>Demo storage</h2><p>The browser demo uses session storage keys that start with <code>demo:</code>. Closing the tab clears them.</p><h2>Payments</h2><p>Sociobot and Dodo process checkout details. This site does not receive card numbers.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with a privacy question.</p>`);
+  return legalPage('Privacy', 'Keep rehearsal data on your machine', `<p>The CLI runs on your machine. It does not send project files, hook output, or receipts to us.</p><h2>Website requests</h2><p>The website reads its release manifest locally. Download links open the matching GitHub release asset.</p><p>License checks send the license token to Sociobot. We store the token and a daily verdict in your browser.</p><h2>Demo storage</h2><p>The browser demo uses session storage keys that start with <code>demo:</code>. Closing the tab clears them.</p><h2>Payments</h2><p>Sociobot and Dodo process checkout details. This site does not receive card numbers.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with a privacy question.</p>`);
 }
 
 function terms(): string {
@@ -370,17 +371,11 @@ async function loadRelease(): Promise<void> {
   const note = document.querySelector('#release-note')!;
   const platformNote = document.querySelector('#platform-note')!;
   try {
-    const cache = JSON.parse(localStorage.getItem('release:cache') || 'null');
-    let release = cache?.time > Date.now() - 3_600_000 ? cache.value : null;
-    if (!release) {
-      const response = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=1`, { headers: { Accept: 'application/vnd.github+json' } });
-      if (!response.ok) throw new Error('release unavailable');
-      const releases = await response.json();
-      release = releases[0];
-      if (!release) throw new Error('release unavailable');
-      localStorage.setItem('release:cache', JSON.stringify({ time: Date.now(), value: release }));
-    }
-    const asset = platformAsset(release.assets || []);
+    const response = await fetch('/latest.json', { headers: { Accept: 'application/json' } });
+    if (!response.ok) throw new Error('release unavailable');
+    const manifest = await response.json() as ReleaseManifest;
+    const assets = Object.values(manifest.platforms || {}).map(url => ({ name: url.split('/').pop() || '', browser_download_url: url }));
+    const asset = platformAsset(assets);
     if (!asset) {
       if (/android|iphone|ipad|ipod|mobile/.test(navigator.userAgent.toLowerCase())) {
         platformNote.textContent = 'Desktop downloads are available for macOS, Windows, and Linux.';
@@ -392,7 +387,7 @@ async function loadRelease(): Promise<void> {
     button.href = asset.browser_download_url;
     button.textContent = `Download ${asset.name.replace('rehearsal-', '')}`;
     button.classList.remove('disabled');
-    platformNote.textContent = `Release ${release.tag_name} is ready for this device.`;
+    platformNote.textContent = `Release v${manifest.version} is ready for this device.`;
     note.textContent = 'The download comes from the matching GitHub release.';
   } catch {
     platformNote.textContent = 'Downloads are being published or this device is offline.';

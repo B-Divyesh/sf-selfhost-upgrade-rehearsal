@@ -259,11 +259,11 @@
     "sandbox": "fresh temporary declaration and demo; run all three commands with --json and parse each response"
   },
   {
-    "id": "website-release-request",
-    "claim": "The website requests public release metadata directly from GitHub.",
+    "id": "release-manifest",
+    "claim": "The website reads its local release manifest and opens matching GitHub download assets.",
     "where": "privacy",
-    "test": "npm test -- --grep @claim:website-release-request",
-    "sandbox": "fresh browser context; record and assert the exact GitHub API request during landing load"
+    "test": "npm test -- --grep @claim:release-manifest",
+    "sandbox": "fresh browser context; record the same-origin manifest request and assert its GitHub asset mapping"
   },
   {
     "id": "license-browser-storage",

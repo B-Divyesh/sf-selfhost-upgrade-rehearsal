@@ -341,15 +341,14 @@ test('@claim:sociobot-checkout payment action uses the Sociobot checkout endpoin
 
 test('@claim:published-platform-download release metadata selects a matching GitHub asset', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === 'mobile', 'mobile devices intentionally receive the desktop-only state');
-  await page.route('https://api.github.com/**', route => route.fulfill({
+  await page.route('**/latest.json', route => route.fulfill({
     status: 200,
     contentType: 'application/json',
-    headers: { 'access-control-allow-origin': '*' },
-    body: JSON.stringify([{ tag_name: 'v0.1.2', assets: [
-      { name: 'rehearsal-linux-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-x86_64.tar.gz' },
-      { name: 'rehearsal-macos-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-x86_64.tar.gz' },
-      { name: 'rehearsal-windows-x86_64.zip', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-windows-x86_64.zip' }
-    ] }])
+    body: JSON.stringify({ version: '0.1.2', platforms: {
+      linux_x86_64: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-x86_64.tar.gz',
+      macos_x86_64: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-x86_64.tar.gz',
+      windows_x86_64: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-windows-x86_64.zip'
+    } })
   }));
   await page.goto('/');
   await expect(page.getByText('Release v0.1.2 is ready for this device.')).toBeVisible();
@@ -488,15 +487,15 @@ test('@claim:json-output check, run, and demo return machine-readable JSON', asy
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test('@claim:website-release-request website requests only public GitHub release metadata for downloads', async ({ page }) => {
+test('@claim:release-manifest website reads its local release manifest for GitHub downloads', async ({ page }) => {
   const requests: string[] = [];
-  await page.route('https://api.github.com/**', route => {
+  await page.route('**/latest.json', route => {
     requests.push(route.request().url());
-    return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '[]' });
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ version: '0.1.2', platforms: {} }) });
   });
   await page.goto('/');
-  await expect(page.getByText('Downloads are being published or this device is offline.')).toBeVisible();
-  expect(requests).toEqual(['https://api.github.com/repos/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases?per_page=1']);
+  await expect(page.locator('#platform-note')).not.toHaveText('Checking published downloads…');
+  expect(requests).toEqual(['http://127.0.0.1:4173/latest.json']);
 });
 
 test('@claim:license-browser-storage license token and daily verdict stay in namespaced browser storage', async ({ page }) => {
