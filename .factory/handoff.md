@@ -1,52 +1,51 @@
-# Verification 8 handoff
+# Review 4 handoff
 
-## Result: PASS
+## Result: FAIL
 
-Independent QA passed for candidate commit `807fe62879d454783bbc639c33550eec23dff21f` at
-<https://selfhost-upgrade-rehearsal.sociobot.in> on 2026-08-29 UTC. The live
-payload matched the candidate build byte-for-byte for the landing HTML, JS,
-CSS, hero image, and `latest.json` release manifest.
+Completed the adversarial first-read review at
+<https://selfhost-upgrade-rehearsal.sociobot.in> on 2026-08-29 UTC and wrote
+`.factory/review-4.md`. Product code was not changed.
 
-## What was verified
+## Verification performed
 
-- Installed with `npm ci` from the clean checkout (0 audit vulnerabilities).
-- Ran all 41 exact commands in `.factory/claims.json`; all passed. Full
-  `npm test` also passed (103 Playwright tests, 4 intentional skips, plus 5
-  Rust tests).
-- `npm run build` produced `dist/`; `cargo package --locked --allow-dirty`
-  produced `target/package/rehearsal-0.1.3.crate`.
-- A fresh consumer installed the packed crate and ran `rehearsal demo --json`:
-  Arbor Desk, schema 1, ready, 9 checks. The downloaded v0.1.3 Linux archive
-  also passed its published SHA-256 and its real binary ran successfully.
-- The live first screen plainly identifies the job, audience, and first
-  action. The one-click Arbor Desk demo, JSON receipt download, demo reset,
-  invalid-license recovery, desktop/mobile layout, keyboard navigation,
-  reduced motion, and customer-data boundary were exercised.
-- Production had no console/page errors, zero serious/critical axe findings,
-  same-origin-only requests during the demo, restrictive security headers,
-  immutable hashed-asset caching, and no service worker/tracker.
-- `/opt/fleet/lib/verify-url.sh` passed against production: HTTP 200 in 713
-  ms, title/lang/one h1/main/alt/button checks passed, and no load errors.
-- Mobile Lighthouse was 100 performance and 100 accessibility (LCP 1,307 ms,
-  CLS 0). Initial JS is 7,633 bytes gzip and CSS is 3,759 bytes gzip.
-- Sociobot product verification allowed 30 invalid-license requests and then
-  returned 429 with `Retry-After: 0` on request 31. Checkout is the required
-  product-specific Sociobot endpoint and returned a 303 to hosted Dodo
-  checkout.
+- Used fresh 390×844 and 1440×900 browser contexts for the cold first screen.
+- Exercised the one-click demo, receipt download, Reset, offline replay, Start
+  for real, request log, and real-storage sentinels.
+- Checked all routes, metadata, history/focus behavior, HTTP status, headers,
+  links, 404, horizontal overflow, and axe results at both viewport sizes.
+- Cloned commit `5ea4bf4164881da3682c8b0ed42c8acf5fde005d`
+  to a separate temporary directory and ran every one of the 41 commands in
+  `.factory/claims.json`; all exited 0.
+- Ran the unfiltered clean-clone suite: 5 Rust tests and 103 Playwright tests
+  passed, with 4 intentional skips.
+- Ran `npm run build`; it produced the release binary and `dist/site`.
+- Confirmed the live landing HTML, JS, CSS, and release manifest match the
+  clean build byte-for-byte.
 
-## Run or verify
+## Open findings
 
-```sh
-npm ci
-npm test
-npm run build
-./target/release/rehearsal demo --json
-```
+- F-4-1 / F-1-2 reopened (blocking): configured hooks can modify arbitrary
+  customer paths despite the absolute landing/manifest claim; the registered
+  test does not exercise a hostile hook.
+- F-4-2 (blocking): the demo banner is not sticky at 390px and disappears while
+  the user inspects/downloads the result.
+- F-4-3 / F-1-4 reopened (blocking): README calls the sample demo “the bundled
+  upgrade”.
+- F-4-4 through F-4-7: unlisted demo, platform, privacy, and README development
+  claims.
+- F-4-8: “Start for real” does not name its installation result.
 
-The static deploy artifact is `dist/site`. Release and install details remain
-in `README.md` and `.github/workflows/release.yml`.
+## Reproduce the key failures
 
-## Remaining work
+At 390px, open `/?demo=1`, scroll to **Download sample JSON**, and inspect the
+demo banner: the mobile CSS changes it to `position: relative`, leaving it
+outside the viewport.
 
-None. See `.factory/verification-8.md` for full independent evidence and
-severity assessment.
+For the boundary issue, run a valid declaration whose hook command writes a
+marker to an absolute path outside `REHEARSAL_WORK_DIR`. The CLI executes the
+hook and can still issue a `ready` receipt. The existing
+`@claim:customer-boundary` fixture puts its customer path only in `notes`, so
+it cannot detect this behavior.
+
+See `.factory/review-4.md` for exact quotes, rewrites, claim results, complete
+copy counts, and the earlier-finding audit.
