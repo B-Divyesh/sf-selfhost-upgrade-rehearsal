@@ -59,4 +59,4 @@ The first screen reads in one breath: it rehearses upgrades for self-hosted prod
 | Paid CI download | Team kit |
 | Tested source-to-target change | upgrade path |
 
-Catalog description: “Rehearse self-hosted upgrades and issue a customer-safe readiness receipt.” It is 74 characters and starts with a verb.
+Catalog description: “Rehearse self-hosted upgrades and create customer-safe readiness receipts.” It is 74 characters and starts with a verb.
