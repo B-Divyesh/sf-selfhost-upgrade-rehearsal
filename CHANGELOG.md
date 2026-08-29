@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Keep the isolated demo disclosure and reset controls visible while a phone user scrolls.
+- Replace the false customer-installation boundary with the tested built-in-client and configured-hook boundary.
+- Add claim coverage for supported platforms, browser-session lifetime, development tools, tests, and static deployment output.
+- Standardize the sample-demo name and make the demo exit action name CLI installation.
+
 ## 0.1.3 — 2026-08-29
 
 - Clarify that `rehearsal init` writes a declaration template, not a checked project.

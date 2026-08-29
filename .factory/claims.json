@@ -127,10 +127,10 @@
   },
   {
     "id": "customer-boundary",
-    "claim": "The CLI does not connect to or modify a customer installation.",
+    "claim": "The CLI has no built-in network client and does not discover customer installations; hooks can access configured paths and networks.",
     "where": "landing limits, README",
     "test": "npm test -- --grep @claim:customer-boundary",
-    "sandbox": "hostile declaration names a customer URL and directory; assert the sentinel is unchanged and the CLI has no network client"
+    "sandbox": "hostile declaration names one unconfigured customer path and configures a hook to write another; assert only the configured path changes and inspect the CLI for built-in network clients"
   },
   {
     "id": "receipt-scope",
@@ -180,6 +180,13 @@
     "where": "landing install section",
     "test": "npm test -- --grep @claim:published-platform-download",
     "sandbox": "fresh browser context; recorded GitHub release response; assert version copy and exact matching asset URL"
+  },
+  {
+    "id": "supported-platforms",
+    "claim": "Install packages are provided for macOS, Windows, and Linux, with no phone or tablet package.",
+    "where": "landing install section",
+    "test": "npm test -- --grep @claim:supported-platforms",
+    "sandbox": "recorded published release; assert macOS, Windows, and Linux assets and the absence of Android or iOS assets; assert the mobile explanation"
   },
   {
     "id": "homebrew-tap",
@@ -239,10 +246,10 @@
   },
   {
     "id": "demo-storage-isolation",
-    "claim": "The sample demo uses a separate demo session namespace and clears it when the user starts for real.",
+    "claim": "The sample demo uses a separate demo session namespace and clears it when the user installs the CLI or closes the tab.",
     "where": "demo banner, privacy, demo documentation",
     "test": "npm test -- --grep @claim:demo-storage-isolation",
-    "sandbox": "fresh browser context with sentinel real storage; enter ?demo=1, inspect namespaces, exit, and assert real data is unchanged"
+    "sandbox": "fresh browser context with sentinel real storage; enter ?demo=1, inspect namespaces, exit, close the tab, reopen, and assert real data is unchanged"
   },
   {
     "id": "starter-templates",
@@ -285,5 +292,33 @@
     "where": "privacy",
     "test": "npm test -- --grep @claim:dodo-checkout-processing",
     "sandbox": "fresh clone; recorded checkout response; assert the Sociobot request and 303 Dodo checkout destination"
+  },
+  {
+    "id": "development-requirements",
+    "claim": "Development uses stable Rust and Node 22 with npm.",
+    "where": "README development section",
+    "test": "npm test -- --grep @claim:development-requirements",
+    "sandbox": "fresh clone; inspect the test workflow and package lock for stable Rust, Node 22, and npm"
+  },
+  {
+    "id": "test-coverage",
+    "claim": "npm test runs Rust, claim, accessibility, desktop, and 390 px browser checks.",
+    "where": "README development section",
+    "test": "npm test -- --grep @claim:test-coverage",
+    "sandbox": "fresh clone; inspect the npm test script, Playwright projects, axe test, and claim tags"
+  },
+  {
+    "id": "site-build-output",
+    "claim": "npm run build:site writes dist/site/index.html.",
+    "where": "README development section",
+    "test": "npm test -- --grep @claim:site-build-output",
+    "sandbox": "fresh clone after the test prebuild; inspect the build script and built index document"
+  },
+  {
+    "id": "deploy-directory",
+    "claim": "The complete deployable static site is in dist/site.",
+    "where": "README development section",
+    "test": "npm test -- --grep @claim:deploy-directory",
+    "sandbox": "fresh clone after the test prebuild; assert the static deployment files and route documents are all rooted in dist/site"
   }
 ]

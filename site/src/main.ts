@@ -152,8 +152,8 @@ rehearsal run --output release-proof</code></pre></div>
     <section class="limits ruled-section" aria-labelledby="limits-title">
       <div class="section-heading"><p class="eyebrow">Receipt limits</p><h2 id="limits-title">Know what the receipt does not prove</h2></div>
       <div class="limit-copy">
-        <p>It does not connect to customer servers or collect customer data.</p>
-        <p>It does not upgrade a customer installation.</p>
+        <p>The CLI has no built-in network client and does not discover customer installations.</p>
+        <p>Hooks can access paths and networks you configure.</p>
         <p>Each receipt covers only its listed versions and environments.</p>
       </div>
     </section>
@@ -179,9 +179,9 @@ function terminal(id: string): string {
 }
 
 function demo(): string {
-  return shell(`<div class="demo-banner" role="status"><span><strong>Demo</strong> — sample data, nothing is saved</span><span><button id="reset-demo" type="button">Reset demo</button><a href="/#install" id="start-real">Start for real</a></span></div>
+  return shell(`<div class="demo-banner" role="status"><span><strong>Demo</strong> — sample data, nothing is saved</span><span><button id="reset-demo" type="button">Reset demo</button><a href="/#install" id="start-real">Install the CLI</a></span></div>
     <main id="main" class="demo-page">
-      <section class="demo-intro"><p class="eyebrow">Bundled sample demo · Arbor Desk</p><h1 tabindex="-1">Inspect a finished upgrade rehearsal</h1><p>This sample demo moves three test workspaces from 1.8.4 to 2.0.0.</p></section>
+      <section class="demo-intro"><p class="eyebrow">Bundled sample demo · Arbor Desk</p><h1 tabindex="-1">Inspect a finished upgrade rehearsal</h1><p>This recording shows the Arbor Desk 1.8.4 to 2.0.0 sample demo.</p></section>
       <section aria-labelledby="demo-run-title"><h2 id="demo-run-title" class="sr-only">Sample terminal run</h2>${terminal('demo-terminal')}</section>
       <section class="full-receipt" aria-labelledby="receipt-title">
         <div class="receipt-head"><div><p class="eyebrow">Customer-safe receipt · SHR-8A71C042D591</p><h2 id="receipt-title">Arbor Desk 1.8.4 → 2.0.0</h2><p>Sample data · linux/x86_64</p></div><span class="receipt-stamp">Ready</span></div>
@@ -400,8 +400,8 @@ async function loadRelease(): Promise<void> {
     const asset = platformAsset(assets);
     if (!asset) {
       if (/android|iphone|ipad|ipod|mobile/.test(navigator.userAgent.toLowerCase())) {
-        platformNote.textContent = 'Desktop downloads are available for macOS, Windows, and Linux.';
-        note.textContent = 'This CLI does not run on phones or tablets.';
+        platformNote.textContent = 'Install on macOS, Windows, or Linux.';
+        note.textContent = 'No phone or tablet package is provided.';
         return;
       }
       throw new Error('platform package unavailable');

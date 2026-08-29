@@ -7,7 +7,7 @@ This CLI is for teams that ship Docker Compose or Kubernetes products. It checks
 Website: <https://selfhost-upgrade-rehearsal.sociobot.in>  
 One-click browser demo: <https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1>
 
-## Try the bundled upgrade
+## Run the sample demo
 
 ```sh
 rehearsal demo
@@ -141,7 +141,7 @@ Package the Rust crate without publishing it:
 cargo package --locked
 ```
 
-The factory deploys `dist/site`. Tag a version such as `v0.1.3` to run the cross-platform GitHub release workflow.
+The complete deployable static site is in `dist/site`. Tag a version such as `v0.1.3` to run the cross-platform GitHub release workflow.
 
 ## License
 

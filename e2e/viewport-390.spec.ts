@@ -77,3 +77,31 @@ test('@regression:viewport-390 legal contacts and the standalone 404 recovery li
     expect(target.height).toBeGreaterThanOrEqual(44);
   }
 });
+
+test('@regression:demo-banner-mobile demo disclosure and controls stay visible at the receipt', async ({ page }) => {
+  await page.goto('/?demo=1');
+  await page.getByRole('button', { name: 'Download sample JSON' }).scrollIntoViewIfNeeded();
+
+  const layout = await page.locator('.demo-banner').evaluate(banner => {
+    const box = banner.getBoundingClientRect();
+    const controls = Array.from(banner.querySelectorAll('button, a')).map(control => {
+      const rect = control.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height };
+    });
+    return { position: getComputedStyle(banner).position, top: box.top, bottom: box.bottom, viewportHeight: innerHeight, controls };
+  });
+
+  expect(layout.position).toBe('sticky');
+  expect(layout.top).toBeGreaterThanOrEqual(-1);
+  expect(layout.bottom).toBeLessThanOrEqual(layout.viewportHeight);
+  expect(layout.controls).toHaveLength(2);
+  for (const control of layout.controls) {
+    expect(control.top).toBeGreaterThanOrEqual(0);
+    expect(control.bottom).toBeLessThanOrEqual(layout.viewportHeight);
+    expect(control.width).toBeGreaterThanOrEqual(44);
+    expect(control.height).toBeGreaterThanOrEqual(44);
+  }
+  await expect(page.getByText('Demo — sample data, nothing is saved')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Reset demo' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Install the CLI' })).toBeVisible();
+});

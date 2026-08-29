@@ -9,4 +9,4 @@ The sample demo is Arbor Desk upgrading from 1.8.4 to 2.0.0. It contains three t
 
 The CLI makes a new directory under the operating system's temporary directory unless `--output` is given. It prints both receipt paths. The browser demo uses only `sessionStorage` keys prefixed with `demo:`. It never reads the real license during the demo.
 
-Use **Reset demo** to clear all `demo:` keys and replay the terminal. Use **Start for real** to clear the demo namespace and open the install section.
+Use **Reset demo** to clear all `demo:` keys and replay the terminal. Use **Install the CLI** to clear the demo namespace and open the install section. Closing the tab also clears the demo session namespace.

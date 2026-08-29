@@ -327,18 +327,28 @@ test('@claim:declared-upgrade-path receipt records the one declared source and t
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test('@claim:customer-boundary hostile customer paths are never contacted or modified', async () => {
+test('@claim:customer-boundary built-in discovery stays inert while configured hooks retain explicit host access', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'rehearsal-boundary-'));
-  const customer = join(dir, 'customer-installation');
-  const sentinel = join(customer, 'keep.txt');
+  const undiscoveredCustomer = join(dir, 'unconfigured-customer-installation');
+  const configuredCustomer = join(dir, 'configured-customer-installation');
+  const sentinel = join(undiscoveredCustomer, 'keep.txt');
+  const configuredMarker = join(configuredCustomer, 'modified-by-configured-hook');
   try {
-    await mkdir(customer);
+    await mkdir(undiscoveredCustomer);
+    await mkdir(configuredCustomer);
     await writeFile(sentinel, 'customer data');
-    await writeMinimalDeclaration(dir, { notes: `https://customer.invalid ${customer}` });
+    await writeMinimalDeclaration(dir, {
+      notes: `https://customer.invalid ${undiscoveredCustomer}`,
+      preflight: `[/usr/bin/touch, "${configuredMarker}"]`
+    });
     await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
     expect(await readFile(sentinel, 'utf8')).toBe('customer data');
+    expect(await readFile(configuredMarker, 'utf8')).toBe('');
     const source = `${await readFile(join(root, 'src/lib.rs'), 'utf8')}\n${await readFile(join(root, 'src/main.rs'), 'utf8')}`;
     expect(source).not.toMatch(/TcpStream|UdpSocket|reqwest|hyper|ureq/);
+    const landing = await readFile(join(root, 'site/src/main.ts'), 'utf8');
+    expect(landing).toContain('The CLI has no built-in network client and does not discover customer installations.');
+    expect(landing).toContain('Hooks can access paths and networks you configure.');
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
@@ -419,6 +429,22 @@ test('@claim:published-platform-download release metadata selects a matching Git
   await expect(download).toHaveAttribute('href', /github\.com\/B-Divyesh\/sf-selfhost-upgrade-rehearsal\/releases\/download\/v0\.1\.3\/rehearsal-(linux|macos|windows)-/);
 });
 
+test('@claim:supported-platforms published packages cover desktop systems and omit phone packages', async () => {
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.3.json'), 'utf8')) as { assets: Array<{ name: string }> };
+  const names = release.assets.map(asset => asset.name);
+  for (const required of [
+    'rehearsal-linux-x86_64.tar.gz',
+    'rehearsal-linux-aarch64.tar.gz',
+    'rehearsal-macos-x86_64.tar.gz',
+    'rehearsal-macos-aarch64.tar.gz',
+    'rehearsal-windows-x86_64.zip'
+  ]) expect(names).toContain(required);
+  expect(names.some(name => /android|ios|iphone|ipad|tablet/i.test(name))).toBe(false);
+  const source = await readFile(join(root, 'site/src/main.ts'), 'utf8');
+  expect(source).toContain('Install on macOS, Windows, or Linux.');
+  expect(source).toContain('No phone or tablet package is provided.');
+});
+
 test('@claim:homebrew-tap documented Homebrew formula is published', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   expect(readme).toContain('brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal');
@@ -496,7 +522,7 @@ test('@claim:no-embedded-payment-provider repository embeds no payment-provider 
   expect(pageSource).toContain('https://api.sociobot.in/api/v1/products/');
 });
 
-test('@claim:demo-storage-isolation sample demo uses only demo session storage and clears it on exit', async ({ page }) => {
+test('@claim:demo-storage-isolation sample demo uses only demo session storage and clears it on exit or tab close', async ({ page, context }) => {
   await page.goto('/');
   await page.evaluate(() => {
     localStorage.setItem('real:project', 'keep');
@@ -508,12 +534,21 @@ test('@claim:demo-storage-isolation sample demo uses only demo session storage a
     realSession: sessionStorage.getItem('real:session'),
     demoKeys: Object.keys(sessionStorage).filter(key => key.startsWith('demo:'))
   }))).toEqual({ realProject: 'keep', realSession: 'keep', demoKeys: ['demo:active'] });
-  await page.getByRole('link', { name: 'Start for real' }).click();
+  await page.getByRole('link', { name: 'Install the CLI' }).click();
   await expect(page).toHaveURL(/\/#install$/);
   await expect(page.locator('#install-title')).toBeFocused();
   await expect(page.locator('#install')).toBeInViewport();
   expect(await page.evaluate(() => sessionStorage.getItem('demo:active'))).toBeNull();
   expect(await page.evaluate(() => localStorage.getItem('real:project'))).toBe('keep');
+
+  await page.goto('/?demo=1');
+  expect(await page.evaluate(() => sessionStorage.getItem('demo:active'))).toBe('1');
+  await page.close();
+  const reopened = await context.newPage();
+  await reopened.goto('/');
+  expect(await reopened.evaluate(() => Object.keys(sessionStorage).filter(key => key.startsWith('demo:')))).toEqual([]);
+  expect(await reopened.evaluate(() => localStorage.getItem('real:project'))).toBe('keep');
+  await reopened.close();
 });
 
 test('@claim:starter-templates init writes Compose and Kubernetes declaration templates that name their required setup', async () => {
@@ -595,6 +630,47 @@ test('@claim:dodo-checkout-processing Sociobot checkout hands payment processing
   expect(response.location).toMatch(/^https:\/\/checkout\.dodopayments\.com\/session\//);
 });
 
+test('@claim:development-requirements development versions are declared for stable Rust, Node 22, and npm', async () => {
+  const toolchain = await readFile(join(root, 'rust-toolchain.toml'), 'utf8');
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { engines: Record<string, string> };
+  const packageLock = JSON.parse(await readFile(join(root, 'package-lock.json'), 'utf8')) as { lockfileVersion: number };
+  const workflow = await readFile(join(root, '.github/workflows/test.yml'), 'utf8');
+  expect(toolchain).toContain('channel = "stable"');
+  expect(packageJson.engines).toEqual({ node: '22.x', npm: '>=10' });
+  expect(packageLock.lockfileVersion).toBe(3);
+  expect(workflow).toContain('dtolnay/rust-toolchain@stable');
+  expect(workflow).toContain('node-version: 22');
+});
+
+test('@claim:test-coverage npm test includes Rust, claim, accessibility, desktop, and 390 px checks', async () => {
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { scripts: Record<string, string> };
+  const playwright = await readFile(join(root, 'playwright.config.ts'), 'utf8');
+  const suite = `${await readFile(join(root, 'e2e/site.spec.ts'), 'utf8')}\n${await readFile(join(root, 'e2e/viewport-390.spec.ts'), 'utf8')}`;
+  expect(packageJson.scripts.test).toBe('cargo test && npm run build:site && playwright test');
+  expect(playwright).toContain("name: 'chromium'");
+  expect(playwright).toContain("name: 'viewport-390'");
+  expect(suite).toContain("from '@axe-core/playwright'");
+  expect((suite.match(/@claim:/g) || []).length).toBeGreaterThanOrEqual(46);
+});
+
+test('@claim:site-build-output build:site writes the static index document', async () => {
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { scripts: Record<string, string> };
+  const buildScript = await readFile(join(root, 'scripts/build-site.mjs'), 'utf8');
+  const builtIndex = await readFile(join(root, 'dist/site/index.html'), 'utf8');
+  expect(packageJson.scripts['build:site']).toContain('vite build --config site/vite.config.ts');
+  expect(buildScript).toContain("new URL('../dist/site/', import.meta.url)");
+  expect(builtIndex).toContain('<div id="app"></div>');
+});
+
+test('@claim:deploy-directory dist/site contains the complete deployable static site', async () => {
+  for (const path of [
+    'index.html', 'demo/index.html', 'privacy/index.html', 'terms/index.html', '404.html',
+    'staticwebapp.config.json', 'install.sh', 'install.ps1', 'robots.txt', 'sitemap.xml'
+  ]) expect(await readFile(join(root, 'dist/site', path), 'utf8')).not.toHaveLength(0);
+  const readme = await readFile(join(root, 'README.md'), 'utf8');
+  expect(readme).toContain('The complete deployable static site is in `dist/site`.');
+});
+
 test('a cached invalid license keeps its inactive notice after reload', async ({ page }) => {
   let verificationRequests = 0;
   await page.route('https://api.sociobot.in/**', async route => {
@@ -666,7 +742,8 @@ test('mobile navigation targets, empty-license feedback, and mobile downloads ar
   await page.keyboard.press('Enter');
   await expect(page.getByText('Paste a license token, then verify it.')).toBeVisible();
   await expect(page.getByRole('link', { name: /Download rehearsal-/ })).toHaveCount(0);
-  await expect(page.getByText('Desktop downloads are available for macOS, Windows, and Linux.')).toBeVisible();
+  await expect(page.getByText('Install on macOS, Windows, or Linux.')).toBeVisible();
+  await expect(page.getByText('No phone or tablet package is provided.')).toBeVisible();
 });
 
 test('built route documents prevent a navigation fallback from turning unknown paths into soft 404s', async () => {
