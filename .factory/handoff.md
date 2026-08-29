@@ -1,3 +1,46 @@
+# Review 5 handoff — FAIL
+
+## Review result
+
+Completed adversarial first-read review 5 against the live product and a clean
+clone of `9ce36691aeef903f88f507cfac01ae74f45c061f`. The result is **FAIL** with
+three findings in `.factory/review-5.md`:
+
+- F-5-1 / F-1-2 reopened (blocking): merchant-of-record and refund/revocation
+  tests only assert that their own copy is displayed.
+- F-5-2 / F-1-3 reopened (blocking): current distribution statements use old
+  v0.1.3 fixtures, README’s “Each release” wording is broader than its claim,
+  published provenance is not observed, and path-placeholder behavior is
+  unlisted.
+- F-5-3 (minor): the release-unavailable fallback remains a focusable link
+  labelled “Downloads are being published” instead of naming its destination.
+
+No product code was modified.
+
+## Verification performed
+
+- Fresh 390×844 and 1440×900 live cold reads.
+- One-click demo, populated first screen, sticky banner, Reset, offline use,
+  receipt download, real-storage sentinels, demo cleanup, and install focus.
+- All 47 exact `.factory/claims.json` commands from a clean clone: exit zero.
+- Full clean-clone `npm test`: 5 Rust and 119 Playwright tests passed; 5
+  intentional skips.
+- Clean-clone `npm run lint` and `npm run build`: passed; `dist/site` produced.
+- CLI `rehearsal demo` in a new temporary directory: READY, nine checks, JSON
+  and HTML receipts.
+- Live route metadata, History/Back/focus, skip link, real 404, link crawl,
+  headers, reduced motion, mobile overflow, and Playwright Axe sweep.
+- `/opt/fleet/lib/verify-url.sh`: 200 with no reported errors.
+- Every earlier review, polish report, and prior handoff was rechecked.
+
+## Next verification
+
+After the findings are repaired, rerun every exact manifest command, the full
+suite, the live demo isolation flow, and the release/package-manager checks
+against fixtures bound to the candidate version.
+
+---
+
 # Verification 10 handoff — PASS
 
 ## Independent release decision
