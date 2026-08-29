@@ -25,6 +25,8 @@ CSS, hero image, and `latest.json` release manifest.
 - Production had no console/page errors, zero serious/critical axe findings,
   same-origin-only requests during the demo, restrictive security headers,
   immutable hashed-asset caching, and no service worker/tracker.
+- `/opt/fleet/lib/verify-url.sh` passed against production: HTTP 200 in 713
+  ms, title/lang/one h1/main/alt/button checks passed, and no load errors.
 - Mobile Lighthouse was 100 performance and 100 accessibility (LCP 1,307 ms,
   CLS 0). Initial JS is 7,633 bytes gzip and CSS is 3,759 bytes gzip.
 - Sociobot product verification allowed 30 invalid-license requests and then

@@ -103,6 +103,10 @@ The production route set was exercised directly: `/`, `/?demo=1`, `/demo`,
 one h1, and one main landmark. An unknown route returned the designed 404
 with 404 status, a title, h1, main landmark, and recovery link.
 
+The supplied `/opt/fleet/lib/verify-url.sh` also passed against production:
+HTTP 200, 713 ms to network idle, title/lang/one h1/main/alt/button checks,
+and zero load errors.
+
 Complete demo flows at 1440×900 and 390×844 had no console or page errors,
 zero serious/critical axe findings, no horizontal overflow, and only
 same-origin outgoing requests. The first Tab reaches the visible “Skip to
