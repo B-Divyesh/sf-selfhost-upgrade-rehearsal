@@ -1,0 +1,34 @@
+{
+  "offlineDemo": {
+    "ready": true,
+    "storage": {
+      "local": [],
+      "session": []
+    },
+    "requests": [
+      "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-Ciep9Kdj.js",
+      "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-B9IVHe6m.css"
+    ]
+  },
+  "afterStartReal": {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install",
+    "demoKey": null
+  },
+  "invalidLicense": {
+    "notice": true,
+    "first": {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/",
+      "token": "verification-5-invalid-live",
+      "verdict": {
+        "valid": false,
+        "time": 1788017264134
+      },
+      "swSupported": true
+    },
+    "verifyRequestsAfterReload": 1,
+    "teamDownloadVisible": false,
+    "consoleErrors": [],
+    "serviceWorkerRegistrations": 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "fetchTime": "2026-08-29T15:26:13.339Z",
+  "categories": {
+    "performance": 0.99,
+    "accessibility": 1,
+    "best-practices": 1,
+    "seo": 1
+  },
+  "metrics": {
+    "fcp": 942.1695,
+    "lcp": 1032.1695,
+    "tbt": 127.5,
+    "cls": 0,
+    "inp": null,
+    "totalByteWeight": 84392
+  }
+}

@@ -1,0 +1,75 @@
+[
+  {
+    "url": "https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout",
+    "status": 303,
+    "location": "https://checkout.dodopayments.com/session/cks_0NmS5ZZWj96dO1N7j3dDf"
+  },
+  {
+    "url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-x86_64.tar.gz",
+    "status": 302,
+    "location": "https://release-assets.githubusercontent.com/github-production-release-asset/1349823507/5f617cb9-42f5-41b1-b9b1-aad0fb0f3b2f?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-29T16%3A07%3A04Z&rscd=attachment%3B+filename%3Drehearsal-linux-x86_64.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-29T15%3A06%3A23Z&ske=2026-08-29T16%3A07%3A04Z&sks=b&skv=2018-11-09&sig=rCxuMYKEuBKS9J%2BQP3vIE6hurRnIIwwECALsJTm6eyE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4ODAxNzUxOSwibmJmIjoxNzg4MDE3MjE5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.RVxjrdr33hKQ1GZoaIU7KbYNDId2Q2sIpqV0jO64mJE&response-content-disposition=attachment%3B%20filename%3Drehearsal-linux-x86_64.tar.gz&response-content-type=application%2Foctet-stream"
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#main",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1#main",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy#main",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/terms",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/terms#main",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/verification-5-not-found#main",
+    "status": 404,
+    "location": null
+  },
+  {
+    "url": "https://sociobot.in/",
+    "status": 200,
+    "location": null
+  },
+  {
+    "url": "mailto:privacy@sociobot.in",
+    "status": "mailto"
+  },
+  {
+    "url": "mailto:support@sociobot.in",
+    "status": "mailto"
+  }
+]

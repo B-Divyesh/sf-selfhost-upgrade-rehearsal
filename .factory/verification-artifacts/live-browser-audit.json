@@ -1,0 +1,259 @@
+{
+  "generated_at": "2026-08-29T15:23:14.791Z",
+  "routes": [
+    {
+      "profile": "desktop",
+      "path": "/",
+      "status": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "lang": "en",
+      "h1": [
+        "Rehearse upgrades before customers do"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "desktop",
+      "path": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "desktop",
+      "path": "/demo",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "desktop",
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Keep rehearsal data on your machine"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "desktop",
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Use receipts as tested evidence"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "desktop",
+      "path": "/verification-5-not-found",
+      "status": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Page not found"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "text": "UpgradeRehearsal",
+          "w": 131,
+          "h": 38
+        }
+      ],
+      "seriousCritical": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "mobile390",
+      "path": "/",
+      "status": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "lang": "en",
+      "h1": [
+        "Rehearse upgrades before customers do"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "mobile390",
+      "path": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "mobile390",
+      "path": "/demo",
+      "status": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "mobile390",
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Keep rehearsal data on your machine"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "mobile390",
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Use receipts as tested evidence"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "seriousCritical": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "profile": "mobile390",
+      "path": "/verification-5-not-found",
+      "status": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": [
+        "Page not found"
+      ],
+      "mains": 1,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "text": "UpgradeRehearsal",
+          "w": 126,
+          "h": 38
+        }
+      ],
+      "seriousCritical": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "pageErrors": [],
+      "externalRequests": []
+    }
+  ],
+  "flow": {
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+    "banner": true,
+    "reset": true,
+    "startReal": true,
+    "status": "ready",
+    "checks": 9,
+    "configChanges": 3,
+    "customerSafe": true,
+    "source": "1.8.4",
+    "target": "2.0.0",
+    "externalRequests": []
+  },
+  "keyboard": {
+    "first": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(166, 58, 36) solid 3px"
+    },
+    "afterEnter": {
+      "hash": "#main",
+      "active": ""
+    },
+    "second": {
+      "tag": "A",
+      "text": "Try it with sample data"
+    }
+  },
+  "reducedMotion": {
+    "media": true,
+    "maxAnimMs": 0.01,
+    "maxTransitionMs": 0.01,
+    "scrollBehavior": "auto"
+  }
+}
