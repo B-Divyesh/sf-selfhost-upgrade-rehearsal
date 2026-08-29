@@ -1,0 +1,178 @@
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 4 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/site/index.html                  1.78 kB │ gzip: 0.66 kB
+../dist/site/assets/index-BFP1aa3d.css  13.23 kB │ gzip: 3.75 kB
+../dist/site/assets/index-BQsNSVCW.js   22.42 kB │ gzip: 7.60 kB
+✓ built in 187ms
+[WebServer] (node:17766) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 107 tests using 2 workers
+
+(node:17790) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17790) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [mobile] › e2e/site.spec.ts:49:1 › landing has one clear page outline and no serious accessibility errors (4.0s)
+  ✓    2 [chromium] › e2e/site.spec.ts:49:1 › landing has one clear page outline and no serious accessibility errors (4.2s)
+  -    3 [mobile] › e2e/site.spec.ts:65:1 › @regression:first-screen-facts all three facts fit common desktop first screens at legible size
+  ✓    5 [mobile] › e2e/site.spec.ts:89:1 › @regression:install-navigation header Install link reveals and focuses the installation section (1.7s)
+  ✓    4 [chromium] › e2e/site.spec.ts:65:1 › @regression:first-screen-facts all three facts fit common desktop first screens at legible size (2.1s)
+  ✓    6 [mobile] › e2e/site.spec.ts:104:1 › @regression:install-deep-link direct install URL restores the same focused destination (907ms)
+  -    8 [mobile] › e2e/site.spec.ts:110:1 › @regression:404-wordmark standalone 404 wordmark is a 44px target on desktop and mobile
+  ✓    7 [chromium] › e2e/site.spec.ts:89:1 › @regression:install-navigation header Install link reveals and focuses the installation section (1.4s)
+  ✓    9 [mobile] › e2e/site.spec.ts:126:1 › @claim:demo-receipt demo downloads the complete schema-1 readiness receipt (811ms)
+  ✓   10 [chromium] › e2e/site.spec.ts:104:1 › @regression:install-deep-link direct install URL restores the same focused destination (792ms)
+  ✓   12 [chromium] › e2e/site.spec.ts:110:1 › @regression:404-wordmark standalone 404 wordmark is a 44px target on desktop and mobile (672ms)
+  ✓   13 [chromium] › e2e/site.spec.ts:126:1 › @claim:demo-receipt demo downloads the complete schema-1 readiness receipt (506ms)
+  ✓   11 [mobile] › e2e/site.spec.ts:152:1 › @claim:offline-demo bundled demo runs after the page goes offline (2.7s)
+  ✓   14 [chromium] › e2e/site.spec.ts:152:1 › @claim:offline-demo bundled demo runs after the page goes offline (2.3s)
+  ✓   15 [mobile] › e2e/site.spec.ts:159:1 › @claim:demo-network-privacy demo sends no project data (2.2s)
+  ✓   17 [mobile] › e2e/site.spec.ts:171:1 › @claim:cli-receipts CLI writes JSON and HTML receipts (26ms)
+  ✓   18 [mobile] › e2e/site.spec.ts:181:1 › @claim:upgrade-hooks CLI checks backup, restore, and health hooks (40ms)
+  ✓   19 [mobile] › e2e/site.spec.ts:192:1 › @claim:declared-resource-minimums receipt records the declared memory and disk minimums (21ms)
+  ✓   20 [mobile] › e2e/site.spec.ts:205:1 › @claim:compose-kubernetes-declarations validates both declaration adapters before launch (49ms)
+  ✓   21 [mobile] › e2e/site.spec.ts:219:1 › @claim:installer-checksum installers verify the package before installation (4ms)
+  ✓   22 [mobile] › e2e/site.spec.ts:228:1 › @claim:mit-core core CLI is MIT licensed (2ms)
+  ✓   23 [mobile] › e2e/site.spec.ts:233:1 › @claim:schema-redaction receipt schema changes exclude values (20ms)
+  ✓   24 [mobile] › e2e/site.spec.ts:248:1 › @claim:customer-safe-receipt customer-safe receipts omit declaration notes and hook output (20ms)
+  ✓   25 [mobile] › e2e/site.spec.ts:261:1 › @claim:temporary-workspace demo creates its own temporary project directory (23ms)
+  ✓   26 [mobile] › e2e/site.spec.ts:268:1 › @claim:argument-arrays hook arguments are passed without shell parsing (47ms)
+  ✓   27 [mobile] › e2e/site.spec.ts:278:1 › @claim:exit-codes failed checks return 1 and invalid declarations return 2 (17ms)
+  ✓   28 [mobile] › e2e/site.spec.ts:288:1 › @claim:unsigned-packages release workflow makes unsigned package formats explicit (4ms)
+  ✓   29 [mobile] › e2e/site.spec.ts:296:1 › @claim:cli-no-upload CLI contains no network client or telemetry path (49ms)
+  ✓   30 [mobile] › e2e/site.spec.ts:303:1 › @claim:team-kit-license valid license restores the Team CI kit (591ms)
+  ✓   31 [mobile] › e2e/site.spec.ts:319:1 › @claim:declared-upgrade-path receipt records the one declared source and target path (19ms)
+  ✓   32 [mobile] › e2e/site.spec.ts:330:1 › @claim:customer-boundary hostile customer paths are never contacted or modified (72ms)
+  ✓   33 [mobile] › e2e/site.spec.ts:345:1 › @claim:receipt-scope receipt names only its tested versions and supported environments (95ms)
+  ✓   16 [chromium] › e2e/site.spec.ts:159:1 › @claim:demo-network-privacy demo sends no project data (2.3s)
+  ✓   35 [chromium] › e2e/site.spec.ts:171:1 › @claim:cli-receipts CLI writes JSON and HTML receipts (111ms)
+  ✓   36 [chromium] › e2e/site.spec.ts:181:1 › @claim:upgrade-hooks CLI checks backup, restore, and health hooks (167ms)
+  ✓   37 [chromium] › e2e/site.spec.ts:192:1 › @claim:declared-resource-minimums receipt records the declared memory and disk minimums (93ms)
+  ✓   38 [chromium] › e2e/site.spec.ts:205:1 › @claim:compose-kubernetes-declarations validates both declaration adapters before launch (98ms)
+  ✓   39 [chromium] › e2e/site.spec.ts:219:1 › @claim:installer-checksum installers verify the package before installation (69ms)
+  ✓   34 [mobile] › e2e/site.spec.ts:361:1 › @claim:team-kit-price-scope $79 one-time Team kit contains the documented CI checklist (780ms)
+  ✓   40 [chromium] › e2e/site.spec.ts:228:1 › @claim:mit-core core CLI is MIT licensed (3ms)
+  ✓   42 [chromium] › e2e/site.spec.ts:233:1 › @claim:schema-redaction receipt schema changes exclude values (22ms)
+  ✓   41 [mobile] › e2e/site.spec.ts:375:1 › @claim:free-cli-formats both receipt formats work without a Team license (104ms)
+  ✓   43 [chromium] › e2e/site.spec.ts:248:1 › @claim:customer-safe-receipt customer-safe receipts omit declaration notes and hook output (78ms)
+  ✓   45 [chromium] › e2e/site.spec.ts:261:1 › @claim:temporary-workspace demo creates its own temporary project directory (90ms)
+  ✓   46 [chromium] › e2e/site.spec.ts:268:1 › @claim:argument-arrays hook arguments are passed without shell parsing (93ms)
+  ✓   47 [chromium] › e2e/site.spec.ts:278:1 › @claim:exit-codes failed checks return 1 and invalid declarations return 2 (76ms)
+  ✓   48 [chromium] › e2e/site.spec.ts:288:1 › @claim:unsigned-packages release workflow makes unsigned package formats explicit (4ms)
+  ✓   49 [chromium] › e2e/site.spec.ts:296:1 › @claim:cli-no-upload CLI contains no network client or telemetry path (4ms)
+  ✓   44 [mobile] › e2e/site.spec.ts:385:1 › @claim:sociobot-merchant site identifies Sociobot as merchant of record (573ms)
+  ✓   51 [mobile] › e2e/site.spec.ts:391:1 › @claim:sociobot-refunds site states that Sociobot handles refunds and revoked licenses (675ms)
+  ✓   50 [chromium] › e2e/site.spec.ts:303:1 › @claim:team-kit-license valid license restores the Team CI kit (989ms)
+  ✓   53 [chromium] › e2e/site.spec.ts:319:1 › @claim:declared-upgrade-path receipt records the one declared source and target path (99ms)
+  ✓   54 [chromium] › e2e/site.spec.ts:330:1 › @claim:customer-boundary hostile customer paths are never contacted or modified (83ms)
+  ✓   55 [chromium] › e2e/site.spec.ts:345:1 › @claim:receipt-scope receipt names only its tested versions and supported environments (96ms)
+  ✓   52 [mobile] › e2e/site.spec.ts:396:1 › @claim:sociobot-checkout payment action uses the Sociobot checkout endpoint (604ms)
+  -   57 [mobile] › e2e/site.spec.ts:403:1 › @claim:published-platform-download release metadata selects a matching GitHub asset
+  ✓   58 [mobile] › e2e/site.spec.ts:422:1 › @claim:homebrew-tap documented Homebrew formula is published (5ms)
+  ✓   59 [mobile] › e2e/site.spec.ts:431:1 › @claim:scoop-manifest documented Scoop manifest is published and valid (6ms)
+  ✓   60 [mobile] › e2e/site.spec.ts:440:1 › @claim:release-asset-set published release carries every documented package (6ms)
+  ✓   61 [mobile] › e2e/site.spec.ts:449:1 › @claim:receipt-contents receipt contains every documented readiness field (110ms)
+  ✓   62 [mobile] › e2e/site.spec.ts:463:1 › @claim:release-workflow version tags run the cross-platform release workflow (78ms)
+  ✓   56 [chromium] › e2e/site.spec.ts:361:1 › @claim:team-kit-price-scope $79 one-time Team kit contains the documented CI checklist (978ms)
+  ✓   64 [chromium] › e2e/site.spec.ts:375:1 › @claim:free-cli-formats both receipt formats work without a Team license (96ms)
+  ✓   63 [mobile] › e2e/site.spec.ts:472:1 › @claim:sample-demo-parity browser and CLI use the Arbor Desk sample demo (697ms)
+  ✓   65 [chromium] › e2e/site.spec.ts:385:1 › @claim:sociobot-merchant site identifies Sociobot as merchant of record (795ms)
+  ✓   66 [mobile] › e2e/site.spec.ts:480:1 › @claim:sociobot-license-api license verification uses only the Sociobot product endpoint (799ms)
+  ✓   68 [mobile] › e2e/site.spec.ts:491:1 › @claim:no-embedded-payment-provider repository embeds no payment-provider client (5ms)
+  ✓   67 [chromium] › e2e/site.spec.ts:391:1 › @claim:sociobot-refunds site states that Sociobot handles refunds and revoked licenses (512ms)
+  ✓   70 [chromium] › e2e/site.spec.ts:396:1 › @claim:sociobot-checkout payment action uses the Sociobot checkout endpoint (904ms)
+  ✓   69 [mobile] › e2e/site.spec.ts:499:1 › @claim:demo-storage-isolation sample demo uses only demo session storage and clears it on exit (1.7s)
+  ✓   72 [mobile] › e2e/site.spec.ts:519:1 › @claim:starter-templates init writes Compose and Kubernetes declaration templates (96ms)
+  ✓   71 [chromium] › e2e/site.spec.ts:403:1 › @claim:published-platform-download release metadata selects a matching GitHub asset (880ms)
+  ✓   73 [mobile] › e2e/site.spec.ts:534:1 › @claim:json-output check, run, and demo return machine-readable JSON (109ms)
+  ✓   74 [chromium] › e2e/site.spec.ts:422:1 › @claim:homebrew-tap documented Homebrew formula is published (5ms)
+  ✓   76 [chromium] › e2e/site.spec.ts:431:1 › @claim:scoop-manifest documented Scoop manifest is published and valid (68ms)
+  ✓   77 [chromium] › e2e/site.spec.ts:440:1 › @claim:release-asset-set published release carries every documented package (7ms)
+  ✓   78 [chromium] › e2e/site.spec.ts:449:1 › @claim:receipt-contents receipt contains every documented readiness field (100ms)
+  ✓   79 [chromium] › e2e/site.spec.ts:463:1 › @claim:release-workflow version tags run the cross-platform release workflow (7ms)
+  ✓   75 [mobile] › e2e/site.spec.ts:548:1 › @claim:release-manifest website reads its local release manifest for GitHub downloads (611ms)
+  ✓   80 [chromium] › e2e/site.spec.ts:472:1 › @claim:sample-demo-parity browser and CLI use the Arbor Desk sample demo (888ms)
+  ✓   81 [mobile] › e2e/site.spec.ts:559:1 › @claim:license-browser-storage license token and daily verdict stay in namespaced browser storage (734ms)
+  ✓   82 [chromium] › e2e/site.spec.ts:480:1 › @claim:sociobot-license-api license verification uses only the Sociobot product endpoint (869ms)
+  ✓   84 [chromium] › e2e/site.spec.ts:491:1 › @claim:no-embedded-payment-provider repository embeds no payment-provider client (3ms)
+  ✓   83 [mobile] › e2e/site.spec.ts:572:1 › @claim:no-card-collection website has no card fields or payment-provider script (895ms)
+  ✓   86 [mobile] › e2e/site.spec.ts:579:1 › @claim:dodo-checkout-processing Sociobot checkout hands payment processing to Dodo (4ms)
+  ✓   85 [chromium] › e2e/site.spec.ts:499:1 › @claim:demo-storage-isolation sample demo uses only demo session storage and clears it on exit (1.5s)
+  ✓   88 [chromium] › e2e/site.spec.ts:519:1 › @claim:starter-templates init writes Compose and Kubernetes declaration templates (90ms)
+  ✓   87 [mobile] › e2e/site.spec.ts:586:1 › a cached invalid license keeps its inactive notice after reload (1.2s)
+  ✓   89 [chromium] › e2e/site.spec.ts:534:1 › @claim:json-output check, run, and demo return machine-readable JSON (116ms)
+  ✓   91 [chromium] › e2e/site.spec.ts:548:1 › @claim:release-manifest website reads its local release manifest for GitHub downloads (717ms)
+  ✓   90 [mobile] › e2e/site.spec.ts:600:1 › routes update title, focus, and history (1.1s)
+  ✓   92 [chromium] › e2e/site.spec.ts:559:1 › @claim:license-browser-storage license token and daily verdict stay in namespaced browser storage (890ms)
+  ✓   94 [chromium] › e2e/site.spec.ts:572:1 › @claim:no-card-collection website has no card fields or payment-provider script (782ms)
+  ✓   95 [chromium] › e2e/site.spec.ts:579:1 › @claim:dodo-checkout-processing Sociobot checkout hands payment processing to Dodo (3ms)
+  ✓   93 [mobile] › e2e/site.spec.ts:610:1 › every application route updates its own title, description, canonical, and social metadata (1.5s)
+  ✓   96 [chromium] › e2e/site.spec.ts:586:1 › a cached invalid license keeps its inactive notice after reload (1.2s)
+  ✓   98 [chromium] › e2e/site.spec.ts:600:1 › routes update title, focus, and history (994ms)
+  ✓   97 [mobile] › e2e/site.spec.ts:628:1 › real 404 document has the common shell, recovery action, and complete metadata (2.8s)
+  ✓   99 [chromium] › e2e/site.spec.ts:610:1 › every application route updates its own title, description, canonical, and social metadata (1.7s)
+  ✓  100 [mobile] › e2e/site.spec.ts:644:1 › mobile navigation targets, empty-license feedback, and mobile downloads are safe (1.2s)
+  ✓  102 [mobile] › e2e/site.spec.ts:660:1 › built route documents prevent a navigation fallback from turning unknown paths into soft 404s (13ms)
+(node:18727) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  101 [chromium] › e2e/site.spec.ts:628:1 › real 404 document has the common shell, recovery action, and complete metadata (2.3s)
+  -  103 [chromium] › e2e/site.spec.ts:644:1 › mobile navigation targets, empty-license feedback, and mobile downloads are safe
+  ✓  104 [chromium] › e2e/site.spec.ts:660:1 › built route documents prevent a navigation fallback from turning unknown paths into soft 404s (85ms)
+(node:18727) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  105 [viewport-390] › e2e/viewport-390.spec.ts:3:1 › @regression:viewport-390 install layout stays within a 390 CSS-pixel viewport (608ms)
+  ✓  106 [viewport-390] › e2e/viewport-390.spec.ts:33:1 › @regression:viewport-390 200 percent text resize keeps the landing header and action in view (405ms)
+  ✓  107 [viewport-390] › e2e/viewport-390.spec.ts:63:1 › @regression:viewport-390 legal contacts and the standalone 404 recovery link are 44px targets (568ms)
+
+  4 skipped
+  103 passed (42.0s)

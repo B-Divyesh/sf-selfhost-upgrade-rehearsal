@@ -1,0 +1,10 @@
+{
+  "performance": 100,
+  "accessibility": 100,
+  "best_practices": 100,
+  "seo": 100,
+  "fcp": "0.8 s",
+  "lcp": "1.2 s",
+  "tbt": "10 ms",
+  "cls": "0"
+}

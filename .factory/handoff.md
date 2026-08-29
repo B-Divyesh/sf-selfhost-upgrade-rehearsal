@@ -1,4 +1,34 @@
-# Repair handoff — perfection loop round 2
+# Verification handoff — independent verification 7
+
+## Result: PASS
+
+Candidate `b427b102ea634d6116e69556c6b6ddef54c4b252` is accepted for
+`https://selfhost-upgrade-rehearsal.sociobot.in`. Fresh independent evidence is
+in `.factory/verification-7.md` and `.factory/verification-7-artifacts/`.
+
+The candidate completed clean-install claim verification (41/41), the full
+test suite (103 passed; 4 intentional platform skips), exact production build,
+Rust formatting/lint/package checks, clean consumer installation, published
+Linux artifact checksum/demo verification, live desktop and 390 px QA,
+keyboard/reduced-motion/axe checks, privacy request/header checks, billing
+rate-limit verification, and byte-level live deployment parity.
+
+Run locally:
+
+```sh
+npm ci
+npm test
+npm run build
+cargo package --locked
+```
+
+No known product gaps or deferred defects. The only raw-clone prerequisite
+observation is documented in verification 7: claim commands require the normal
+`npm ci` dependency-install step before the site build can run.
+
+---
+
+# Previous repair handoff — perfection loop round 2
 
 ## Result: PASS
 

@@ -1,0 +1,53 @@
+{
+  "initial": {
+    "title": "Demo — Self-Host Upgrade Rehearsal",
+    "h1": [
+      "Inspect a finished upgrade rehearsal"
+    ],
+    "text": "Skip to main content\nUPGRADE\nREHEARSAL\nDEMO\nINSTALL\nPRIVACY\nDemo\n— sample data, nothing is saved\nReset demo\nStart for real\n\nBUNDLED SAMPLE DEMO · ARBOR DESK\n\nInspect a finished upgrade rehearsal\n\nThis sample demo moves three test workspaces from 1.8.4 to 2.0.0.\n\nSample terminal run\nPlay recording\n$ rehearsal demo\nSample: Arbor Desk 1.8.4 → 2.0.0\n✓ Preflight\n✓ Start source\n✓ Seed sample data\n✓ Create backup\n✓ Stop source\n✓ Start target\n✓ Restore backup\n✓ Run health check\n✓ Clean temporary services\nSHR-8A71C042D591: READY\nJSON: report/readiness.json\nHTML: report/readiness.html\n\n\nCUSTOMER-SAFE RECEIPT · SHR-8A71C042D591\n\nArbor Desk 1.8.4 → 2.0.0\n\nSample data · linux/x86_64\n\nREADY\nMEMORY\n768 MB\nDISK\n2,048 MB\nCHECKS\n9 passed\nConfig schema changes\ndatabase.ssl\nRemoved\ndatabase.ssl_mode\nAdded\nworkers.count\nAdded\nCoverage limit\n\nThis receipt covers only the versions and systems shown here.\n\nHook output and sample data are excluded.\n\nDownload sample JSON\n\nSelf-Host Upgrade Rehearsal\nReadiness receipts for self-hosted upgrades.\n\nPRIVACY\nTERMS\nBUILT BY PARAM FACTORY\n(EXTERNAL SITE)\n\nv0.1.2 · build 2026.08.29",
+    "storage": {
+      "demo:active": "1"
+    },
+    "buttons": [
+      "Reset demo",
+      "Play recording",
+      "Download sample JSON"
+    ],
+    "links": [
+      "Skip to main content",
+      "UPGRADE\nREHEARSAL",
+      "DEMO",
+      "INSTALL",
+      "PRIVACY",
+      "Start for real",
+      "PRIVACY",
+      "TERMS",
+      "BUILT BY PARAM FACTORY\n(EXTERNAL SITE)"
+    ]
+  },
+  "after": {
+    "text": "Skip to main content\nUPGRADE\nREHEARSAL\nDEMO\nINSTALL\nPRIVACY\nDemo\n— sample data, nothing is saved\nReset demo\nStart for real\n\nBUNDLED SAMPLE DEMO · ARBOR DESK\n\nInspect a finished upgrade rehearsal\n\nThis sample demo moves three test workspaces from 1.8.4 to 2.0.0.\n\nSample terminal run\nPause recording\n$ rehearsal demo\nSample: Arbor Desk 1.8.4 → 2.0.0\n✓ Preflight\n✓ Start source\n✓ Seed sample data\n✓ Create backup\n✓ Stop source\n✓ Start target\n✓ Restore backup\n✓ Run health check\n✓ Clean temporary services\nSHR-8A71C042D591: READY\n\n\nCUSTOMER-SAFE RECEIPT · SHR-8A71C042D591\n\nArbor Desk 1.8.4 → 2.0.0\n\nSample data · linux/x86_64\n\nREADY\nMEMORY\n768 MB\nDISK\n2,048 MB\nCHECKS\n9 passed\nConfig schema changes\ndatabase.ssl\nRemoved\ndatabase.ssl_mode\nAdded\nworkers.count\nAdded\nCoverage limit\n\nThis receipt covers only the versions and systems shown here.\n\nHook output and sample data are excluded.\n\nDownload sample JSON\n\nSelf-Host Upgrade Rehearsal\nReadiness receipts for self-hosted upgrades.\n\nPRIVACY\nTERMS\nBUILT BY PARAM FACTORY\n(EXTERNAL SITE)\n\nv0.1.2 · build 2026.08.29",
+    "storage": {
+      "demo:active": "1"
+    },
+    "buttons": [
+      "Reset demo",
+      "Pause recording",
+      "Download sample JSON"
+    ]
+  },
+  "downloadInfo": {
+    "suggestedFilename": "arbor-desk-readiness.json"
+  },
+  "requests": [
+    "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+    "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-BQsNSVCW.js",
+    "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-BFP1aa3d.css",
+    "https://selfhost-upgrade-rehearsal.sociobot.in/privacy",
+    "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-BQsNSVCW.js",
+    "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-BFP1aa3d.css"
+  ],
+  "errors": [],
+  "pageErrors": [],
+  "privacyStatus": 200
+}

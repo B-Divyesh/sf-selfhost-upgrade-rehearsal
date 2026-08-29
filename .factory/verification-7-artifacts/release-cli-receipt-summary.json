@@ -1,0 +1,28 @@
+{
+  "receipt_schema": 1,
+  "product": "Arbor Desk",
+  "source_version": "1.8.4",
+  "target_version": "2.0.0",
+  "status": "ready",
+  "required_resources": {
+    "memory_mb": 768,
+    "disk_mb": 2048
+  },
+  "checks": 9,
+  "supported_environments": {
+    "operating_systems": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "architectures": [
+      "x86_64",
+      "aarch64"
+    ]
+  },
+  "limitations": [
+    "This receipt covers only the source and target versions shown here.",
+    "Only the declared operating systems and architectures are supported.",
+    "Hook output and sample data are intentionally excluded from this receipt."
+  ]
+}

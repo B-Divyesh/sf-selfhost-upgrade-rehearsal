@@ -1,0 +1,1681 @@
+
+===== CLAIM demo-receipt =====
+npm test -- --grep @claim:demo-receipt
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:demo-receipt
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT demo-receipt FAIL exit=1
+
+===== CLAIM offline-demo =====
+npm test -- --grep @claim:offline-demo
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:offline-demo
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT offline-demo FAIL exit=1
+
+===== CLAIM demo-network-privacy =====
+npm test -- --grep @claim:demo-network-privacy
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:demo-network-privacy
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT demo-network-privacy FAIL exit=1
+
+===== CLAIM cli-receipts =====
+npm test -- --grep @claim:cli-receipts
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:cli-receipts
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT cli-receipts FAIL exit=1
+
+===== CLAIM upgrade-hooks =====
+npm test -- --grep @claim:upgrade-hooks
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:upgrade-hooks
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT upgrade-hooks FAIL exit=1
+
+===== CLAIM declared-resource-minimums =====
+npm test -- --grep @claim:declared-resource-minimums
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:declared-resource-minimums
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT declared-resource-minimums FAIL exit=1
+
+===== CLAIM compose-kubernetes-declarations =====
+npm test -- --grep @claim:compose-kubernetes-declarations
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:compose-kubernetes-declarations
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT compose-kubernetes-declarations FAIL exit=1
+
+===== CLAIM installer-checksum =====
+npm test -- --grep @claim:installer-checksum
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:installer-checksum
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT installer-checksum FAIL exit=1
+
+===== CLAIM mit-core =====
+npm test -- --grep @claim:mit-core
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:mit-core
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT mit-core FAIL exit=1
+
+===== CLAIM schema-redaction =====
+npm test -- --grep @claim:schema-redaction
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:schema-redaction
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT schema-redaction FAIL exit=1
+
+===== CLAIM customer-safe-receipt =====
+npm test -- --grep @claim:customer-safe-receipt
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:customer-safe-receipt
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT customer-safe-receipt FAIL exit=1
+
+===== CLAIM temporary-workspace =====
+npm test -- --grep @claim:temporary-workspace
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:temporary-workspace
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT temporary-workspace FAIL exit=1
+
+===== CLAIM argument-arrays =====
+npm test -- --grep @claim:argument-arrays
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:argument-arrays
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT argument-arrays FAIL exit=1
+
+===== CLAIM exit-codes =====
+npm test -- --grep @claim:exit-codes
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:exit-codes
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT exit-codes FAIL exit=1
+
+===== CLAIM unsigned-packages =====
+npm test -- --grep @claim:unsigned-packages
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:unsigned-packages
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT unsigned-packages FAIL exit=1
+
+===== CLAIM cli-no-upload =====
+npm test -- --grep @claim:cli-no-upload
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:cli-no-upload
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT cli-no-upload FAIL exit=1
+
+===== CLAIM team-kit-license =====
+npm test -- --grep @claim:team-kit-license
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:team-kit-license
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT team-kit-license FAIL exit=1
+
+===== CLAIM declared-upgrade-path =====
+npm test -- --grep @claim:declared-upgrade-path
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:declared-upgrade-path
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT declared-upgrade-path FAIL exit=1
+
+===== CLAIM customer-boundary =====
+npm test -- --grep @claim:customer-boundary
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:customer-boundary
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT customer-boundary FAIL exit=1
+
+===== CLAIM receipt-scope =====
+npm test -- --grep @claim:receipt-scope
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:receipt-scope
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT receipt-scope FAIL exit=1
+
+===== CLAIM team-kit-price-scope =====
+npm test -- --grep @claim:team-kit-price-scope
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:team-kit-price-scope
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT team-kit-price-scope FAIL exit=1
+
+===== CLAIM free-cli-formats =====
+npm test -- --grep @claim:free-cli-formats
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:free-cli-formats
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT free-cli-formats FAIL exit=1
+
+===== CLAIM sociobot-merchant =====
+npm test -- --grep @claim:sociobot-merchant
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-merchant
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT sociobot-merchant FAIL exit=1
+
+===== CLAIM sociobot-refunds =====
+npm test -- --grep @claim:sociobot-refunds
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-refunds
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT sociobot-refunds FAIL exit=1
+
+===== CLAIM sociobot-checkout =====
+npm test -- --grep @claim:sociobot-checkout
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-checkout
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT sociobot-checkout FAIL exit=1
+
+===== CLAIM published-platform-download =====
+npm test -- --grep @claim:published-platform-download
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:published-platform-download
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT published-platform-download FAIL exit=1
+
+===== CLAIM homebrew-tap =====
+npm test -- --grep @claim:homebrew-tap
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:homebrew-tap
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT homebrew-tap FAIL exit=1
+
+===== CLAIM scoop-manifest =====
+npm test -- --grep @claim:scoop-manifest
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:scoop-manifest
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT scoop-manifest FAIL exit=1
+
+===== CLAIM release-asset-set =====
+npm test -- --grep @claim:release-asset-set
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:release-asset-set
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT release-asset-set FAIL exit=1
+
+===== CLAIM receipt-contents =====
+npm test -- --grep @claim:receipt-contents
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:receipt-contents
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT receipt-contents FAIL exit=1
+
+===== CLAIM release-workflow =====
+npm test -- --grep @claim:release-workflow
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:release-workflow
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT release-workflow FAIL exit=1
+
+===== CLAIM sample-demo-parity =====
+npm test -- --grep @claim:sample-demo-parity
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sample-demo-parity
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT sample-demo-parity FAIL exit=1
+
+===== CLAIM sociobot-license-api =====
+npm test -- --grep @claim:sociobot-license-api
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-license-api
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT sociobot-license-api FAIL exit=1
+
+===== CLAIM no-embedded-payment-provider =====
+npm test -- --grep @claim:no-embedded-payment-provider
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:no-embedded-payment-provider
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT no-embedded-payment-provider FAIL exit=1
+
+===== CLAIM demo-storage-isolation =====
+npm test -- --grep @claim:demo-storage-isolation
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:demo-storage-isolation
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT demo-storage-isolation FAIL exit=1
+
+===== CLAIM starter-templates =====
+npm test -- --grep @claim:starter-templates
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:starter-templates
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT starter-templates FAIL exit=1
+
+===== CLAIM json-output =====
+npm test -- --grep @claim:json-output
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:json-output
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT json-output FAIL exit=1
+
+===== CLAIM release-manifest =====
+npm test -- --grep @claim:release-manifest
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:release-manifest
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT release-manifest FAIL exit=1
+
+===== CLAIM license-browser-storage =====
+npm test -- --grep @claim:license-browser-storage
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:license-browser-storage
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT license-browser-storage FAIL exit=1
+
+===== CLAIM no-card-collection =====
+npm test -- --grep @claim:no-card-collection
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:no-card-collection
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT no-card-collection FAIL exit=1
+
+===== CLAIM dodo-checkout-processing =====
+npm test -- --grep @claim:dodo-checkout-processing
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:dodo-checkout-processing
+
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+RESULT dodo-checkout-processing FAIL exit=1

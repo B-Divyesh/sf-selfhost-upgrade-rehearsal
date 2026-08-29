@@ -1,0 +1,140 @@
+{
+  "status": 200,
+  "output": {
+    "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+    "lang": "en",
+    "h1": [
+      "Rehearse upgrades before customers do"
+    ],
+    "main": true,
+    "visibleText": "Skip to main content\nUPGRADE\nREHEARSAL\nDEMO\nINSTALL\nPRIVACY\n\nUPGRADE REHEARSAL FOR SELF-HOSTED PRODUCTS\n\nRehearse upgrades before customers do\n\nFor self-hosted product teams that need proof before each Compose or Kubernetes release.\n\nTry it with sample data\nRuns the bundled sample demo and opens its receipt.\nThe demo uploads no project data.\nThe bundled demo runs offline after this page loads.\nThe core CLI is free under the MIT License.\nA receipt names the tested versions and supported environments.\n\nSAMPLE TERMINAL RECORDING\n\nSample upgrade rehearsal\n\nThis recording uses the bundled sample demo from rehearsal demo.\n\nrehearsal · sample\nPlay recording\n$ rehearsal demo\nSample: Arbor Desk 1.8.4 → 2.0.0\n✓ Preflight\n✓ Start source\n✓ Seed sample data\n✓ Create backup\n✓ Stop source\n✓ Start target\n✓ Restore backup\n✓ Run health check\n✓ Clean temporary services\nSHR-8A71C042D591: READY\nJSON: report/readiness.json\nHTML: report/readiness.html\n\nTESTED VERSIONS\n1.8.4 → 2.0.0\nBACKUP AND RESTORE\nPassed\nSCHEMA CHANGES\n3 changes\nREADY\n\nHOW THE UPGRADE REHEARSAL WORKS\n\nDeclare, run, and share a receipt\n01\nDeclare the path\n\nName both versions, supported systems, resource minimums, schemas, and hook commands.\n\n02\nRun the test commands\n\nThe CLI uses a new temporary directory for sample data, backup, restore, and health checks.\n\n03\nGive customers the receipt\n\nShare the HTML receipt. Keep the JSON receipt as your release gate.\n\nCLI INSTALLATION\n\nInstall one binary\n\nRelease v0.1.2 is ready for this device.\n\nDownload linux-x86_64.tar.gz\n\nThe download comes from the matching GitHub release.\n\nCopy macOS and Linux install\nCopy Windows install\ncurl -fsSL https://selfhost-upgrade-rehearsal.sociobot.in/install.sh | sh\n\nInstallers verify SHA256 before placing the binary on your path. Published packages are unsigned.\n\nFIRST RUN\n\nrehearsal init compose\n# edit rehearsal.yml\nrehearsal check\nrehearsal run --output release-proof\n\nRECEIPT LIMITS\n\nKnow what the receipt does not prove\n\nIt does not connect to customer servers or collect customer data.\n\nIt does not upgrade a customer installation.\n\nEach receipt covers only its listed versions and environments.\n\nTEAM\nCI\nKIT\n\nOPTIONAL PAID KIT\n\nRun the rehearsal in release CI\n\nThe $79 one-time Team kit adds a CI checklist for each supported source and target version.\n\nThe CLI and both receipt formats stay free.\nSociobot is the merchant of record.\nRefunds are handled through Sociobot.\nBuy the Team kit — $79\nHave a license? Paste it\nVerify license\n\nPayment opens Sociobot checkout.\n\nSelf-Host Upgrade Rehearsal\nReadiness receipts for self-hosted upgrades.\n\nPRIVACY\nTERMS\nBUILT BY PARAM FACTORY\n(EXTERNAL SITE)\n\nv0.1.2 · build 2026.08.29",
+    "buttons": [
+      "Play recording",
+      "Copy macOS and Linux install",
+      "Copy Windows install",
+      "Verify license",
+      "Download Team CI kit"
+    ],
+    "links": [
+      {
+        "text": "Skip to main content",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/#main"
+      },
+      {
+        "text": "UPGRADE\nREHEARSAL",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/"
+      },
+      {
+        "text": "DEMO",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1"
+      },
+      {
+        "text": "INSTALL",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/#install"
+      },
+      {
+        "text": "PRIVACY",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy"
+      },
+      {
+        "text": "Try it with sample data",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1"
+      },
+      {
+        "text": "Download linux-x86_64.tar.gz",
+        "href": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-x86_64.tar.gz"
+      },
+      {
+        "text": "Buy the Team kit — $79",
+        "href": "https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout"
+      },
+      {
+        "text": "PRIVACY",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy"
+      },
+      {
+        "text": "TERMS",
+        "href": "https://selfhost-upgrade-rehearsal.sociobot.in/terms"
+      },
+      {
+        "text": "BUILT BY PARAM FACTORY\n(EXTERNAL SITE)",
+        "href": "https://sociobot.in/"
+      }
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "aboveFold": [
+      {
+        "tag": "A",
+        "text": "UPGRADE\nREHEARSAL",
+        "top": 21
+      },
+      {
+        "tag": "A",
+        "text": "DEMO",
+        "top": 21
+      },
+      {
+        "tag": "A",
+        "text": "INSTALL",
+        "top": 21
+      },
+      {
+        "tag": "A",
+        "text": "PRIVACY",
+        "top": 21
+      },
+      {
+        "tag": "P",
+        "text": "UPGRADE REHEARSAL FOR SELF-HOSTED PRODUCTS",
+        "top": 226
+      },
+      {
+        "tag": "H1",
+        "text": "Rehearse upgrades before customers do",
+        "top": 262
+      },
+      {
+        "tag": "P",
+        "text": "For self-hosted product teams that need proof before each Compose or Kubernetes release.",
+        "top": 438
+      },
+      {
+        "tag": "A",
+        "text": "Try it with sample data",
+        "top": 545
+      }
+    ]
+  },
+  "requests": [
+    {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/",
+      "method": "GET",
+      "type": "document"
+    },
+    {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-BQsNSVCW.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-BFP1aa3d.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/latest.json",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/specimen-upgrade.webp",
+      "method": "GET",
+      "type": "image"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -1,0 +1,6 @@
+   Packaging rehearsal v0.1.2 (/work/repo)
+    Updating crates.io index
+    Packaged 15 files, 54.6KiB (16.4KiB compressed)
+   Verifying rehearsal v0.1.2 (/work/repo)
+   Compiling rehearsal v0.1.2 (/work/repo/target/package/rehearsal-0.1.2)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.59s

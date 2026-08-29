@@ -1,0 +1,19 @@
+{
+  "focusVisible": true,
+  "rect": {
+    "x": 16,
+    "y": 8,
+    "w": 224.65625,
+    "h": 45.59375
+  },
+  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+  "outline": "rgb(166, 58, 36) solid 3px",
+  "outlineOffset": "4px",
+  "background": "rgb(18, 35, 31)",
+  "color": "rgb(255, 252, 237)"
+}
+{
+  "hash": "#main",
+  "active": "Skip to main content\n    \n    \n      \n      UpgradeRehearsal\n    \n    \n      Demo\n      Install\n      Privacy\n    \n  Rehearse upgrades before customers do\n    \n      \n        Upgrade rehearsal for self-hosted products\n        Rehearse upgrades before customers do\n        For self-hosted product teams that need proof before each Compose or Kubernetes release.\n        \n          Try it with sample data\n          Runs the bundled sample demo and opens its receipt.\n        \n        \n          The demo uploads no project data.\n          The bundled demo runs offline after this page loads.\n          The core CLI is free under the MIT License.\n        \n      \n      \n        \n        A receipt names the tested versions and supported environments.\n      \n    \n\n    \n      Sample terminal recordingSample upgrade rehearsalThis recording uses the bundled sample demo from rehearsal demo.\n      \n    rehearsal · samplePlay recording\n    $ rehearsal demo\nSample: Arbor Desk 1.8.4 → 2.0.0\n✓ Preflight\n✓ Start source\n✓ Seed sample data\n✓ Create backup\n✓ Stop source\n✓ Start target\n✓ Restore backup\n✓ Run health check\n✓ Clean temporary services\nSHR-8A71C042D591: READY\nJSON: report/readiness.json\nHTML: report/readiness.html\n\n  \n      \n        Tested versions1.8.4 → 2.0.0\n        Backup and restorePassed\n        Schema changes3 changes\n        Ready\n      \n    \n\n    \n      How the upgrade rehearsal worksDeclare, run, and share a receipt\n      \n        01Declare the pathName both versions, supported systems, resource minimums, schemas, and hook commands.\n        02Run the test commandsThe CLI uses a new temporary directory for sample data, backup, restore, and health checks.\n        03Give customers the receiptShare the HTML receipt. Keep the JSON receipt as your release gate.\n      \n    \n\n    \n      CLI installationInstall one binaryRelease v0.1.2 is ready for this device.\n      \n        Download linux-x86_64.tar.gz\n        The download comes from the matching GitHub release.\n        \n          Copy macOS and Linux install\n          Copy Windows install\n        \n        curl -fsSL https://selfhost-upgrade-rehearsal.sociobot.in/install.sh | sh\n        Installers verify SHA256 before placing the binary on your path. Published packages are unsigned.\n      \n      First runrehearsal init compose\n# edit rehearsal.yml\nrehearsal check\nrehearsal run --output release-proof\n    \n\n    \n      Receipt limitsKnow what the receipt does not prove\n      \n        It does not connect to customer servers or collect customer data.\n        It does not upgrade a customer installation.\n        Each receipt covers only its listed versions and environments.\n      \n    \n\n    \n      TEAMCIKIT\n      Optional paid kitRun the rehearsal in release CIThe $79 one-time Team kit adds a CI checklist for each supported source and target version.The CLI and both receipt formats stay free.Sociobot is the merchant of record.Refunds are handled through Sociobot.\n      \n        Buy the Team kit — $79\n        Have a license? Paste itVerify license\n        Payment opens Sociobot checkout.\n        Download Team CI kit\n      \n    \n  \n    Self-Host Upgrade RehearsalReadiness receipts for self-hosted upgrades.\n    PrivacyTermsBuilt by Param Factory (external site)\n    v0.1.2 · build 2026.08.29",
+  "scrollY": 121
+}

@@ -1,0 +1,1380 @@
+[
+  {
+    "device": "desktop",
+    "path": "/",
+    "status": 200,
+    "metadata": {
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "lang": "en",
+      "h1s": [
+        "Rehearse upgrades before customers do"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "images": [
+        {
+          "alt": "A field-guide plant grows from stacked containers beside an upgrade receipt.",
+          "src": "https://selfhost-upgrade-rehearsal.sociobot.in/specimen-upgrade.webp",
+          "width": 467,
+          "height": 467
+        }
+      ],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 237,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 131,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Try it with sample data",
+          "name": "",
+          "w": 275,
+          "h": 47
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Play recording",
+          "name": "",
+          "w": 132,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Download linux-x86_64.tar.gz",
+          "name": "",
+          "w": 327,
+          "h": 47
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Copy macOS and Linux install",
+          "name": "",
+          "w": 313,
+          "h": 45
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Copy Windows install",
+          "name": "",
+          "w": 231,
+          "h": 45
+        },
+        {
+          "tag": "A",
+          "text": "Buy the Team kit — $79",
+          "name": "",
+          "w": 265,
+          "h": 47
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "name": "",
+          "w": 192,
+          "h": 72
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Verify license",
+          "name": "",
+          "w": 130,
+          "h": 72
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Download Team CI kit",
+          "name": "",
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 45,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 200,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "desktop",
+    "path": "/?demo=1",
+    "status": 200,
+    "metadata": {
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 237,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 131,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reset demo",
+          "name": "",
+          "w": 103,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Start for real",
+          "name": "",
+          "w": 107,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Play recording",
+          "name": "",
+          "w": 132,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Download sample JSON",
+          "name": "",
+          "w": 245,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 45,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 200,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "desktop",
+    "path": "/demo",
+    "status": 200,
+    "metadata": {
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 237,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 131,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reset demo",
+          "name": "",
+          "w": 103,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Start for real",
+          "name": "",
+          "w": 107,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Play recording",
+          "name": "",
+          "w": 132,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Download sample JSON",
+          "name": "",
+          "w": 245,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 45,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 200,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "desktop",
+    "path": "/privacy",
+    "status": 200,
+    "metadata": {
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Keep rehearsal data on your machine"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 237,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 131,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "privacy@sociobot.in",
+          "name": "",
+          "w": 194,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 45,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 200,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "desktop",
+    "path": "/terms",
+    "status": 200,
+    "metadata": {
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Use receipts as tested evidence"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 237,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 131,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "support@sociobot.in",
+          "name": "",
+          "w": 194,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 45,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 200,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(166, 58, 36) solid 3px",
+      "outlineColor": "rgb(166, 58, 36)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "desktop",
+    "path": "/missing-page",
+    "status": 404,
+    "metadata": {
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Page not found"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 237,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 131,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Return home",
+          "name": "",
+          "w": 153,
+          "h": 47
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 64,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 45,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 200,
+          "h": 44
+        }
+      ],
+      "animation": "0s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "pageErrors": []
+  },
+  {
+    "device": "mobile390",
+    "path": "/",
+    "status": 200,
+    "metadata": {
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "lang": "en",
+      "h1s": [
+        "Rehearse upgrades before customers do"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 390,
+        "client": 390
+      },
+      "images": [
+        {
+          "alt": "A field-guide plant grows from stacked containers beside an upgrade receipt.",
+          "src": "https://selfhost-upgrade-rehearsal.sociobot.in/specimen-upgrade.webp",
+          "width": 354,
+          "height": 354
+        }
+      ],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 225,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Try it with sample data",
+          "name": "",
+          "w": 262,
+          "h": 46
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Play recording",
+          "name": "",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Download linux-x86_64.tar.gz",
+          "name": "",
+          "w": 306,
+          "h": 66
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Copy macOS and Linux install",
+          "name": "",
+          "w": 296,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Copy Windows install",
+          "name": "",
+          "w": 219,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Buy the Team kit — $79",
+          "name": "",
+          "w": 252,
+          "h": 46
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "name": "",
+          "w": 354,
+          "h": 46
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Verify license",
+          "name": "",
+          "w": 354,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Download Team CI kit",
+          "name": "",
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 60,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 188,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "mobile390",
+    "path": "/?demo=1",
+    "status": 200,
+    "metadata": {
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 390,
+        "client": 390
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 225,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reset demo",
+          "name": "",
+          "w": 98,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Start for real",
+          "name": "",
+          "w": 101,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Play recording",
+          "name": "",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Download sample JSON",
+          "name": "",
+          "w": 233,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 60,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 188,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "mobile390",
+    "path": "/demo",
+    "status": 200,
+    "metadata": {
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Inspect a finished upgrade rehearsal"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 390,
+        "client": 390
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 225,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reset demo",
+          "name": "",
+          "w": 98,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Start for real",
+          "name": "",
+          "w": 101,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Play recording",
+          "name": "",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Download sample JSON",
+          "name": "",
+          "w": 233,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 60,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 188,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "mobile390",
+    "path": "/privacy",
+    "status": 200,
+    "metadata": {
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Keep rehearsal data on your machine"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 390,
+        "client": 390
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 225,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "privacy@sociobot.in",
+          "name": "",
+          "w": 183,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 60,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 188,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "mobile390",
+    "path": "/terms",
+    "status": 200,
+    "metadata": {
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Use receipts as tested evidence"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 390,
+        "client": 390
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 225,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "support@sociobot.in",
+          "name": "",
+          "w": 183,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 60,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 188,
+          "h": 44
+        }
+      ],
+      "animation": "1e-05s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "device": "mobile390",
+    "path": "/missing-page",
+    "status": 404,
+    "metadata": {
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1s": [
+        "Page not found"
+      ],
+      "mains": 1,
+      "header": true,
+      "footer": true,
+      "width": {
+        "scroll": 390,
+        "client": 390
+      },
+      "images": [],
+      "interactive": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "name": "",
+          "w": 225,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "UpgradeRehearsal",
+          "name": "Self-Host Upgrade Rehearsal home",
+          "w": 126,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Demo",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Install",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 73,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Return home",
+          "name": "",
+          "w": 146,
+          "h": 46
+        },
+        {
+          "tag": "A",
+          "text": "Privacy",
+          "name": "",
+          "w": 60,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Terms",
+          "name": "",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "tag": "A",
+          "text": "Built by Param Factory (external site)",
+          "name": "",
+          "w": 188,
+          "h": 44
+        }
+      ],
+      "animation": "0s"
+    },
+    "firstFocus": {
+      "tag": "A",
+      "text": "Skip to main content",
+      "outline": "rgb(255, 252, 237) solid 0px",
+      "outlineColor": "rgb(255, 252, 237)",
+      "boxShadow": "none"
+    },
+    "axeSeriousCritical": [],
+    "axeViolations": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "pageErrors": []
+  }
+]
