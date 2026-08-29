@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-08-29T21:34:00Z",
+  "deployment_id": "a8f36e13-4fca-44c7-8196-b338f5e0a514",
+  "implementation_commit": "fdf7229a2d9f38d529664d93f8b21c6c28391c9d",
+  "routes": {
+    "/": { "status": 200, "title": "Self-Host Upgrade Rehearsal — test upgrades first", "h1": 1, "main": 1 },
+    "/?demo=1": { "status": 200, "title": "Demo — Self-Host Upgrade Rehearsal", "h1": 1, "main": 1 },
+    "/demo": { "status": 200, "title": "Demo — Self-Host Upgrade Rehearsal", "h1": 1, "main": 1 },
+    "/privacy": { "status": 200, "title": "Privacy — Self-Host Upgrade Rehearsal", "h1": 1, "main": 1 },
+    "/terms": { "status": 200, "title": "Terms — Self-Host Upgrade Rehearsal", "h1": 1, "main": 1 },
+    "/round-4-missing": { "status": 404, "title": "Page not found — Self-Host Upgrade Rehearsal", "h1": 1, "main": 1, "header": 1, "footer": 1 }
+  },
+  "landing_390": {
+    "headline": "Rehearse upgrades before customers do",
+    "primary_action": "Try it with sample data",
+    "three_facts_inside_first_screen": true,
+    "horizontal_overflow": false,
+    "mobile_platform_copy": ["Install on macOS, Windows, or Linux.", "No phone or tablet package is provided."]
+  },
+  "demo_390_after_scroll": {
+    "banner_position": "sticky",
+    "banner_top": 0,
+    "banner_bottom": 81.1875,
+    "reset_target_height": 44,
+    "install_target_height": 44,
+    "demo_keys_during_demo": ["demo:active"],
+    "demo_keys_after_install": [],
+    "focus_after_install": "install-title",
+    "install_section_top": 0.21875,
+    "offline_reset_reached_ready": true,
+    "external_requests": [],
+    "console_errors": [],
+    "old_workspace_claim_present": false
+  },
+  "tab_close": {
+    "demo_keys_after_reopen": [],
+    "real_project_sentinel": "keep"
+  },
+  "parity": {
+    "index_html": true,
+    "javascript": true,
+    "css": true,
+    "hero_image": true,
+    "release_manifest": true,
+    "demo_privacy_terms_documents": true
+  },
+  "accessibility": {
+    "axe_pages": 4,
+    "axe_violations": 0,
+    "verify_url_errors": 0
+  },
+  "lighthouse": {
+    "performance": 100,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo": 100,
+    "lcp_ms": 1206.613,
+    "tbt_ms": 26,
+    "cls": 0
+  }
+}

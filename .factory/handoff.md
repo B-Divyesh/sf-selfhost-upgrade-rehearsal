@@ -1,51 +1,68 @@
-# Review 4 handoff
+# Perfection-loop round 4 handoff
 
-## Result: FAIL
+## Result: PASS
 
-Completed the adversarial first-read review at
-<https://selfhost-upgrade-rehearsal.sociobot.in> on 2026-08-29 UTC and wrote
-`.factory/review-4.md`. Product code was not changed.
+All findings in reviews 1–4 are closed. The repair is live at <https://selfhost-upgrade-rehearsal.sociobot.in>. The implementation commit is `fdf7229a2d9f38d529664d93f8b21c6c28391c9d`; Azure Static Web Apps deployment is `a8f36e13-4fca-44c7-8196-b338f5e0a514`.
 
-## Verification performed
+## What changed
 
-- Used fresh 390×844 and 1440×900 browser contexts for the cold first screen.
-- Exercised the one-click demo, receipt download, Reset, offline replay, Start
-  for real, request log, and real-storage sentinels.
-- Checked all routes, metadata, history/focus behavior, HTTP status, headers,
-  links, 404, horizontal overflow, and axe results at both viewport sizes.
-- Cloned commit `5ea4bf4164881da3682c8b0ed42c8acf5fde005d`
-  to a separate temporary directory and ran every one of the 41 commands in
-  `.factory/claims.json`; all exited 0.
-- Ran the unfiltered clean-clone suite: 5 Rust tests and 103 Playwright tests
-  passed, with 4 intentional skips.
-- Ran `npm run build`; it produced the release binary and `dist/site`.
-- Confirmed the live landing HTML, JS, CSS, and release manifest match the
-  clean build byte-for-byte.
+- Replaced the false customer-installation guarantee with the enforceable boundary: no built-in client or discovery, while configured hooks retain host access. The hostile claim test now writes through an explicitly configured hook and proves an unconfigured customer path stays untouched.
+- Kept the 390px demo banner sticky through the receipt, with visible 44px Reset and Install controls.
+- Renamed the demo exit to **Install the CLI**, removed the unproved workspace count, and standardized README wording to **sample demo**.
+- Added exact claim coverage for desktop package support, demo tab lifetime, stable Rust/Node/npm requirements, test coverage, site output, and deployment directory. `.factory/claims.json` now has 46 IDs and exactly one matching test tag per ID.
+- Declared Node/npm engines and the stable Rust toolchain.
+- Updated the catalog line to “Rehearse self-hosted upgrades and issue customer-safe receipts.” (63 characters, verb first).
+- Preserved the herbarium-sheet identity, static deployment class, Rust CLI, v0.1.3 installers, and published cross-platform release assets.
 
-## Open findings
+The complete finding map is in `.factory/polish-4.md`; the full wording inventory is in `.factory/copy-audit.md`.
 
-- F-4-1 / F-1-2 reopened (blocking): configured hooks can modify arbitrary
-  customer paths despite the absolute landing/manifest claim; the registered
-  test does not exercise a hostile hook.
-- F-4-2 (blocking): the demo banner is not sticky at 390px and disappears while
-  the user inspects/downloads the result.
-- F-4-3 / F-1-4 reopened (blocking): README calls the sample demo “the bundled
-  upgrade”.
-- F-4-4 through F-4-7: unlisted demo, platform, privacy, and README development
-  claims.
-- F-4-8: “Start for real” does not name its installation result.
+## Exact verification
 
-## Reproduce the key failures
+Clean clone `/tmp/rehearsal-claims-nIg6AT` at `fdf7229a2d9f38d529664d93f8b21c6c28391c9d`:
 
-At 390px, open `/?demo=1`, scroll to **Download sample JSON**, and inspect the
-demo banner: the mobile CSS changes it to `position: relative`, leaving it
-outside the viewport.
+- `npm ci`: passed; 0 audit vulnerabilities.
+- Every one of the 46 exact `test` commands in `.factory/claims.json`: passed independently.
+- `npm test`: passed; 5 Rust tests and 114 Playwright tests, with 4 intentional project-specific skips.
+- `npm run build`: passed; wrote the release binary and `dist/site`.
+- `cargo fmt --check`: passed.
+- `cargo clippy --all-targets -- -D warnings`: passed.
+- `cargo package --locked`: passed; packaged and verified `rehearsal 0.1.3`.
 
-For the boundary issue, run a valid declaration whose hook command writes a
-marker to an absolute path outside `REHEARSAL_WORK_DIR`. The CLI executes the
-hook and can still issue a `ready` receipt. The existing
-`@claim:customer-boundary` fixture puts its customer path only in `notes`, so
-it cannot detect this behavior.
+Accessibility, privacy, offline, and performance:
 
-See `.factory/review-4.md` for exact quotes, rewrites, claim results, complete
-copy counts, and the earlier-finding audit.
+- Playwright axe: zero serious/critical findings.
+- `npx @axe-core/cli` on `/`, `/?demo=1`, `/privacy`, and `/terms`: 0 violations on all four pages.
+- `/opt/fleet/lib/verify-url.sh`: HTTP 200, one H1, one main, `lang=en`, complete image alt text, no unlabeled buttons, no console errors.
+- Live demo at 390×844: sticky banner top/bottom `0/81.1875px` after scrolling to the receipt; both controls are 44px high; no horizontal overflow.
+- Live offline Reset reached `READY`; request logging found no external request during the demo flow.
+- Live tab-close check removed all `demo:` keys and preserved `localStorage["real:project"]`.
+- Lighthouse: Performance 100, Accessibility 100, Best Practices 100, SEO 100; FCP 770ms, LCP 1,207ms, TBT 26ms, CLS 0.
+- Initial assets: JS 22,412 bytes raw / 7.61KB gzip; CSS 13,411 bytes raw / 3.78KB gzip; hero WebP 70,902 bytes.
+
+Production checks after deployment:
+
+- `/`, `/?demo=1`, `/demo`, `/privacy`, and `/terms`: HTTP 200, route-specific title/canonical, one H1, and one main.
+- `/round-4-missing`: HTTP 404 with the complete product header/footer, legal links, title, and recovery copy.
+- `/#install`: focuses `install-title`, places the section at `0.21875px`, and clears demo state.
+- iPhone context: “Install on macOS, Windows, or Linux.” and “No phone or tablet package is provided.”
+- Live HTML, hashed JS/CSS, hero image, release manifest, and Demo/Privacy/Terms documents match `dist/site` byte-for-byte.
+- GitHub release `v0.1.3` still exposes Linux x86_64/aarch64, macOS x86_64/aarch64, Windows x86_64, deb, rpm, pkg, Scoop, Winget, Homebrew, `SHA256SUMS`, and `latest.json` assets.
+
+Evidence is under `.factory/evidence/polish-4/`, including live mobile screenshots, `verify.json`, `live-audit.json`, and `lighthouse.json`.
+
+## Run and verify
+
+```sh
+npm ci
+npm test
+npm run build
+cargo fmt --check
+cargo clippy --all-targets -- -D warnings
+cargo package --locked
+```
+
+Deployable site root: `dist/site`. Browser demo: `/?demo=1`. CLI demo: `rehearsal demo`.
+
+## Known gaps and next steps
+
+None for this work order. No release rebuild is needed because the Rust CLI and v0.1.3 installer payloads did not change; this repair changes the site, documentation, tests, and claim contract.
