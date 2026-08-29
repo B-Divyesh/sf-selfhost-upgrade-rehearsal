@@ -141,7 +141,7 @@ Package the Rust crate without publishing it:
 cargo package --locked
 ```
 
-The factory deploys `dist/site`. Tag a version such as `v0.1.2` to run the cross-platform GitHub release workflow.
+The factory deploys `dist/site`. Tag a version such as `v0.1.3` to run the cross-platform GitHub release workflow.
 
 ## License
 

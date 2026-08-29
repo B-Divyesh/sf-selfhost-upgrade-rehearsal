@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 — 2026-08-29
+
+- Clarify that `rehearsal init` writes a declaration template, not a checked project.
+- State the schema and hook prerequisites in generated templates, CLI help, and README.
+
 ## 0.1.2 — 2026-08-29
 
 - Add the isolated `?demo=1` sample path and consistent sample-demo wording.

@@ -197,7 +197,7 @@
   },
   {
     "id": "release-asset-set",
-    "claim": "Release v0.1.2 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
+    "claim": "Release v0.1.3 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:release-asset-set",
     "sandbox": "fresh clone; recorded GitHub release response; assert tag and every documented asset pattern"
