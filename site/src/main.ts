@@ -77,7 +77,7 @@ function footer(): string {
   return `<footer class="site-footer">
     <p><strong>${PRODUCT}</strong><br><span>Readiness receipts for self-hosted upgrades.</span></p>
     <nav aria-label="Footer navigation"><a href="/privacy" data-link>Privacy</a><a href="/terms" data-link>Terms</a><a href="https://sociobot.in" rel="external">Built by Param Factory <span class="sr-only">(external site)</span></a></nav>
-    <p class="build">v0.1.0 · build 2026.08.28</p>
+    <p class="build">v0.1.1 · build 2026.08.29</p>
   </footer>`;
 }
 

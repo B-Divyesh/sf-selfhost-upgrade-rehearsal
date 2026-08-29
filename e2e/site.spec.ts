@@ -263,6 +263,6 @@ test('built route documents prevent a navigation fallback from turning unknown p
   const config = JSON.parse(await readFile(join(root, 'site/public/staticwebapp.config.json'), 'utf8'));
   expect(config.navigationFallback).toBeUndefined();
   for (const route of ['demo', 'privacy', 'terms']) {
-    expect(await readFile(join(root, 'dist/site', route, 'index.html'), 'utf8')).resolves.toContain('<div id="app"></div>');
+    expect(await readFile(join(root, 'dist/site', route, 'index.html'), 'utf8')).toContain('<div id="app"></div>');
   }
 });

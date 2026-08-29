@@ -187,6 +187,7 @@ h3 { margin: 0 0 8px; font-family: Georgia, 'Times New Roman', serif; font-size:
 
 /* Navigation is used on touch devices as often as with a pointer. */
 .site-header a, .site-footer nav a, .demo-banner a {
+  min-width: 44px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;

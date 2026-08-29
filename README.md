@@ -33,7 +33,7 @@ irm https://selfhost-upgrade-rehearsal.sociobot.in/install.ps1 | iex
 
 Both installers verify SHA256 before placing the binary on `PATH`.
 
-Homebrew packages use this command after the tap is published:
+Homebrew packages use the published tap:
 
 ```sh
 brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal
@@ -139,7 +139,7 @@ Package the Rust crate without publishing it:
 cargo package --locked
 ```
 
-The factory deploys `dist/site`. Tag `v0.1.0` to run the cross-platform GitHub release workflow.
+The factory deploys `dist/site`. Tag a version such as `v0.1.1` to run the cross-platform GitHub release workflow.
 
 ## License
 
