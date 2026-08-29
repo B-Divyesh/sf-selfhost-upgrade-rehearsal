@@ -1,22 +1,22 @@
 class Rehearsal < Formula
   desc "Rehearse self-hosted upgrades and issue readiness receipts"
   homepage "https://selfhost-upgrade-rehearsal.sociobot.in"
-  version "0.1.3"
+  version "0.1.4"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v#{version}/rehearsal-macos-aarch64.tar.gz"
-      sha256 "f3a88c14a9f809906c50b2c81f75809ffabd4753a9d7fb30ed35fb53309bb383"
+      sha256 "12757bee8f861ff524e4c2425ef3b3e8d720ff361b6eb4a8661cc5250d82d741"
     else
       url "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v#{version}/rehearsal-macos-x86_64.tar.gz"
-      sha256 "57ff035c2caf979714bbbce75454be56787976acfee6cf7d96a2310cb4c634a3"
+      sha256 "8db93350ddb5752ff08f5dc404cf29f1006b7043c20b093e466d96107f73c68f"
     end
   end
 
   on_linux do
     url "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v#{version}/rehearsal-linux-x86_64.tar.gz"
-    sha256 "84676836384b1d87e7a590147989656f82e77d6e2c73e24222cf984c7d8e03ca"
+    sha256 "d5ba325542908d43af0a02dda5361c9e432f04f10284bbf4f05a4ad1726846b7"
   end
 
   def install

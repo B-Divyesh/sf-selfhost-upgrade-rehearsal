@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-08-29T23:28:10Z",
+  "source": "https://api.github.com/repos/B-Divyesh/sf-selfhost-upgrade-rehearsal/attestations/sha256:d5ba325542908d43af0a02dda5361c9e432f04f10284bbf4f05a4ad1726846b7",
+  "tag_name": "v0.1.4",
+  "git_commit": "e0d60fc5a5eaa7504fc345f243e078b546d291e0",
+  "workflow": ".github/workflows/release.yml",
+  "run_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/actions/runs/33278297266/attempts/1",
+  "predicate_type": "https://slsa.dev/provenance/v1",
+  "subjects": [
+    { "name": "SHA256SUMS", "sha256": "d4d154e5ed9546befe0e82c406ecb21633ccbd07ae0c011c28d2f7d0edd5b981" },
+    { "name": "latest.json", "sha256": "bbbb2083bca0138b13b5675fe49466a87c788986605d78b1e429861429b69593" },
+    { "name": "rehearsal-0.1.4-linux-amd64.deb", "sha256": "87968b75c9fdd83a55f5e77f2c4904cb1651e5299d884dd446561afce4e7edca" },
+    { "name": "rehearsal-0.1.4-linux-x86_64.rpm", "sha256": "547ddd734e8df92a1c44ff565ecb95e933bb6fc241861ce9acb15564cab93900" },
+    { "name": "rehearsal-linux-aarch64.tar.gz", "sha256": "c785b87f2f3f50fa4922b775baa745477ed49f5d4398fc386a9dc03f2e6d14fc" },
+    { "name": "rehearsal-linux-x86_64.tar.gz", "sha256": "d5ba325542908d43af0a02dda5361c9e432f04f10284bbf4f05a4ad1726846b7" },
+    { "name": "rehearsal-macos-aarch64.pkg", "sha256": "92a003c4fe706a17fd4fe0b23fa22efb7f821d973d2a7f11cfa4442c73d5638b" },
+    { "name": "rehearsal-macos-aarch64.tar.gz", "sha256": "12757bee8f861ff524e4c2425ef3b3e8d720ff361b6eb4a8661cc5250d82d741" },
+    { "name": "rehearsal-macos-x86_64.pkg", "sha256": "9abf5454e55875c1c92785c774632deadb44fedc8a780fa7c609e1248ac4ced9" },
+    { "name": "rehearsal-macos-x86_64.tar.gz", "sha256": "8db93350ddb5752ff08f5dc404cf29f1006b7043c20b093e466d96107f73c68f" },
+    { "name": "rehearsal-windows-x86_64.zip", "sha256": "e4107e34e90629c4c48b2b78f348c75cf50deab240c31e2b617fc4025cad05e0" },
+    { "name": "rehearsal-winget-0.1.4.zip", "sha256": "0bbe8c173edb59291bf8e38ebd81f8ae704323cb30d39ddff983dba3f65279fd" },
+    { "name": "rehearsal.rb", "sha256": "411f3b23382c8dfea5a78ade242392e59564d283717f39f51c67b1457921703a" },
+    { "name": "selfhost-upgrade-rehearsal.json", "sha256": "093db3903c5326428395efc06e85bfa75154b32aa5793a4c741cd2a84d43e53f" }
+  ]
+}

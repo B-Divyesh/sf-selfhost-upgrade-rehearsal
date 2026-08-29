@@ -1,6 +1,13 @@
 {
-  "captured_at": "2026-08-29T00:00:00Z",
+  "captured_at": "2026-08-29T23:27:36Z",
   "request": "https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout",
   "status": 303,
-  "location": "https://checkout.dodopayments.com/session/recorded-fixture"
+  "location": "https://checkout.dodopayments.com/session/recorded-fixture",
+  "location_origin": "https://checkout.dodopayments.com",
+  "checkout": {
+    "title": "Sociobot | Checkout",
+    "merchant_of_record": "Dodo Payments",
+    "handles": ["order-related inquiries", "returns"],
+    "footer": "This order process is conducted by our online reseller & Merchant of Record, dodopayments.com, who also handles order-related inquiries and returns."
+  }
 }

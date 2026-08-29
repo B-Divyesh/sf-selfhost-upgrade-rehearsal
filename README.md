@@ -46,11 +46,11 @@ scoop bucket add b-divyesh https://github.com/B-Divyesh/scoop-bucket
 scoop install selfhost-upgrade-rehearsal
 ```
 
-Each release also carries `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`.
+Release v0.1.4 includes `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`.
 
 ## Verify and roll back an installer
 
-The installers download the matching release `SHA256SUMS` file and check the archive before installing it. GitHub Actions also records build provenance for every release asset; verify it with GitHub CLI:
+The installers download the matching release `SHA256SUMS` file and check the archive before installing it. Release v0.1.4 has GitHub provenance for every asset; verify it with GitHub CLI:
 
 ```sh
 gh attestation verify rehearsal-linux-x86_64.tar.gz --repo B-Divyesh/sf-selfhost-upgrade-rehearsal

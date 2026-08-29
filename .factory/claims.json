@@ -57,10 +57,10 @@
   },
   {
     "id": "installer-provenance-rollback",
-    "claim": "Release archives have GitHub Actions provenance and installers can roll back to a tagged release after verifying its SHA256 checksum.",
+    "claim": "Release v0.1.4 assets have GitHub provenance and installers can roll back to a tagged release after verifying its SHA256 checksum.",
     "where": "README verify and roll back section, GitHub Release notes",
     "test": "npm test -- --grep @claim:installer-provenance-rollback",
-    "sandbox": "fresh clone; inspect the provenance attestation workflow, rollback documentation, and both version-aware installer scripts"
+    "sandbox": "fresh clone; recorded v0.1.4 release and GitHub attestation fixtures; match every published asset digest; inspect both version-aware installer scripts"
   },
   {
     "id": "mit-core",
@@ -161,18 +161,11 @@
     "sandbox": "fresh temporary directory without a license; run sample demo and inspect both receipt files"
   },
   {
-    "id": "sociobot-merchant",
-    "claim": "Sociobot is the merchant of record for the Team kit.",
+    "id": "dodo-merchant-returns",
+    "claim": "Dodo Payments is the merchant of record and handles Team kit order questions and returns.",
     "where": "landing paid section, terms",
-    "test": "npm test -- --grep @claim:sociobot-merchant",
-    "sandbox": "fresh browser context; assert merchant wording and the product-specific Sociobot checkout URL"
-  },
-  {
-    "id": "sociobot-refunds",
-    "claim": "Sociobot handles Team kit refunds, which revoke the related license.",
-    "where": "landing paid section, terms",
-    "test": "npm test -- --grep @claim:sociobot-refunds",
-    "sandbox": "fresh browser context at terms route; assert the complete refund and revocation wording"
+    "test": "npm test -- --grep @claim:dodo-merchant-returns",
+    "sandbox": "fresh clone; recorded product-specific Sociobot checkout redirect and Dodo checkout footer; assert merchant and returns data from the checkout response, then assert matching public copy"
   },
   {
     "id": "sociobot-checkout",
@@ -211,10 +204,17 @@
   },
   {
     "id": "release-asset-set",
-    "claim": "Release v0.1.3 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
+    "claim": "Release v0.1.4 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:release-asset-set",
-    "sandbox": "fresh clone; recorded GitHub release response; assert tag and every documented asset pattern"
+    "sandbox": "fresh clone; recorded v0.1.4 GitHub release response; bind tag to package version and assert every documented asset pattern and digest"
+  },
+  {
+    "id": "path-placeholders",
+    "claim": "Hook arguments expand {source_dir} and {work_dir} to the declaration and temporary workspace directories.",
+    "where": "README declaration section",
+    "test": "npm test -- --grep @claim:path-placeholders",
+    "sandbox": "fresh temporary declaration; execute a hook with both placeholders and assert its received arguments equal the CLI environment paths"
   },
   {
     "id": "receipt-contents",

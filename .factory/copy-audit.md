@@ -1,4 +1,4 @@
-# Copy audit — perfection loop 4
+# Copy audit — perfection loop 5
 
 Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyphenated terms, versions, prices, commands, and filenames as one word. Code output and URLs are not prose.
 
@@ -47,7 +47,7 @@ Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyph
 | Release vX.Y.Z is ready for this device. | 7 | Pass; `release-metadata` |
 | Install on macOS, Windows, or Linux. | 6 | Pass; `supported-platforms` |
 | No phone or tablet package is provided. | 7 | Pass; `supported-platforms` |
-| Downloads are being published | 4 | Pass |
+| Open GitHub releases | 3 | Pass; active fallback names its result |
 | The download comes from the matching GitHub release. | 8 | Pass |
 | You can open the release page while packages are prepared. | 10 | Pass |
 | Downloads are being published or this device is offline. | 9 | Pass |
@@ -68,8 +68,8 @@ Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyph
 | Run the rehearsal in release CI | 6 | Pass |
 | The $79 one-time Team kit adds a CI checklist for each supported source and target version. | 16 | Pass |
 | The CLI and both receipt formats stay free. | 8 | Pass |
-| Sociobot is the merchant of record. | 6 | Pass |
-| Refunds are handled through Sociobot. | 5 | Pass |
+| Dodo Payments is the merchant of record. | 7 | Pass; `dodo-merchant-returns` |
+| Dodo Payments handles order questions and returns. | 8 | Pass; `dodo-merchant-returns` |
 | Buy the Team kit — $79 | 5 | Pass |
 | Have a license? Paste it | 5 | Pass |
 | Verify license | 2 | Pass |
@@ -113,9 +113,11 @@ No landing sentence exceeds 22 words. No banned marketing word appears. The firs
 | `npm run build:site` writes `dist/site/index.html`. | 5 | Pass; `site-build-output` |
 | The complete deployable static site is in `dist/site`. | 8 | Pass; `deploy-directory` |
 | Scoop uses the published bucket. | 5 | Pass; `scoop-manifest` |
+| Release v0.1.4 includes `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`. | 15 | Pass; `release-asset-set` |
 | The installers download the matching release `SHA256SUMS` file and check the archive before installing it. | 15 | Pass; `installer-checksum` |
-| GitHub Actions also records build provenance for every release asset. | 10 | Pass; `installer-provenance-rollback` |
+| Release v0.1.4 has GitHub provenance for every asset. | 9 | Pass; `installer-provenance-rollback` |
 | To install an earlier tagged release, set `REHEARSAL_VERSION` to its full tag. | 12 | Pass; `installer-provenance-rollback` |
+| Use `{source_dir}` and `{work_dir}` as path placeholders. | 7 | Pass; `path-placeholders` |
 
 ## Terminology
 
@@ -128,4 +130,4 @@ No landing sentence exceeds 22 words. No banned marketing word appears. The firs
 | Paid CI download | Team kit |
 | Tested source-to-target change | upgrade path |
 
-Catalog description: “Rehearse self-hosted upgrades and issue customer-safe receipts.” It is 63 characters, starts with a verb, and contains no banned word.
+Catalog description: “Rehearse self-hosted upgrades and share customer-safe readiness receipts.” It is 73 characters, starts with a verb, and contains no banned word.

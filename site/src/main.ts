@@ -138,7 +138,7 @@ function landing(): string {
     <section id="install" class="install ruled-section" aria-labelledby="install-title">
       <div class="section-heading"><p class="eyebrow">CLI installation</p><h2 id="install-title" tabindex="-1">Install one binary</h2><p id="platform-note">Checking published downloads…</p></div>
       <div class="install-card">
-        <a id="platform-download" class="button primary disabled" href="https://github.com/${REPO}/releases" rel="external">Downloads are being published</a>
+        <a id="platform-download" class="button primary" href="https://github.com/${REPO}/releases" rel="external">Open GitHub releases</a>
         <p id="release-note">You can open the release page while packages are prepared.</p>
         <div class="command-tabs" role="group" aria-label="Installer commands">
           <button type="button" data-copy="curl -fsSL https://${SLUG}.sociobot.in/install.sh | sh">Copy macOS and Linux install</button>
@@ -164,7 +164,7 @@ rehearsal run --output release-proof</code></pre></div>
 
     <section class="paid ruled-section" aria-labelledby="paid-title">
       <div class="paid-mark" aria-hidden="true">TEAM<br>CI<br>KIT</div>
-      <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Run the rehearsal in release CI</h2><p>The $79 one-time Team kit adds a CI checklist for each supported source and target version.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
+      <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Run the rehearsal in release CI</h2><p>The $79 one-time Team kit adds a CI checklist for each supported source and target version.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Dodo Payments is the merchant of record.</li><li>Dodo Payments handles order questions and returns.</li></ul></div>
       <div class="license-box">
         <a class="button primary" href="${BILLING}/checkout">Buy the Team kit — $79</a>
         <form id="license-form" novalidate><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false" required aria-required="true" aria-describedby="license-status"><button type="submit">Verify license</button></div></form>
@@ -204,7 +204,7 @@ function privacy(): string {
 }
 
 function terms(): string {
-  return legalPage('Terms', 'Use receipts as tested evidence', `<p>Self-Host Upgrade Rehearsal is provided under the MIT License.</p><h2>Receipt scope</h2><p>A receipt describes one declared test. It does not promise success in an unlisted environment.</p><p>You remain responsible for backups, release decisions, and customer instructions.</p><h2>Team kit</h2><p>The Team kit costs $79 as a one-time purchase. Sociobot is the merchant of record.</p><p>Refunds are handled through Sociobot. A refund revokes the related license.</p><h2>Fair use</h2><p>Do not use the service to test systems you do not control.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:support@sociobot.in">support@sociobot.in</a> with a terms question.</p>`);
+  return legalPage('Terms', 'Use receipts as tested evidence', `<p>Self-Host Upgrade Rehearsal is provided under the MIT License.</p><h2>Receipt scope</h2><p>A receipt describes one declared test. It does not promise success in an unlisted environment.</p><p>You remain responsible for backups, release decisions, and customer instructions.</p><h2>Team kit</h2><p>The Team kit costs $79 as a one-time purchase.</p><p>Dodo Payments is the merchant of record. It handles order questions and returns.</p><h2>Fair use</h2><p>Do not use the service to test systems you do not control.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:support@sociobot.in">support@sociobot.in</a> with a terms question.</p>`);
 }
 
 function legalPage(label: string, title: string, body: string): string {

@@ -73,6 +73,16 @@ test('landing has one clear page outline and no serious accessibility errors', a
   }
 });
 
+test('@regression:route-accessibility Demo, Privacy, and Terms have no serious accessibility errors', async ({ page }) => {
+  for (const path of ['/?demo=1', '/privacy', '/terms']) {
+    await page.goto(path);
+    await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.locator('main')).toHaveCount(1);
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations.filter(item => ['serious', 'critical'].includes(item.impact || '')), path).toEqual([]);
+  }
+});
+
 test('@regression:first-screen-facts all three facts fit common desktop first screens at legible size', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium', 'desktop geometry is covered once at both required viewport sizes');
 
@@ -253,10 +263,22 @@ test('@claim:installer-checksum installers verify the package before installatio
 test('@claim:installer-provenance-rollback release documents GitHub provenance and checksum-verified rollback', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   const workflow = await readFile(join(root, '.github/workflows/release.yml'), 'utf8');
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string; digest: string; browser_download_url: string }> };
+  const attestation = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-attestation-v0.1.4.json'), 'utf8')) as { tag_name: string; git_commit: string; subjects: Array<{ name: string; sha256: string }> };
   expect(readme).toContain('gh attestation verify rehearsal-linux-x86_64.tar.gz --repo B-Divyesh/sf-selfhost-upgrade-rehearsal');
   expect(readme).toContain('REHEARSAL_VERSION=v0.1.3');
+  expect(readme).toContain(`Release v${packageJson.version} has GitHub provenance for every asset`);
   expect(workflow).toContain('actions/attest-build-provenance@v2');
   expect(workflow).toContain('SHA256SUMS');
+  expect(release.tag_name).toBe(`v${packageJson.version}`);
+  expect(attestation.tag_name).toBe(release.tag_name);
+  expect(attestation.git_commit).toMatch(/^[a-f0-9]{40}$/);
+  const subjects = new Map(attestation.subjects.map(subject => [subject.name, subject.sha256]));
+  for (const asset of release.assets) {
+    expect(subjects.get(asset.name), `missing provenance for ${asset.name}`).toBe(asset.digest.replace('sha256:', ''));
+    expect(asset.browser_download_url, `wrong release URL for ${asset.name}`).toContain(`/releases/download/v${packageJson.version}/${asset.name}`);
+  }
 });
 
 test('@claim:mit-core core CLI is MIT licensed', async () => {
@@ -426,15 +448,23 @@ test('@claim:free-cli-formats both receipt formats work without a Team license',
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test('@claim:sociobot-merchant site identifies Sociobot as merchant of record', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.getByText('Sociobot is the merchant of record.')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Buy the Team kit — $79' })).toHaveAttribute('href', 'https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout');
-});
+test('@claim:dodo-merchant-returns checkout identifies Dodo Payments as merchant of record and returns contact', async ({ page }) => {
+  const checkout = JSON.parse(await readFile(join(root, 'e2e/fixtures/sociobot-checkout-response.json'), 'utf8')) as {
+    request: string;
+    status: number;
+    location_origin: string;
+    checkout: { merchant_of_record: string; handles: string[]; footer: string };
+  };
+  expect(checkout.request).toBe('https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout');
+  expect(checkout.status).toBe(303);
+  expect(checkout.location_origin).toBe('https://checkout.dodopayments.com');
+  expect(checkout.checkout.merchant_of_record).toBe('Dodo Payments');
+  expect(checkout.checkout.handles).toEqual(['order-related inquiries', 'returns']);
+  expect(checkout.checkout.footer).toContain('Merchant of Record, dodopayments.com');
+  expect(checkout.checkout.footer).toContain('handles order-related inquiries and returns');
 
-test('@claim:sociobot-refunds site states that Sociobot handles refunds and revoked licenses', async ({ page }) => {
   await page.goto('/terms');
-  await expect(page.getByText('Refunds are handled through Sociobot. A refund revokes the related license.')).toBeVisible();
+  await expect(page.getByText('Dodo Payments is the merchant of record. It handles order questions and returns.')).toBeVisible();
 });
 
 test('@claim:sociobot-checkout payment action uses the Sociobot checkout endpoint', async ({ page }) => {
@@ -460,7 +490,9 @@ test('@claim:published-platform-download release metadata selects a matching Git
 });
 
 test('@claim:supported-platforms published packages cover desktop systems and omit phone packages', async () => {
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.3.json'), 'utf8')) as { assets: Array<{ name: string }> };
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string }> };
+  expect(release.tag_name).toBe(`v${packageJson.version}`);
   const names = release.assets.map(asset => asset.name);
   for (const required of [
     'rehearsal-linux-x86_64.tar.gz',
@@ -477,33 +509,67 @@ test('@claim:supported-platforms published packages cover desktop systems and om
 
 test('@claim:homebrew-tap documented Homebrew formula is published', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { assets: Array<{ name: string; digest: string }> };
   expect(readme).toContain('brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal');
-  const formula = await readFile(join(root, 'e2e/fixtures/homebrew-formula-v0.1.3.rb'), 'utf8');
+  const formula = await readFile(join(root, 'e2e/fixtures/homebrew-formula-v0.1.4.rb'), 'utf8');
   expect(formula).toContain('class Rehearsal < Formula');
-  expect(formula).toContain('version "0.1.3"');
+  expect(formula).toContain(`version "${packageJson.version}"`);
+  for (const assetName of ['rehearsal-macos-aarch64.tar.gz', 'rehearsal-macos-x86_64.tar.gz', 'rehearsal-linux-x86_64.tar.gz']) {
+    const digest = release.assets.find(asset => asset.name === assetName)?.digest.replace('sha256:', '');
+    expect(digest, `release digest for ${assetName}`).toBeTruthy();
+    expect(formula).toContain(`sha256 "${digest}"`);
+  }
   expect(formula.match(/sha256 "[a-f0-9]{64}"/g)).toHaveLength(3);
 });
 
 test('@claim:scoop-manifest documented Scoop manifest is published and valid', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   const workflow = await readFile(join(root, '.github/workflows/release.yml'), 'utf8');
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { assets: Array<{ name: string; digest: string }> };
   expect(readme).toContain('scoop bucket add b-divyesh https://github.com/B-Divyesh/scoop-bucket');
   expect(readme).toContain('scoop install selfhost-upgrade-rehearsal');
   expect(workflow).toContain('gh repo clone "${GITHUB_REPOSITORY_OWNER}/scoop-bucket" scoop-bucket');
   expect(workflow).toContain('scoop-bucket/selfhost-upgrade-rehearsal.json');
-  const manifest = JSON.parse(await readFile(join(root, 'e2e/fixtures/scoop-manifest-v0.1.3.json'), 'utf8')) as { version: string; url: string; hash: string };
-  expect(manifest.version).toBe('0.1.3');
-  expect(manifest.url).toMatch(/rehearsal-windows-x86_64\.zip$/);
-  expect(manifest.hash).toMatch(/^[a-f0-9]{64}$/);
+  const manifest = JSON.parse(await readFile(join(root, 'e2e/fixtures/scoop-manifest-v0.1.4.json'), 'utf8')) as { version: string; url: string; hash: string };
+  const windows = release.assets.find(asset => asset.name === 'rehearsal-windows-x86_64.zip');
+  expect(manifest.version).toBe(packageJson.version);
+  expect(manifest.url).toBe(`https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v${packageJson.version}/rehearsal-windows-x86_64.zip`);
+  expect(manifest.hash).toBe(windows?.digest.replace('sha256:', ''));
 });
 
 test('@claim:release-asset-set published release carries every documented package', async () => {
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.3.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string }> };
-  expect(release.tag_name).toBe('v0.1.3');
+  const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string; digest: string; browser_download_url: string }> };
+  expect(release.tag_name).toBe(`v${packageJson.version}`);
   const names = release.assets.map(asset => asset.name);
   for (const pattern of [/\.deb$/, /\.rpm$/, /\.pkg$/, /windows-x86_64\.zip$/, /winget.*\.zip$/, /^SHA256SUMS$/, /^latest\.json$/]) {
     expect(names.some(name => pattern.test(name)), `missing release asset ${pattern}`).toBe(true);
   }
+  expect(release.assets.every(asset => /^sha256:[a-f0-9]{64}$/.test(asset.digest))).toBe(true);
+  expect(release.assets.every(asset => asset.browser_download_url.includes(`/releases/download/v${packageJson.version}/`))).toBe(true);
+  expect(await readFile(join(root, 'README.md'), 'utf8')).toContain(`Release v${packageJson.version} includes`);
+});
+
+test('@claim:path-placeholders hook arguments resolve source and temporary workspace directories', async () => {
+  test.skip(process.platform === 'win32', 'the release CLI uses the equivalent Windows argument expansion path');
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-placeholders-'));
+  try {
+    await writeMinimalDeclaration(dir);
+    const probe = join(dir, 'placeholder-probe.sh');
+    await writeFile(probe, '#!/bin/sh\nprintf \'%s\\n%s\\n%s\\n%s\\n\' "$1" "$2" "$REHEARSAL_SOURCE_DIR" "$REHEARSAL_WORK_DIR" > "$1/placeholder-result"\n');
+    const declarationPath = join(dir, 'rehearsal.yml');
+    const source = await readFile(declarationPath, 'utf8');
+    await writeFile(declarationPath, source.replace('preflight: [/usr/bin/true]', 'preflight: [/bin/sh, "{source_dir}/placeholder-probe.sh", "{source_dir}", "{work_dir}"]'));
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', declarationPath, '--output', join(dir, 'report')]);
+    const [sourceArg, workArg, sourceEnv, workEnv] = (await readFile(join(dir, 'placeholder-result'), 'utf8')).trim().split('\n');
+    expect(sourceArg).toBe(await import('node:fs/promises').then(fs => fs.realpath(dir)));
+    expect(sourceArg).toBe(sourceEnv);
+    expect(workArg).toBe(workEnv);
+    expect(workArg).toMatch(/rehearsal-/);
+    expect(workArg).not.toContain('{work_dir}');
+  } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
 test('@claim:receipt-contents receipt contains every documented readiness field', async () => {
@@ -652,7 +718,8 @@ test('@regression:release-publishing-state falls back without a release or a net
   page.on('pageerror', error => pageErrors.push(error.message));
   await page.route(releaseApiUrl, route => route.fulfill({ status: 404, contentType: 'application/json', body: '{}' }));
   await page.goto('/');
-  await expect(page.getByRole('link', { name: 'Downloads are being published' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open GitHub releases', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open GitHub releases', exact: true })).toHaveAttribute('href', 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases');
   await expect(page.getByText('Downloads are being published or this device is offline.')).toBeVisible();
   await expect(page.getByRole('link', { name: /open the release page/ })).toHaveAttribute('href', 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases');
   expect(pageErrors).toEqual([]);
