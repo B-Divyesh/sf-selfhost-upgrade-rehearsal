@@ -59,4 +59,14 @@ The first screen reads in one breath: it rehearses upgrades for self-hosted prod
 | Paid CI download | Team kit |
 | Tested source-to-target change | upgrade path |
 
-Catalog description: “Rehearse self-hosted upgrades and create customer-safe readiness receipts.” It is 74 characters and starts with a verb.
+Catalog description: “Rehearse self-hosted upgrades and issue customer-safe readiness receipts.” It is 73 characters and starts with a verb.
+
+## README declaration copy
+
+| Location | Copy | Words | Result |
+| --- | --- | ---: | --- |
+| Declaration setup | Start with a declaration template. | 5 | Pass; `starter-templates` |
+| Declaration setup | Add your schema files and hook commands before running `rehearsal check`. | 10 | Pass; `starter-templates` |
+
+The declaration template is intentionally not a runnable project. It names the
+schema and hook prerequisites, and the CLI repeats that next step after `init`.

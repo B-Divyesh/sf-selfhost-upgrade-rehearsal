@@ -516,17 +516,29 @@ test('@claim:demo-storage-isolation sample demo uses only demo session storage a
   expect(await page.evaluate(() => localStorage.getItem('real:project'))).toBe('keep');
 });
 
-test('@claim:starter-templates init writes Compose and Kubernetes declaration templates', async () => {
+test('@claim:starter-templates init writes Compose and Kubernetes declaration templates that name their required setup', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'rehearsal-init-'));
   try {
+    const readme = await readFile(join(root, 'README.md'), 'utf8');
+    expect(readme).toContain('Start with a declaration template:');
+    expect(readme).toContain('Add your schema files and hook commands before running `rehearsal check`.');
+    const help = await exec(join(root, 'target/debug/rehearsal'), ['init', '--help']);
+    expect(help.stdout).toContain('Write a declaration template and list the setup it still needs');
+    expect(help.stdout).not.toContain('checked starter');
     for (const adapter of ['compose', 'kubernetes']) {
       const output = join(dir, `${adapter}.yml`);
-      await exec(join(root, 'target/debug/rehearsal'), ['init', adapter, '--output', output]);
+      const initialized = await exec(join(root, 'target/debug/rehearsal'), ['init', adapter, '--output', output]);
+      expect(initialized.stdout).toContain('Add schema files and hook commands, then run `rehearsal check`.');
       const template = await readFile(output, 'utf8');
+      expect(template).toContain('# Declaration template: add the referenced schema files and tailor every hook');
       expect(template).toContain(`adapter: ${adapter}`);
       expect(template).toContain('source:');
       expect(template).toContain('target:');
+      expect(template).toContain('config_schema: schemas/1.0.yml');
+      expect(template).toContain('config_schema: schemas/2.0.yml');
       expect(template).toContain('hooks:');
+      await expect(exec(join(root, 'target/debug/rehearsal'), ['check', '--file', output]))
+        .rejects.toMatchObject({ code: 2, stderr: expect.stringContaining('config schema') });
     }
   } finally { await rm(dir, { recursive: true, force: true }); }
 });

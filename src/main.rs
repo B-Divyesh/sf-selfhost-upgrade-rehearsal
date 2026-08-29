@@ -14,7 +14,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Write a checked starter declaration.
+    /// Write a declaration template and list the setup it still needs.
     Init {
         #[arg(value_enum, default_value = "compose")]
         adapter: AdapterArg,

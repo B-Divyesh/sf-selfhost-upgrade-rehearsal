@@ -23,7 +23,7 @@
   {
     "id": "cli-receipts",
     "claim": "The CLI writes JSON and HTML readiness receipts.",
-    "where": "landing, README",
+    "where": "landing, README, catalog description",
     "test": "npm test -- --grep @claim:cli-receipts",
     "sandbox": "fresh temporary directory; rehearsal demo; parse JSON and inspect HTML"
   },
@@ -72,7 +72,7 @@
   {
     "id": "customer-safe-receipt",
     "claim": "Customer-safe receipts omit declaration notes, hook output, and sample data.",
-    "where": "landing, demo, README, receipt privacy copy",
+    "where": "landing, demo, README, receipt privacy copy, catalog description",
     "test": "npm test -- --grep @claim:customer-safe-receipt",
     "sandbox": "fresh temporary declaration with a sensitive note and hook output; run the CLI and assert neither appears in the JSON receipt"
   },
@@ -121,7 +121,7 @@
   {
     "id": "declared-upgrade-path",
     "claim": "The CLI checks one declared source-to-target upgrade path.",
-    "where": "landing, README",
+    "where": "landing, README, catalog description",
     "test": "npm test -- --grep @claim:declared-upgrade-path",
     "sandbox": "fresh temporary declaration; run the CLI; assert exact source and target versions in the receipt"
   },
@@ -246,10 +246,10 @@
   },
   {
     "id": "starter-templates",
-    "claim": "The CLI writes Compose and Kubernetes declaration templates.",
+    "claim": "The CLI writes Compose and Kubernetes declaration templates that identify the schemas and hooks to add before checking.",
     "where": "README declaration section",
     "test": "npm test -- --grep @claim:starter-templates",
-    "sandbox": "fresh temporary directory; run init for both adapters and inspect versions, resources, schemas, and command sections"
+    "sandbox": "fresh temporary directory; run init for both adapters; inspect the required schema and hook fields, setup instruction, and missing-schema check failure"
   },
   {
     "id": "json-output",

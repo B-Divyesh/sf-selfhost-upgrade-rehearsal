@@ -1,3 +1,5 @@
+# Declaration template: add the referenced schema files and tailor every hook
+# to your product before running `rehearsal check`.
 schema: 1
 product: Your product
 adapter: compose

@@ -49,12 +49,14 @@ Each release also carries `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Wi
 
 ## Declare an upgrade path
 
-Start with a checked template:
+Start with a declaration template:
 
 ```sh
 rehearsal init compose
 # or: rehearsal init kubernetes
 ```
+
+Add your schema files and hook commands before running `rehearsal check`.
 
 The declaration lists only the versions, resources, schemas, and commands the rehearsal needs:
 
