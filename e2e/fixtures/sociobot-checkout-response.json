@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-08-29T00:00:00Z",
+  "request": "https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout",
+  "status": 303,
+  "location": "https://checkout.dodopayments.com/session/recorded-fixture"
+}

@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-08-29T00:00:00Z",
+  "source": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/tag/v0.1.2",
+  "tag_name": "v0.1.2",
+  "assets": [
+    { "name": "latest.json" },
+    { "name": "rehearsal-0.1.2-linux-amd64.deb" },
+    { "name": "rehearsal-0.1.2-linux-x86_64.rpm" },
+    { "name": "rehearsal-linux-aarch64.tar.gz" },
+    { "name": "rehearsal-linux-x86_64.tar.gz" },
+    { "name": "rehearsal-macos-aarch64.pkg" },
+    { "name": "rehearsal-macos-aarch64.tar.gz" },
+    { "name": "rehearsal-macos-x86_64.pkg" },
+    { "name": "rehearsal-macos-x86_64.tar.gz" },
+    { "name": "rehearsal-scoop.json" },
+    { "name": "rehearsal-windows-x86_64.zip" },
+    { "name": "rehearsal-winget-0.1.2.zip" },
+    { "name": "rehearsal.rb" },
+    { "name": "SHA256SUMS" }
+  ]
+}

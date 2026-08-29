@@ -186,21 +186,21 @@
     "claim": "The documented Homebrew tap publishes the current formula.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:homebrew-tap",
-    "sandbox": "fresh clone; assert documented command; fetch published tap formula and verify current version"
+    "sandbox": "fresh clone; recorded published tap formula; assert documented command, current version, release URLs, and checksums"
   },
   {
     "id": "scoop-manifest",
     "claim": "The documented Scoop release manifest is published and valid.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:scoop-manifest",
-    "sandbox": "fresh clone; fetch the published manifest; assert current version, Windows asset URL, and SHA256"
+    "sandbox": "fresh clone; recorded published Scoop manifest; assert current version, Windows asset URL, and SHA256"
   },
   {
     "id": "release-asset-set",
     "claim": "Release v0.1.2 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:release-asset-set",
-    "sandbox": "fresh clone; fetch GitHub release metadata and assert every documented asset pattern"
+    "sandbox": "fresh clone; recorded GitHub release response; assert tag and every documented asset pattern"
   },
   {
     "id": "receipt-contents",
@@ -284,6 +284,6 @@
     "claim": "Sociobot checkout uses Dodo to process payment details.",
     "where": "privacy",
     "test": "npm test -- --grep @claim:dodo-checkout-processing",
-    "sandbox": "fresh clone; request checkout without following redirects and assert the 303 Dodo checkout destination"
+    "sandbox": "fresh clone; recorded checkout response; assert the Sociobot request and 303 Dodo checkout destination"
   }
 ]

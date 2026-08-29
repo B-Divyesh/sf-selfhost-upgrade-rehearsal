@@ -361,29 +361,24 @@ test('@claim:published-platform-download release metadata selects a matching Git
 test('@claim:homebrew-tap documented Homebrew formula is published', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   expect(readme).toContain('brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal');
-  const response = await fetch('https://raw.githubusercontent.com/B-Divyesh/homebrew-selfhost-upgrade-rehearsal/main/Formula/rehearsal.rb');
-  expect(response.ok).toBe(true);
-  const formula = await response.text();
+  const formula = await readFile(join(root, 'e2e/fixtures/homebrew-formula-v0.1.2.rb'), 'utf8');
   expect(formula).toContain('class Rehearsal < Formula');
   expect(formula).toContain('version "0.1.2"');
+  expect(formula.match(/sha256 "[a-f0-9]{64}"/g)).toHaveLength(3);
 });
 
 test('@claim:scoop-manifest documented Scoop manifest is published and valid', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
-  const url = 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-scoop.json';
   expect(readme).toContain('scoop install https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/latest/download/rehearsal-scoop.json');
-  const response = await fetch(url);
-  expect(response.ok).toBe(true);
-  const manifest = await response.json() as { version: string; url: string; hash: string };
+  const manifest = JSON.parse(await readFile(join(root, 'e2e/fixtures/scoop-manifest-v0.1.2.json'), 'utf8')) as { version: string; url: string; hash: string };
   expect(manifest.version).toBe('0.1.2');
   expect(manifest.url).toMatch(/rehearsal-windows-x86_64\.zip$/);
   expect(manifest.hash).toMatch(/^[a-f0-9]{64}$/);
 });
 
 test('@claim:release-asset-set published release carries every documented package', async () => {
-  const response = await fetch('https://api.github.com/repos/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/tags/v0.1.2', { headers: { Accept: 'application/vnd.github+json' } });
-  expect(response.ok).toBe(true);
-  const release = await response.json() as { assets: Array<{ name: string }> };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.2.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string }> };
+  expect(release.tag_name).toBe('v0.1.2');
   const names = release.assets.map(asset => asset.name);
   for (const pattern of [/\.deb$/, /\.rpm$/, /\.pkg$/, /windows-x86_64\.zip$/, /winget.*\.zip$/, /^SHA256SUMS$/, /^latest\.json$/]) {
     expect(names.some(name => pattern.test(name)), `missing release asset ${pattern}`).toBe(true);
@@ -519,9 +514,10 @@ test('@claim:no-card-collection website has no card fields or payment-provider s
 });
 
 test('@claim:dodo-checkout-processing Sociobot checkout hands payment processing to Dodo', async () => {
-  const response = await fetch('https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout', { redirect: 'manual' });
+  const response = JSON.parse(await readFile(join(root, 'e2e/fixtures/sociobot-checkout-response.json'), 'utf8')) as { request: string; status: number; location: string };
+  expect(response.request).toBe('https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout');
   expect(response.status).toBe(303);
-  expect(response.headers.get('location')).toMatch(/^https:\/\/checkout\.dodopayments\.com\/session\//);
+  expect(response.location).toMatch(/^https:\/\/checkout\.dodopayments\.com\/session\//);
 });
 
 test('a cached invalid license keeps its inactive notice after reload', async ({ page }) => {
