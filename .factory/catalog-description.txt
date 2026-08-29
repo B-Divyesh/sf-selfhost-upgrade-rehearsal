@@ -1,0 +1,1 @@
+Rehearse self-hosted upgrades and issue a customer-safe readiness receipt.

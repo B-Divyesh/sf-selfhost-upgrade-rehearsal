@@ -71,7 +71,7 @@
   },
   {
     "id": "customer-safe-receipt",
-    "claim": "Customer-safe receipts omit declaration notes, hook output, and fixture contents.",
+    "claim": "Customer-safe receipts omit declaration notes, hook output, and sample data.",
     "where": "landing, demo, README, receipt privacy copy",
     "test": "npm test -- --grep @claim:customer-safe-receipt",
     "sandbox": "fresh temporary declaration with a sensitive note and hook output; run the CLI and assert neither appears in the JSON receipt"
@@ -117,5 +117,173 @@
     "where": "paid section",
     "test": "npm test -- --grep @claim:team-kit-license",
     "sandbox": "fresh browser context; recorded valid verify response; return URL token; download and inspect CI kit"
+  },
+  {
+    "id": "declared-upgrade-path",
+    "claim": "The CLI checks one declared source-to-target upgrade path.",
+    "where": "landing, README",
+    "test": "npm test -- --grep @claim:declared-upgrade-path",
+    "sandbox": "fresh temporary declaration; run the CLI; assert exact source and target versions in the receipt"
+  },
+  {
+    "id": "customer-boundary",
+    "claim": "The CLI does not connect to or modify a customer installation.",
+    "where": "landing limits, README",
+    "test": "npm test -- --grep @claim:customer-boundary",
+    "sandbox": "hostile declaration names a customer URL and directory; assert the sentinel is unchanged and the CLI has no network client"
+  },
+  {
+    "id": "receipt-scope",
+    "claim": "A receipt covers only its listed versions and supported environments.",
+    "where": "hero caption, landing limits, demo, README",
+    "test": "npm test -- --grep @claim:receipt-scope",
+    "sandbox": "fresh CLI sample demo; inspect version, environment, and explicit limitation fields"
+  },
+  {
+    "id": "team-kit-price-scope",
+    "claim": "The $79 one-time Team kit adds a CI checklist for supported source and target versions.",
+    "where": "landing paid section, README, terms",
+    "test": "npm test -- --grep @claim:team-kit-price-scope",
+    "sandbox": "fresh browser context; recorded valid entitlement; assert exact offer copy and downloaded checklist matrix"
+  },
+  {
+    "id": "free-cli-formats",
+    "claim": "The free CLI includes JSON and HTML receipt formats.",
+    "where": "landing paid section, README",
+    "test": "npm test -- --grep @claim:free-cli-formats",
+    "sandbox": "fresh temporary directory without a license; run sample demo and inspect both receipt files"
+  },
+  {
+    "id": "sociobot-merchant",
+    "claim": "Sociobot is the merchant of record for the Team kit.",
+    "where": "landing paid section, terms",
+    "test": "npm test -- --grep @claim:sociobot-merchant",
+    "sandbox": "fresh browser context; assert merchant wording and the product-specific Sociobot checkout URL"
+  },
+  {
+    "id": "sociobot-refunds",
+    "claim": "Sociobot handles Team kit refunds, which revoke the related license.",
+    "where": "landing paid section, terms",
+    "test": "npm test -- --grep @claim:sociobot-refunds",
+    "sandbox": "fresh browser context at terms route; assert the complete refund and revocation wording"
+  },
+  {
+    "id": "sociobot-checkout",
+    "claim": "Payment opens the product-specific Sociobot checkout.",
+    "where": "landing paid action and status",
+    "test": "npm test -- --grep @claim:sociobot-checkout",
+    "sandbox": "fresh browser context; assert the exact checkout URL and absence of a direct provider client"
+  },
+  {
+    "id": "published-platform-download",
+    "claim": "The detected desktop download comes from the matching published GitHub release.",
+    "where": "landing install section",
+    "test": "npm test -- --grep @claim:published-platform-download",
+    "sandbox": "fresh browser context; recorded GitHub release response; assert version copy and exact matching asset URL"
+  },
+  {
+    "id": "homebrew-tap",
+    "claim": "The documented Homebrew tap publishes the current formula.",
+    "where": "README install section",
+    "test": "npm test -- --grep @claim:homebrew-tap",
+    "sandbox": "fresh clone; assert documented command; fetch published tap formula and verify current version"
+  },
+  {
+    "id": "scoop-manifest",
+    "claim": "The documented Scoop release manifest is published and valid.",
+    "where": "README install section",
+    "test": "npm test -- --grep @claim:scoop-manifest",
+    "sandbox": "fresh clone; fetch the published manifest; assert current version, Windows asset URL, and SHA256"
+  },
+  {
+    "id": "release-asset-set",
+    "claim": "Release v0.1.2 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
+    "where": "README install section",
+    "test": "npm test -- --grep @claim:release-asset-set",
+    "sandbox": "fresh clone; fetch GitHub release metadata and assert every documented asset pattern"
+  },
+  {
+    "id": "receipt-contents",
+    "claim": "A receipt contains schema changes, declared resource minimums, checks, tested versions, and supported environments.",
+    "where": "landing preview and README",
+    "test": "npm test -- --grep @claim:receipt-contents",
+    "sandbox": "fresh temporary directory; run the CLI sample demo and assert every documented receipt field"
+  },
+  {
+    "id": "release-workflow",
+    "claim": "A v-prefixed tag runs the cross-platform GitHub release workflow.",
+    "where": "README develop section",
+    "test": "npm test -- --grep @claim:release-workflow",
+    "sandbox": "fresh clone; inspect tag trigger, Linux, macOS, Windows matrix, and GitHub release action"
+  },
+  {
+    "id": "sample-demo-parity",
+    "claim": "The browser recording and CLI demo use the same bundled Arbor Desk sample demo.",
+    "where": "landing preview, demo, README",
+    "test": "npm test -- --grep @claim:sample-demo-parity",
+    "sandbox": "fresh browser context and CLI temporary directory; compare product and source-to-target versions"
+  },
+  {
+    "id": "sociobot-license-api",
+    "claim": "License verification uses the product-specific Sociobot API.",
+    "where": "README Team kit, privacy",
+    "test": "npm test -- --grep @claim:sociobot-license-api",
+    "sandbox": "fresh browser context; recorded invalid response; assert the exact outbound verification URL"
+  },
+  {
+    "id": "no-embedded-payment-provider",
+    "claim": "No payment-provider client is embedded in the repository or website.",
+    "where": "README Team kit, privacy",
+    "test": "npm test -- --grep @claim:no-embedded-payment-provider",
+    "sandbox": "fresh clone; inspect site entry, HTML, and dependency manifest for direct provider clients"
+  },
+  {
+    "id": "demo-storage-isolation",
+    "claim": "The sample demo uses a separate demo session namespace and clears it when the user starts for real.",
+    "where": "demo banner, privacy, demo documentation",
+    "test": "npm test -- --grep @claim:demo-storage-isolation",
+    "sandbox": "fresh browser context with sentinel real storage; enter ?demo=1, inspect namespaces, exit, and assert real data is unchanged"
+  },
+  {
+    "id": "starter-templates",
+    "claim": "The CLI writes Compose and Kubernetes declaration templates.",
+    "where": "README declaration section",
+    "test": "npm test -- --grep @claim:starter-templates",
+    "sandbox": "fresh temporary directory; run init for both adapters and inspect versions, resources, schemas, and command sections"
+  },
+  {
+    "id": "json-output",
+    "claim": "The check, run, and demo commands provide machine-readable JSON output.",
+    "where": "README validate section",
+    "test": "npm test -- --grep @claim:json-output",
+    "sandbox": "fresh temporary declaration and demo; run all three commands with --json and parse each response"
+  },
+  {
+    "id": "website-release-request",
+    "claim": "The website requests public release metadata directly from GitHub.",
+    "where": "privacy",
+    "test": "npm test -- --grep @claim:website-release-request",
+    "sandbox": "fresh browser context; record and assert the exact GitHub API request during landing load"
+  },
+  {
+    "id": "license-browser-storage",
+    "claim": "License tokens and daily verification verdicts stay in namespaced browser storage.",
+    "where": "privacy",
+    "test": "npm test -- --grep @claim:license-browser-storage",
+    "sandbox": "fresh browser context; recorded valid response; assert URL stripping and namespaced token and timestamped verdict"
+  },
+  {
+    "id": "no-card-collection",
+    "claim": "The website does not collect card numbers.",
+    "where": "privacy",
+    "test": "npm test -- --grep @claim:no-card-collection",
+    "sandbox": "fresh browser context; assert no card inputs, payment iframe, or third-party runtime script"
+  },
+  {
+    "id": "dodo-checkout-processing",
+    "claim": "Sociobot checkout uses Dodo to process payment details.",
+    "where": "privacy",
+    "test": "npm test -- --grep @claim:dodo-checkout-processing",
+    "sandbox": "fresh clone; request checkout without following redirects and assert the 303 Dodo checkout destination"
   }
 ]

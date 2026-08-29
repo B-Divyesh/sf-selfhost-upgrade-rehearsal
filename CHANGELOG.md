@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-08-29
+
+- Add the isolated `?demo=1` sample path and consistent sample-demo wording.
+- Complete per-route metadata and the full-shell HTTP 404 page.
+- Add executable claim coverage for the site, CLI, packages, and paid offer.
+
 ## 0.1.1 — 2026-08-29
 
 - Remove declaration notes from customer-safe readiness receipts.

@@ -37,7 +37,7 @@ enum Commands {
         #[arg(long)]
         json: bool,
     },
-    /// Run bundled synthetic data in an isolated temporary directory.
+    /// Run bundled sample data in an isolated temporary directory.
     Demo {
         #[arg(short, long)]
         output: Option<PathBuf>,
@@ -166,7 +166,7 @@ target:
 environment:
   operating_systems: [linux, macos, windows]
   architectures: [x86_64, aarch64]
-  notes: Synthetic records only
+  notes: Sample data only
 resources:
   memory_mb: 768
   disk_mb: 2048

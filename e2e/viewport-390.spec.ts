@@ -71,7 +71,7 @@ test('@regression:viewport-390 legal contacts and the standalone 404 recovery li
 
   const privacy = await targetSize('/privacy', 'privacy@sociobot.in');
   const terms = await targetSize('/terms', 'support@sociobot.in');
-  const missing = await targetSize('/404.html', 'Return to the upgrade kit');
+  const missing = await targetSize('/404.html', 'Return home');
   for (const target of [privacy, terms, missing]) {
     expect(target.width).toBeGreaterThanOrEqual(44);
     expect(target.height).toBeGreaterThanOrEqual(44);

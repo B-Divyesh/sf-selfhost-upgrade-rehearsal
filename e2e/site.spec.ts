@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { execFile } from 'node:child_process';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { promisify } from 'node:util';
@@ -63,7 +63,7 @@ test('landing has one clear page outline and no serious accessibility errors', a
 });
 
 test('@claim:demo-receipt demo downloads the complete schema-1 readiness receipt', async ({ page }) => {
-  await page.goto('/demo');
+  await page.goto('/?demo=1');
   await expect(page.getByRole('heading', { level: 2, name: 'Arbor Desk 1.8.4 → 2.0.0' })).toBeVisible();
   await expect(page.getByText('9 passed')).toBeVisible();
   const download = page.waitForEvent('download');
@@ -75,7 +75,7 @@ test('@claim:demo-receipt demo downloads the complete schema-1 readiness receipt
   expect(receipt).toMatchObject({
     receipt_schema: 1,
     product: 'Arbor Desk',
-    adapter: 'bundled fixture',
+    adapter: 'sample demo',
     status: 'ready',
     tested_environment: { operating_system: 'linux', architecture: 'x86_64' },
     supported_environments: { operating_systems: ['linux', 'macos', 'windows'], architectures: ['x86_64', 'aarch64'] },
@@ -89,7 +89,7 @@ test('@claim:demo-receipt demo downloads the complete schema-1 readiness receipt
 });
 
 test('@claim:offline-demo bundled demo runs after the page goes offline', async ({ page, context }) => {
-  await page.goto('/demo');
+  await page.goto('/?demo=1');
   await context.setOffline(true);
   await page.getByRole('button', { name: 'Reset demo' }).click();
   await expect(page.locator('#demo-terminal')).toContainText('READY', { timeout: 5_000 });
@@ -101,7 +101,7 @@ test('@claim:demo-network-privacy demo sends no project data', async ({ page }) 
     const url = new URL(request.url());
     if (url.origin !== 'http://127.0.0.1:4173') external.push(request.url());
   });
-  await page.goto('/demo');
+  await page.goto('/?demo=1');
   await page.getByRole('button', { name: 'Reset demo' }).click();
   await expect(page.locator('#demo-terminal')).toContainText('READY', { timeout: 5_000 });
   expect(external).toEqual([]);
@@ -255,6 +255,274 @@ test('@claim:team-kit-license valid license restores the Team CI kit', async ({ 
   expect(text).toContain('matrix:');
 });
 
+test('@claim:declared-upgrade-path receipt records the one declared source and target path', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-path-'));
+  try {
+    await writeMinimalDeclaration(dir);
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
+    const receipt = JSON.parse(await readFile(join(dir, 'report/readiness.json'), 'utf8'));
+    expect(receipt.source_version).toBe('1.0.0');
+    expect(receipt.target_version).toBe('2.0.0');
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:customer-boundary hostile customer paths are never contacted or modified', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-boundary-'));
+  const customer = join(dir, 'customer-installation');
+  const sentinel = join(customer, 'keep.txt');
+  try {
+    await mkdir(customer);
+    await writeFile(sentinel, 'customer data');
+    await writeMinimalDeclaration(dir, { notes: `https://customer.invalid ${customer}` });
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
+    expect(await readFile(sentinel, 'utf8')).toBe('customer data');
+    const source = `${await readFile(join(root, 'src/lib.rs'), 'utf8')}\n${await readFile(join(root, 'src/main.rs'), 'utf8')}`;
+    expect(source).not.toMatch(/TcpStream|UdpSocket|reqwest|hyper|ureq/);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:receipt-scope receipt names only its tested versions and supported environments', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-scope-'));
+  try {
+    await exec(join(root, 'target/debug/rehearsal'), ['demo', '--output', dir]);
+    const receipt = JSON.parse(await readFile(join(dir, 'report/readiness.json'), 'utf8'));
+    expect(receipt.source_version).toBe('1.8.4');
+    expect(receipt.target_version).toBe('2.0.0');
+    expect(receipt.supported_environments).toEqual({
+      operating_systems: ['linux', 'macos', 'windows'],
+      architectures: ['x86_64', 'aarch64']
+    });
+    expect(receipt.limitations).toContain('This receipt covers only the source and target versions shown here.');
+    expect(receipt.limitations).toContain('Only the declared operating systems and architectures are supported.');
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:team-kit-price-scope $79 one-time Team kit contains the documented CI checklist', async ({ page }) => {
+  await page.route('https://api.sociobot.in/**', route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ valid: true, reason: 'ok', expires_at: null }) }));
+  await page.goto('/?license=recorded-valid-license');
+  await expect(page.getByText('The $79 one-time Team kit adds a CI checklist for each supported source and target version.')).toBeVisible();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download Team CI kit' }).click();
+  const stream = await (await download).createReadStream();
+  let text = '';
+  for await (const chunk of stream!) text += chunk.toString();
+  expect(text).toContain('Upgrade checklist');
+  expect(text).toContain('stable-to-current');
+  expect(text).toContain('previous-to-current');
+});
+
+test('@claim:free-cli-formats both receipt formats work without a Team license', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-free-'));
+  try {
+    await exec(join(root, 'target/debug/rehearsal'), ['demo', '--output', dir]);
+    expect(await readFile(join(dir, 'report/readiness.json'), 'utf8')).toContain('"status": "ready"');
+    expect(await readFile(join(dir, 'report/readiness.html'), 'utf8')).toContain('Customer-safe receipt');
+    expect(await readFile(join(root, 'Cargo.toml'), 'utf8')).not.toMatch(/license[_-]?key|entitlement/i);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:sociobot-merchant site identifies Sociobot as merchant of record', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByText('Sociobot is the merchant of record.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Buy the Team kit — $79' })).toHaveAttribute('href', 'https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout');
+});
+
+test('@claim:sociobot-refunds site states that Sociobot handles refunds and revoked licenses', async ({ page }) => {
+  await page.goto('/terms');
+  await expect(page.getByText('Refunds are handled through Sociobot. A refund revokes the related license.')).toBeVisible();
+});
+
+test('@claim:sociobot-checkout payment action uses the Sociobot checkout endpoint', async ({ page }) => {
+  await page.goto('/');
+  const checkout = page.getByRole('link', { name: 'Buy the Team kit — $79' });
+  await expect(checkout).toHaveAttribute('href', /^https:\/\/api\.sociobot\.in\/api\/v1\/products\/selfhost-upgrade-rehearsal\/checkout$/);
+  expect(await readFile(join(root, 'site/src/main.ts'), 'utf8')).not.toMatch(/dodo(payments)?\.com|checkout\.dodo/i);
+});
+
+test('@claim:published-platform-download release metadata selects a matching GitHub asset', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === 'mobile', 'mobile devices intentionally receive the desktop-only state');
+  await page.route('https://api.github.com/**', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    headers: { 'access-control-allow-origin': '*' },
+    body: JSON.stringify([{ tag_name: 'v0.1.2', assets: [
+      { name: 'rehearsal-linux-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-x86_64.tar.gz' },
+      { name: 'rehearsal-macos-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-x86_64.tar.gz' },
+      { name: 'rehearsal-windows-x86_64.zip', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-windows-x86_64.zip' }
+    ] }])
+  }));
+  await page.goto('/');
+  await expect(page.getByText('Release v0.1.2 is ready for this device.')).toBeVisible();
+  await expect(page.getByText('The download comes from the matching GitHub release.')).toBeVisible();
+  const download = page.locator('#platform-download');
+  await expect(download).toHaveText(/Download (linux|macos|windows)-/);
+  await expect(download).toHaveAttribute('href', /github\.com\/B-Divyesh\/sf-selfhost-upgrade-rehearsal\/releases\/download\/v0\.1\.2\/rehearsal-(linux|macos|windows)-/);
+});
+
+test('@claim:homebrew-tap documented Homebrew formula is published', async () => {
+  const readme = await readFile(join(root, 'README.md'), 'utf8');
+  expect(readme).toContain('brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal');
+  const response = await fetch('https://raw.githubusercontent.com/B-Divyesh/homebrew-selfhost-upgrade-rehearsal/main/Formula/rehearsal.rb');
+  expect(response.ok).toBe(true);
+  const formula = await response.text();
+  expect(formula).toContain('class Rehearsal < Formula');
+  expect(formula).toContain('version "0.1.2"');
+});
+
+test('@claim:scoop-manifest documented Scoop manifest is published and valid', async () => {
+  const readme = await readFile(join(root, 'README.md'), 'utf8');
+  const url = 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-scoop.json';
+  expect(readme).toContain('scoop install https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/latest/download/rehearsal-scoop.json');
+  const response = await fetch(url);
+  expect(response.ok).toBe(true);
+  const manifest = await response.json() as { version: string; url: string; hash: string };
+  expect(manifest.version).toBe('0.1.2');
+  expect(manifest.url).toMatch(/rehearsal-windows-x86_64\.zip$/);
+  expect(manifest.hash).toMatch(/^[a-f0-9]{64}$/);
+});
+
+test('@claim:release-asset-set published release carries every documented package', async () => {
+  const response = await fetch('https://api.github.com/repos/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/tags/v0.1.2', { headers: { Accept: 'application/vnd.github+json' } });
+  expect(response.ok).toBe(true);
+  const release = await response.json() as { assets: Array<{ name: string }> };
+  const names = release.assets.map(asset => asset.name);
+  for (const pattern of [/\.deb$/, /\.rpm$/, /\.pkg$/, /windows-x86_64\.zip$/, /winget.*\.zip$/, /^SHA256SUMS$/, /^latest\.json$/]) {
+    expect(names.some(name => pattern.test(name)), `missing release asset ${pattern}`).toBe(true);
+  }
+});
+
+test('@claim:receipt-contents receipt contains every documented readiness field', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-fields-'));
+  try {
+    await exec(join(root, 'target/debug/rehearsal'), ['demo', '--output', dir]);
+    const receipt = JSON.parse(await readFile(join(dir, 'report/readiness.json'), 'utf8'));
+    expect(receipt.config_changes).toHaveLength(3);
+    expect(receipt.required_resources).toEqual({ memory_mb: 768, disk_mb: 2048 });
+    expect(receipt.checks).toHaveLength(9);
+    expect(receipt.source_version).toBe('1.8.4');
+    expect(receipt.target_version).toBe('2.0.0');
+    expect(receipt.supported_environments.operating_systems).toEqual(['linux', 'macos', 'windows']);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:release-workflow version tags run the cross-platform release workflow', async () => {
+  const workflow = await readFile(join(root, '.github/workflows/release.yml'), 'utf8');
+  expect(workflow).toContain("tags: ['v*']");
+  for (const platform of ['ubuntu-latest', 'macos-latest', 'windows-latest']) expect(workflow).toContain(platform);
+  expect(workflow).toContain('softprops/action-gh-release');
+});
+
+test('@claim:sample-demo-parity browser and CLI use the Arbor Desk sample demo', async ({ page }) => {
+  const { stdout } = await exec(join(root, 'target/debug/rehearsal'), ['demo', '--json']);
+  const receipt = JSON.parse(stdout);
+  await page.goto('/?demo=1');
+  await expect(page.getByRole('heading', { level: 2, name: `${receipt.product} ${receipt.source_version} → ${receipt.target_version}` })).toBeVisible();
+  await expect(page.locator('#demo-terminal')).toContainText(`Sample: ${receipt.product} ${receipt.source_version} → ${receipt.target_version}`);
+});
+
+test('@claim:sociobot-license-api license verification uses only the Sociobot product endpoint', async ({ page }) => {
+  let requested = '';
+  await page.route('https://api.sociobot.in/**', route => {
+    requested = route.request().url();
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ valid: false, reason: 'invalid', expires_at: null }) });
+  });
+  await page.goto('/?license=recorded-invalid-license');
+  await expect(page.getByText('License no longer active. You can buy a new license.')).toBeVisible();
+  expect(requested).toBe('https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/verify?license=recorded-invalid-license');
+});
+
+test('@claim:no-embedded-payment-provider repository embeds no payment-provider client', async () => {
+  const pageSource = await readFile(join(root, 'site/src/main.ts'), 'utf8');
+  const documentSource = await readFile(join(root, 'site/index.html'), 'utf8');
+  const packageSource = await readFile(join(root, 'package.json'), 'utf8');
+  expect(`${pageSource}\n${documentSource}\n${packageSource}`).not.toMatch(/stripe|paddle|lemonsqueezy|dodo(payments)?\.(com|js)|checkout\.dodo/i);
+  expect(pageSource).toContain('https://api.sociobot.in/api/v1/products/');
+});
+
+test('@claim:demo-storage-isolation sample demo uses only demo session storage and clears it on exit', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => {
+    localStorage.setItem('real:project', 'keep');
+    sessionStorage.setItem('real:session', 'keep');
+  });
+  await page.goto('/?demo=1');
+  expect(await page.evaluate(() => ({
+    realProject: localStorage.getItem('real:project'),
+    realSession: sessionStorage.getItem('real:session'),
+    demoKeys: Object.keys(sessionStorage).filter(key => key.startsWith('demo:'))
+  }))).toEqual({ realProject: 'keep', realSession: 'keep', demoKeys: ['demo:active'] });
+  await page.getByRole('link', { name: 'Start for real' }).click();
+  await expect(page).toHaveURL(/\/#install$/);
+  expect(await page.evaluate(() => sessionStorage.getItem('demo:active'))).toBeNull();
+  expect(await page.evaluate(() => localStorage.getItem('real:project'))).toBe('keep');
+});
+
+test('@claim:starter-templates init writes Compose and Kubernetes declaration templates', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-init-'));
+  try {
+    for (const adapter of ['compose', 'kubernetes']) {
+      const output = join(dir, `${adapter}.yml`);
+      await exec(join(root, 'target/debug/rehearsal'), ['init', adapter, '--output', output]);
+      const template = await readFile(output, 'utf8');
+      expect(template).toContain(`adapter: ${adapter}`);
+      expect(template).toContain('source:');
+      expect(template).toContain('target:');
+      expect(template).toContain('hooks:');
+    }
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:json-output check, run, and demo return machine-readable JSON', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-json-'));
+  try {
+    await writeMinimalDeclaration(dir);
+    const checked = await exec(join(root, 'target/debug/rehearsal'), ['check', '--file', join(dir, 'rehearsal.yml'), '--json']);
+    expect(JSON.parse(checked.stdout)).toMatchObject({ valid: true, source: '1.0.0', target: '2.0.0' });
+    const run = await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report'), '--json']);
+    expect(JSON.parse(run.stdout).status).toBe('ready');
+    const demoDir = join(dir, 'demo');
+    const demo = await exec(join(root, 'target/debug/rehearsal'), ['demo', '--output', demoDir, '--json']);
+    expect(JSON.parse(demo.stdout).status).toBe('ready');
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:website-release-request website requests only public GitHub release metadata for downloads', async ({ page }) => {
+  const requests: string[] = [];
+  await page.route('https://api.github.com/**', route => {
+    requests.push(route.request().url());
+    return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '[]' });
+  });
+  await page.goto('/');
+  await expect(page.getByText('Downloads are being published or this device is offline.')).toBeVisible();
+  expect(requests).toEqual(['https://api.github.com/repos/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases?per_page=1']);
+});
+
+test('@claim:license-browser-storage license token and daily verdict stay in namespaced browser storage', async ({ page }) => {
+  await page.route('https://api.sociobot.in/**', route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ valid: true, reason: 'ok', expires_at: null }) }));
+  await page.goto('/?license=recorded-license');
+  await expect(page).not.toHaveURL(/license=/);
+  const stored = await page.evaluate(() => ({
+    token: localStorage.getItem('sb_license:selfhost-upgrade-rehearsal'),
+    verdict: JSON.parse(localStorage.getItem('sb_license_verdict:selfhost-upgrade-rehearsal') || 'null')
+  }));
+  expect(stored.token).toBe('recorded-license');
+  expect(stored.verdict.valid).toBe(true);
+  expect(stored.verdict.time).toBeGreaterThan(Date.now() - 60_000);
+});
+
+test('@claim:no-card-collection website has no card fields or payment-provider script', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('input[name*="card" i], input[autocomplete="cc-number"], iframe')).toHaveCount(0);
+  const scripts = await page.locator('script[src]').evaluateAll(nodes => nodes.map(node => (node as HTMLScriptElement).src));
+  expect(scripts.every(src => new URL(src).origin === 'http://127.0.0.1:4173')).toBe(true);
+});
+
+test('@claim:dodo-checkout-processing Sociobot checkout hands payment processing to Dodo', async () => {
+  const response = await fetch('https://api.sociobot.in/api/v1/products/selfhost-upgrade-rehearsal/checkout', { redirect: 'manual' });
+  expect(response.status).toBe(303);
+  expect(response.headers.get('location')).toMatch(/^https:\/\/checkout\.dodopayments\.com\/session\//);
+});
+
 test('a cached invalid license keeps its inactive notice after reload', async ({ page }) => {
   let verificationRequests = 0;
   await page.route('https://api.sociobot.in/**', async route => {
@@ -272,10 +540,45 @@ test('a cached invalid license keeps its inactive notice after reload', async ({
 test('routes update title, focus, and history', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Demo', exact: true }).click();
+  await expect(page).toHaveURL(/\?demo=1$/);
   await expect(page).toHaveTitle('Demo — Self-Host Upgrade Rehearsal');
   await expect(page.locator('h1')).toBeFocused();
   await page.goBack();
   await expect(page).toHaveTitle('Self-Host Upgrade Rehearsal — test upgrades first');
+});
+
+test('every application route updates its own title, description, canonical, and social metadata', async ({ page }) => {
+  const cases = [
+    ['/?demo=1', 'Demo — Self-Host Upgrade Rehearsal', 'Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.', 'https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1'],
+    ['/privacy', 'Privacy — Self-Host Upgrade Rehearsal', 'See what the local CLI, browser demo, release lookup, and license check handle.', 'https://selfhost-upgrade-rehearsal.sociobot.in/privacy'],
+    ['/terms', 'Terms — Self-Host Upgrade Rehearsal', 'Read the receipt limits, Team kit purchase terms, and operator responsibilities.', 'https://selfhost-upgrade-rehearsal.sociobot.in/terms']
+  ] as const;
+  for (const [path, title, description, canonical] of cases) {
+    await page.goto(path);
+    await expect(page).toHaveTitle(title);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', description);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', canonical);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', title);
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', description);
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', title);
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', description);
+  }
+});
+
+test('real 404 document has the common shell, recovery action, and complete metadata', async ({ page }) => {
+  await page.goto('/404.html');
+  await expect(page).toHaveTitle('Page not found — Self-Host Upgrade Rehearsal');
+  await expect(page.getByRole('heading', { level: 1, name: 'Page not found' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Self-Host Upgrade Rehearsal home' })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Privacy', exact: true })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Footer navigation' }).getByRole('link', { name: 'Terms', exact: true })).toBeVisible();
+  await expect(page.getByText('v0.1.2 · build 2026.08.29')).toBeVisible();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'This link does not point to a page in Self-Host Upgrade Rehearsal.');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://selfhost-upgrade-rehearsal.sociobot.in/404.html');
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'Page not found — Self-Host Upgrade Rehearsal');
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations.filter(item => ['serious', 'critical'].includes(item.impact || ''))).toEqual([]);
 });
 
 test('mobile navigation targets, empty-license feedback, and mobile downloads are safe', async ({ page }, testInfo) => {
@@ -298,6 +601,12 @@ test('built route documents prevent a navigation fallback from turning unknown p
   const config = JSON.parse(await readFile(join(root, 'site/public/staticwebapp.config.json'), 'utf8'));
   expect(config.navigationFallback).toBeUndefined();
   for (const route of ['demo', 'privacy', 'terms']) {
-    expect(await readFile(join(root, 'dist/site', route, 'index.html'), 'utf8')).toContain('<div id="app"></div>');
+    const document = await readFile(join(root, 'dist/site', route, 'index.html'), 'utf8');
+    expect(document).toContain('<div id="app"></div>');
+    expect(document).toContain(`<title>${route[0].toUpperCase()}${route.slice(1)} — Self-Host Upgrade Rehearsal</title>`);
+  }
+  const missing = await readFile(join(root, 'dist/site/404.html'), 'utf8');
+  for (const required of ['class="skip-link"', '<header class="site-header">', '<main id="main">', '<footer class="site-footer">', 'name="description"', 'property="og:title"', 'name="twitter:title"', 'rel="canonical"', 'rel="icon"']) {
+    expect(missing).toContain(required);
   }
 });

@@ -35,7 +35,7 @@ impl Adapter {
         match self {
             Self::Compose => "Docker Compose",
             Self::Kubernetes => "Kubernetes",
-            Self::Fixture => "bundled fixture",
+            Self::Fixture => "sample demo",
         }
     }
 }
@@ -221,7 +221,7 @@ pub fn run_declaration(path: &Path, output: &Path) -> Result<RunOutput> {
     let normal_hooks = [
         ("Preflight", &declaration.hooks.preflight),
         ("Start source", &declaration.hooks.start_source),
-        ("Seed fixture", &declaration.hooks.seed),
+        ("Seed sample data", &declaration.hooks.seed),
         ("Create backup", &declaration.hooks.backup),
         ("Stop source", &declaration.hooks.stop_source),
         ("Start target", &declaration.hooks.start_target),
@@ -288,7 +288,7 @@ pub fn run_declaration(path: &Path, output: &Path) -> Result<RunOutput> {
         limitations: vec![
             "This receipt covers only the source and target versions shown here.".into(),
             "Only the declared operating systems and architectures are supported.".into(),
-            "Hook output and fixture contents are intentionally excluded from this receipt.".into(),
+            "Hook output and sample data are intentionally excluded from this receipt.".into(),
         ],
     };
     write_receipt(&receipt, output)?;
@@ -455,7 +455,7 @@ fn receipt_html(receipt: &Receipt) -> String {
         )
     };
     format!(
-        r#"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Readiness receipt — {product}</title><style>body{{background:#f3eedc;color:#18332d;font:17px/1.55 system-ui;margin:0}}main{{max-width:760px;margin:auto;padding:48px 24px}}h1,h2{{font-family:Georgia,serif}}.stamp{{border:3px solid #c84b2f;color:#9d2e2e;display:inline-block;padding:8px 16px;text-transform:uppercase;font-weight:800}}table{{width:100%;border-collapse:collapse}}th,td{{border-bottom:1px solid #76956c;text-align:left;padding:10px}}code{{font-family:ui-monospace,monospace}}footer{{margin-top:48px;border-top:2px solid #18332d;padding-top:16px}}</style></head><body><main><p>Self-Host Upgrade Rehearsal · {run_id}</p><h1>{source} → {target}</h1><p class="stamp">{status}</p><p>{product} was tested with {adapter} on {os}/{arch}.</p><h2>Checks</h2><table><thead><tr><th>Check</th><th>Result</th><th>Time</th></tr></thead><tbody>{checks}</tbody></table><h2>Config schema changes</h2>{changes}<h2>Required resources</h2><p>{memory} MB memory · {disk} MB disk</p><h2>Coverage limits</h2><ul><li>This receipt covers only the versions shown above.</li><li>Hook output and fixture contents are not included.</li></ul><footer>Customer-safe receipt schema 1</footer></main></body></html>"#,
+        r#"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Readiness receipt — {product}</title><style>body{{background:#f3eedc;color:#18332d;font:17px/1.55 system-ui;margin:0}}main{{max-width:760px;margin:auto;padding:48px 24px}}h1,h2{{font-family:Georgia,serif}}.stamp{{border:3px solid #c84b2f;color:#9d2e2e;display:inline-block;padding:8px 16px;text-transform:uppercase;font-weight:800}}table{{width:100%;border-collapse:collapse}}th,td{{border-bottom:1px solid #76956c;text-align:left;padding:10px}}code{{font-family:ui-monospace,monospace}}footer{{margin-top:48px;border-top:2px solid #18332d;padding-top:16px}}</style></head><body><main><p>Self-Host Upgrade Rehearsal · {run_id}</p><h1>{source} → {target}</h1><p class="stamp">{status}</p><p>{product} was tested with {adapter} on {os}/{arch}.</p><h2>Checks</h2><table><thead><tr><th>Check</th><th>Result</th><th>Time</th></tr></thead><tbody>{checks}</tbody></table><h2>Config schema changes</h2>{changes}<h2>Required resources</h2><p>{memory} MB memory · {disk} MB disk</p><h2>Coverage limits</h2><ul><li>This receipt covers only the versions shown above.</li><li>Hook output and sample data are not included.</li></ul><footer>Customer-safe receipt schema 1</footer></main></body></html>"#,
         product = escape(&receipt.product),
         run_id = escape(&receipt.run_id),
         source = escape(&receipt.source_version),

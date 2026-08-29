@@ -2,10 +2,10 @@
 
 Rehearse self-hosted upgrades and issue a customer-safe readiness receipt.
 
-This kit is for teams that ship Docker Compose or Kubernetes products. It checks one declared upgrade path before customers use it.
+This CLI is for teams that ship Docker Compose or Kubernetes products. It checks one declared upgrade path before customers use it.
 
 Website: <https://selfhost-upgrade-rehearsal.sociobot.in>  
-One-click browser demo: <https://selfhost-upgrade-rehearsal.sociobot.in/demo>
+One-click browser demo: <https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1>
 
 ## Try the bundled upgrade
 
@@ -13,9 +13,9 @@ One-click browser demo: <https://selfhost-upgrade-rehearsal.sociobot.in/demo>
 rehearsal demo
 ```
 
-The command creates a temporary Arbor Desk project with synthetic records. It prints the paths to JSON and HTML receipts.
+The command creates a temporary Arbor Desk project with sample records. It prints the paths to JSON and HTML receipts.
 
-The CLI checks backup, restore, and health hooks. It never includes hook output or fixture contents in a receipt.
+The CLI checks backup, restore, and health hooks. It never includes hook output or sample data in a receipt.
 
 ## Install
 
@@ -56,7 +56,7 @@ rehearsal init compose
 # or: rehearsal init kubernetes
 ```
 
-The declaration keeps the public surface small:
+The declaration lists only the versions, resources, schemas, and commands the rehearsal needs:
 
 ```yaml
 schema: 1
@@ -111,7 +111,7 @@ A receipt covers only the versions and environments printed on it. It is not pro
 
 ## Team kit
 
-The free CLI includes both receipt formats. The optional $79 Team kit adds a release-matrix workflow and upgrade checklist.
+The free CLI includes both receipt formats. The optional $79 one-time Team kit adds a CI checklist for each supported source and target version.
 
 License purchase and verification use the Sociobot billing API. No payment provider is embedded in this repository.
 
@@ -139,7 +139,7 @@ Package the Rust crate without publishing it:
 cargo package --locked
 ```
 
-The factory deploys `dist/site`. Tag a version such as `v0.1.1` to run the cross-platform GitHub release workflow.
+The factory deploys `dist/site`. Tag a version such as `v0.1.2` to run the cross-platform GitHub release workflow.
 
 ## License
 

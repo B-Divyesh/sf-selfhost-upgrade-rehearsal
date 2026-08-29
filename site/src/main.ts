@@ -8,6 +8,7 @@ const INACTIVE_LICENSE_NOTICE = 'License no longer active. You can buy a new lic
 
 type Route = '/' | '/demo' | '/privacy' | '/terms' | '/404';
 type ReleaseAsset = { name: string; browser_download_url: string };
+type RouteMetadata = { title: string; description: string; canonical: string };
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 let terminalTimer: number | undefined;
@@ -17,7 +18,7 @@ const demoLines = [
   ['Sample: Arbor Desk 1.8.4 → 2.0.0', 'muted'],
   ['✓ Preflight', 'pass'],
   ['✓ Start source', 'pass'],
-  ['✓ Seed fixture · synthetic records', 'pass'],
+      ['✓ Seed sample data', 'pass'],
   ['✓ Create backup', 'pass'],
   ['✓ Stop source', 'pass'],
   ['✓ Start target', 'pass'],
@@ -29,8 +30,8 @@ const demoLines = [
   ['HTML: report/readiness.html', 'muted']
 ] as const;
 
-// This is the bundled Arbor Desk fixture receipt, represented with the same
-// schema as the CLI. It contains no declaration notes, fixture records, or
+// This is the bundled Arbor Desk sample receipt, represented with the same
+// schema as the CLI. It contains no declaration notes, sample records, or
 // hook output, so the browser demo has the same privacy boundary as a real run.
 const demoReceipt = {
   receipt_schema: 1,
@@ -38,7 +39,7 @@ const demoReceipt = {
   product: 'Arbor Desk',
   source_version: '1.8.4',
   target_version: '2.0.0',
-  adapter: 'bundled fixture',
+  adapter: 'sample demo',
   status: 'ready',
   tested_environment: { operating_system: 'linux', architecture: 'x86_64' },
   supported_environments: { operating_systems: ['linux', 'macos', 'windows'], architectures: ['x86_64', 'aarch64'] },
@@ -49,14 +50,14 @@ const demoReceipt = {
     { path: 'workers.count', change: 'added', source_type: null, target_type: 'number' }
   ],
   checks: [
-    'Preflight', 'Start source', 'Seed fixture', 'Create backup', 'Stop source',
+    'Preflight', 'Start source', 'Seed sample data', 'Create backup', 'Stop source',
     'Start target', 'Restore backup', 'Run health check', 'Clean temporary services'
   ].map(name => ({ name, status: 'passed', duration_ms: 1 })),
   customer_safe: true,
   limitations: [
     'This receipt covers only the source and target versions shown here.',
     'Only the declared operating systems and architectures are supported.',
-    'Hook output and fixture contents are intentionally excluded from this receipt.'
+    'Hook output and sample data are intentionally excluded from this receipt.'
   ]
 };
 
@@ -67,7 +68,7 @@ function header(): string {
       <span>Upgrade<br>Rehearsal</span>
     </a>
     <nav aria-label="Main navigation">
-      <a href="/demo" data-link>Demo</a>
+      <a href="/?demo=1" data-link>Demo</a>
       <a href="/#install">Install</a>
       <a href="/privacy" data-link>Privacy</a>
     </nav>
@@ -78,7 +79,7 @@ function footer(): string {
   return `<footer class="site-footer">
     <p><strong>${PRODUCT}</strong><br><span>Readiness receipts for self-hosted upgrades.</span></p>
     <nav aria-label="Footer navigation"><a href="/privacy" data-link>Privacy</a><a href="/terms" data-link>Terms</a><a href="https://sociobot.in" rel="external">Built by Param Factory <span class="sr-only">(external site)</span></a></nav>
-    <p class="build">v0.1.1 · build 2026.08.29</p>
+    <p class="build">v0.1.2 · build 2026.08.29</p>
   </footer>`;
 }
 
@@ -90,12 +91,12 @@ function landing(): string {
   return shell(`<main id="main">
     <section class="hero ruled-section" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Field receipt no. 001 · upgrade proof kit</p>
+        <p class="eyebrow">Upgrade rehearsal for self-hosted products</p>
         <h1 id="hero-title" tabindex="-1">Rehearse upgrades before customers do</h1>
         <p class="lede">For self-hosted product teams that need proof before each Compose or Kubernetes release.</p>
         <div class="hero-action">
-          <a class="button primary" href="/demo" data-link>Try it with sample data</a>
-          <span>Runs a complete synthetic upgrade and opens its receipt.</span>
+          <a class="button primary" href="/?demo=1" data-link>Try it with sample data</a>
+          <span>Runs the bundled sample demo and opens its receipt.</span>
         </div>
         <ul class="plain-facts" aria-label="Product facts">
           <li>The demo uploads no project data.</li>
@@ -104,34 +105,33 @@ function landing(): string {
         </ul>
       </div>
       <figure class="specimen">
-        <span class="plate-number">Plate I · known path</span>
-        <img src="/specimen-upgrade.webp" width="840" height="840" fetchpriority="high" alt="A field-guide plant grows from stacked containers beside a specimen receipt." />
-        <figcaption>Observe one declared path. Label everything outside it.</figcaption>
+        <img src="/specimen-upgrade.webp" width="840" height="840" fetchpriority="high" alt="A field-guide plant grows from stacked containers beside an upgrade receipt." />
+        <figcaption>A receipt names the tested versions and supported environments.</figcaption>
       </figure>
     </section>
 
     <section class="preview ruled-section" aria-labelledby="preview-title">
-      <div class="section-heading"><p class="eyebrow">Live specimen</p><h2 id="preview-title">See the whole rehearsal</h2><p>This recording uses the same bundled sample as <code>rehearsal demo</code>.</p></div>
+      <div class="section-heading"><p class="eyebrow">Sample terminal recording</p><h2 id="preview-title">Sample upgrade rehearsal</h2><p>This recording uses the bundled sample demo from <code>rehearsal demo</code>.</p></div>
       ${terminal('landing-terminal')}
       <div class="receipt-strip" aria-label="Sample readiness summary">
-        <div><span>Path</span><strong>1.8.4 → 2.0.0</strong></div>
+        <div><span>Tested versions</span><strong>1.8.4 → 2.0.0</strong></div>
         <div><span>Backup and restore</span><strong>Passed</strong></div>
-        <div><span>Schema changes</span><strong>3 labelled</strong></div>
+        <div><span>Schema changes</span><strong>3 changes</strong></div>
         <div class="mini-stamp">Ready</div>
       </div>
     </section>
 
     <section class="how ruled-section" aria-labelledby="how-title">
-      <div class="section-heading"><p class="eyebrow">Method</p><h2 id="how-title">Move one upgrade through three checks</h2></div>
+      <div class="section-heading"><p class="eyebrow">How the upgrade rehearsal works</p><h2 id="how-title">Declare, run, and share a receipt</h2></div>
       <ol class="field-steps">
         <li><span>01</span><div><h3>Declare the path</h3><p>Name both versions, supported systems, resource minimums, schemas, and hook commands.</p></div></li>
-        <li><span>02</span><div><h3>Run clean hooks</h3><p>The CLI uses a new temporary directory for seed, backup, restore, and health checks.</p></div></li>
+        <li><span>02</span><div><h3>Run the test commands</h3><p>The CLI uses a new temporary directory for sample data, backup, restore, and health checks.</p></div></li>
         <li><span>03</span><div><h3>Give customers the receipt</h3><p>Share the HTML receipt. Keep the JSON receipt as your release gate.</p></div></li>
       </ol>
     </section>
 
     <section id="install" class="install ruled-section" aria-labelledby="install-title">
-      <div class="section-heading"><p class="eyebrow">Field kit</p><h2 id="install-title">Install one binary</h2><p id="platform-note">Checking published downloads…</p></div>
+      <div class="section-heading"><p class="eyebrow">CLI installation</p><h2 id="install-title">Install one binary</h2><p id="platform-note">Checking published downloads…</p></div>
       <div class="install-card">
         <a id="platform-download" class="button primary disabled" href="https://github.com/${REPO}/releases" rel="external">Downloads are being published</a>
         <p id="release-note">You can open the release page while packages are prepared.</p>
@@ -149,7 +149,7 @@ rehearsal run --output release-proof</code></pre></div>
     </section>
 
     <section class="limits ruled-section" aria-labelledby="limits-title">
-      <div class="section-heading"><p class="eyebrow">Specimen boundary</p><h2 id="limits-title">Know what the receipt does not prove</h2></div>
+      <div class="section-heading"><p class="eyebrow">Receipt limits</p><h2 id="limits-title">Know what the receipt does not prove</h2></div>
       <div class="limit-copy">
         <p>It does not connect to customer servers or collect customer data.</p>
         <p>It does not upgrade a customer installation.</p>
@@ -158,8 +158,8 @@ rehearsal run --output release-proof</code></pre></div>
     </section>
 
     <section class="paid ruled-section" aria-labelledby="paid-title">
-      <div class="paid-mark" aria-hidden="true">TEAM<br>FIELD<br>KIT</div>
-      <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Reuse the check in release CI</h2><p>The $79 one-time Team kit adds a release-matrix workflow and upgrade checklist.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
+      <div class="paid-mark" aria-hidden="true">TEAM<br>CI<br>KIT</div>
+      <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Run the rehearsal in release CI</h2><p>The $79 one-time Team kit adds a CI checklist for each supported source and target version.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
       <div class="license-box">
         <a class="button primary" href="${BILLING}/checkout">Buy the Team kit — $79</a>
         <form id="license-form" novalidate><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false" required aria-required="true" aria-describedby="license-status"><button type="submit">Verify license</button></div></form>
@@ -180,14 +180,14 @@ function terminal(id: string): string {
 function demo(): string {
   return shell(`<div class="demo-banner" role="status"><span><strong>Demo</strong> — sample data, nothing is saved</span><span><button id="reset-demo" type="button">Reset demo</button><a href="/#install" id="start-real">Start for real</a></span></div>
     <main id="main" class="demo-page">
-      <section class="demo-intro"><p class="eyebrow">Bundled specimen · Arbor Desk</p><h1 tabindex="-1">Inspect a finished upgrade rehearsal</h1><p>This sample moves synthetic workspaces from 1.8.4 to 2.0.0.</p></section>
+      <section class="demo-intro"><p class="eyebrow">Bundled sample demo · Arbor Desk</p><h1 tabindex="-1">Inspect a finished upgrade rehearsal</h1><p>This sample demo moves three test workspaces from 1.8.4 to 2.0.0.</p></section>
       <section aria-labelledby="demo-run-title"><h2 id="demo-run-title" class="sr-only">Sample terminal run</h2>${terminal('demo-terminal')}</section>
       <section class="full-receipt" aria-labelledby="receipt-title">
-        <div class="receipt-head"><div><p class="eyebrow">Customer-safe receipt · SHR-8A71C042D591</p><h2 id="receipt-title">Arbor Desk 1.8.4 → 2.0.0</h2><p>Bundled fixture · linux/x86_64</p></div><span class="receipt-stamp">Ready</span></div>
+        <div class="receipt-head"><div><p class="eyebrow">Customer-safe receipt · SHR-8A71C042D591</p><h2 id="receipt-title">Arbor Desk 1.8.4 → 2.0.0</h2><p>Sample data · linux/x86_64</p></div><span class="receipt-stamp">Ready</span></div>
         <div class="receipt-grid"><div><span>Memory</span><strong>768 MB</strong></div><div><span>Disk</span><strong>2,048 MB</strong></div><div><span>Checks</span><strong>9 passed</strong></div></div>
         <div class="receipt-body">
           <div><h3>Config schema changes</h3><ul class="change-list"><li><code>database.ssl</code><span>Removed</span></li><li><code>database.ssl_mode</code><span>Added</span></li><li><code>workers.count</code><span>Added</span></li></ul></div>
-          <div><h3>Coverage limit</h3><p>This receipt covers only the versions and systems shown here.</p><p>Hook output and fixture contents are excluded.</p></div>
+          <div><h3>Coverage limit</h3><p>This receipt covers only the versions and systems shown here.</p><p>Hook output and sample data are excluded.</p></div>
         </div>
         <button id="download-receipt" class="button secondary" type="button">Download sample JSON</button>
       </section>
@@ -207,27 +207,58 @@ function legalPage(label: string, title: string, body: string): string {
 }
 
 function notFound(): string {
-  return shell(`<main id="main" class="missing"><p class="eyebrow">Field note · 404</p><h1 tabindex="-1">This specimen is missing</h1><p>The page may have moved. The upgrade kit is still in the cabinet.</p><a class="button primary" href="/" data-link>Return to the upgrade kit</a></main>`);
+  return shell(`<main id="main" class="missing"><p class="eyebrow">Error 404</p><h1 tabindex="-1">Page not found</h1><p>This link does not point to a page in Self-Host Upgrade Rehearsal.</p><a class="button primary" href="/" data-link>Return home</a></main>`);
 }
 
 function currentRoute(): Route {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
+  if (path === '/' && new URLSearchParams(window.location.search).get('demo') === '1') return '/demo';
   return (['/', '/demo', '/privacy', '/terms'].includes(path) ? path : '/404') as Route;
 }
 
-const titleMap: Record<Route, string> = {
-  '/': 'Self-Host Upgrade Rehearsal — test upgrades first',
-  '/demo': 'Demo — Self-Host Upgrade Rehearsal',
-  '/privacy': 'Privacy — Self-Host Upgrade Rehearsal',
-  '/terms': 'Terms — Self-Host Upgrade Rehearsal',
-  '/404': 'Page not found — Self-Host Upgrade Rehearsal'
+const metadata: Record<Route, RouteMetadata> = {
+  '/': {
+    title: 'Self-Host Upgrade Rehearsal — test upgrades first',
+    description: 'Rehearse Compose or Kubernetes upgrades and issue customer-safe readiness receipts.',
+    canonical: `https://${SLUG}.sociobot.in/`
+  },
+  '/demo': {
+    title: 'Demo — Self-Host Upgrade Rehearsal',
+    description: 'Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.',
+    canonical: `https://${SLUG}.sociobot.in/?demo=1`
+  },
+  '/privacy': {
+    title: 'Privacy — Self-Host Upgrade Rehearsal',
+    description: 'See what the local CLI, browser demo, release lookup, and license check handle.',
+    canonical: `https://${SLUG}.sociobot.in/privacy`
+  },
+  '/terms': {
+    title: 'Terms — Self-Host Upgrade Rehearsal',
+    description: 'Read the receipt limits, Team kit purchase terms, and operator responsibilities.',
+    canonical: `https://${SLUG}.sociobot.in/terms`
+  },
+  '/404': {
+    title: 'Page not found — Self-Host Upgrade Rehearsal',
+    description: 'This link does not point to a page in Self-Host Upgrade Rehearsal.',
+    canonical: `https://${SLUG}.sociobot.in/404.html`
+  }
 };
+
+function setMetadata(route: Route): void {
+  const value = metadata[route];
+  document.title = value.title;
+  document.querySelector<HTMLMetaElement>('meta[name="description"]')!.content = value.description;
+  document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href = value.canonical;
+  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')!.content = value.title;
+  document.querySelector<HTMLMetaElement>('meta[property="og:description"]')!.content = value.description;
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')!.content = value.title;
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')!.content = value.description;
+}
 
 function render(focus = false): void {
   window.clearInterval(terminalTimer);
   const route = currentRoute();
-  document.title = titleMap[route];
-  document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href = `https://${SLUG}.sociobot.in${route === '/404' ? window.location.pathname : route}`;
+  setMetadata(route);
   app.innerHTML = route === '/' ? landing() : route === '/demo' ? demo() : route === '/privacy' ? privacy() : route === '/terms' ? terms() : notFound();
   bindNavigation();
   if (route === '/') setupLanding();
@@ -420,7 +451,7 @@ function downloadSample(): void {
 }
 
 function downloadTeamKit(): void {
-  const workflow = `# Upgrade checklist\n# 1. Update both version labels and schemas.\n# 2. Confirm the fixture contains no customer data.\n# 3. Review every not-run or failed receipt check.\nname: Upgrade rehearsal\non: [workflow_dispatch]\njobs:\n  rehearse:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        path: [stable-to-current, previous-to-current]\n    steps:\n      - uses: actions/checkout@v4\n      - run: rehearsal run --file "rehearsals/\${{ matrix.path }}.yml" --output "receipts/\${{ matrix.path }}"\n      - uses: actions/upload-artifact@v4\n        with:\n          name: "readiness-\${{ matrix.path }}"\n          path: "receipts/\${{ matrix.path }}"\n`;
+  const workflow = `# Upgrade checklist\n# 1. Update both version labels and schemas.\n# 2. Confirm the sample data contains no customer data.\n# 3. Review every not-run or failed receipt check.\nname: Upgrade rehearsal\non: [workflow_dispatch]\njobs:\n  rehearse:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        path: [stable-to-current, previous-to-current]\n    steps:\n      - uses: actions/checkout@v4\n      - run: rehearsal run --file "rehearsals/\${{ matrix.path }}.yml" --output "receipts/\${{ matrix.path }}"\n      - uses: actions/upload-artifact@v4\n        with:\n          name: "readiness-\${{ matrix.path }}"\n          path: "receipts/\${{ matrix.path }}"\n`;
   downloadFile('rehearsal-team-ci.yml', workflow, 'text/yaml');
 }
 
