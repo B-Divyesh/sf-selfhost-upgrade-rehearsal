@@ -27,10 +27,9 @@ Final clean-clone commands:
 npm ci
 npm test
 npm run build
-npm run typecheck
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
-cargo package --allow-dirty
+cargo package
 npm audit --audit-level=high
 ```
 
