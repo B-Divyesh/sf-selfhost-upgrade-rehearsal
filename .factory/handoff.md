@@ -1,49 +1,50 @@
-# Review 3 repair handoff
+# Verification 8 handoff
 
 ## Result: PASS
 
-Round 3 closes every finding in `.factory/review-1.md`, `.factory/review-2.md`, and `.factory/review-3.md`. The complete finding map is in `.factory/polish-3.md`. Nothing is deferred.
+Independent QA passed for candidate commit `807fe62879d454783bbc639c33550eec23dff21f` at
+<https://selfhost-upgrade-rehearsal.sociobot.in> on 2026-08-29 UTC. The live
+payload matched the candidate build byte-for-byte for the landing HTML, JS,
+CSS, hero image, and `latest.json` release manifest.
 
-## What changed
+## What was verified
 
-- Rewrote the inaccurate “checked template” promise as a declaration template that still needs schema files and hook commands. The README, CLI help, generated Compose/Kubernetes templates, copy audit, claims manifest, and exact `@claim:starter-templates` test agree on that behavior.
-- Released the corrected CLI as `v0.1.3`; its Homebrew formula, Scoop manifest, Windows/Linux/macOS archives, checksums, and release manifest are published.
-- Made the release workflow’s Homebrew tap update idempotent and configured its factory credential so the complete cross-platform release workflow succeeds.
-- Redeployed the static site with its `v0.1.3` release manifest and refreshed cold live route, demo, accessibility, privacy, and mobile evidence.
-- Updated the catalog sentence to: “Rehearse self-hosted upgrades and issue customer-safe readiness receipts.”
+- Installed with `npm ci` from the clean checkout (0 audit vulnerabilities).
+- Ran all 41 exact commands in `.factory/claims.json`; all passed. Full
+  `npm test` also passed (103 Playwright tests, 4 intentional skips, plus 5
+  Rust tests).
+- `npm run build` produced `dist/`; `cargo package --locked --allow-dirty`
+  produced `target/package/rehearsal-0.1.3.crate`.
+- A fresh consumer installed the packed crate and ran `rehearsal demo --json`:
+  Arbor Desk, schema 1, ready, 9 checks. The downloaded v0.1.3 Linux archive
+  also passed its published SHA-256 and its real binary ran successfully.
+- The live first screen plainly identifies the job, audience, and first
+  action. The one-click Arbor Desk demo, JSON receipt download, demo reset,
+  invalid-license recovery, desktop/mobile layout, keyboard navigation,
+  reduced motion, and customer-data boundary were exercised.
+- Production had no console/page errors, zero serious/critical axe findings,
+  same-origin-only requests during the demo, restrictive security headers,
+  immutable hashed-asset caching, and no service worker/tracker.
+- Mobile Lighthouse was 100 performance and 100 accessibility (LCP 1,307 ms,
+  CLS 0). Initial JS is 7,633 bytes gzip and CSS is 3,759 bytes gzip.
+- Sociobot product verification allowed 30 invalid-license requests and then
+  returned 429 with `Retry-After: 0` on request 31. Checkout is the required
+  product-specific Sociobot endpoint and returned a 303 to hosted Dodo
+  checkout.
 
-Repair commits:
-
-- `06e27808d7ce9997dc3961201009ab5f6497196c` — truthful declaration-template copy and its claim test.
-- `81c6c74972f4e0802f17a6f89cfbabc919b33b47` — `v0.1.3` release contents.
-- `5288362815a4da33c8e76f661164ef8493a71e15` and `fcf5d85ef7f26dba41d2a8ccd8e418eebf13115d` — reliable Homebrew tap release publication and recorded release fixtures.
-
-## Verification
-
-Final clean clone: `/tmp/selfhost-upgrade-rehearsal-final-1RGna9` at `fcf5d85ef7f26dba41d2a8ccd8e418eebf13115d`.
-
-- `npm ci` completed without vulnerabilities.
-- The claims manifest has 41 unique IDs and exactly one matching `@claim:` test per ID. Every command listed in `.factory/claims.json` was run as `npm test -- --grep @claim:<id>` from the clean clone; all passed.
-- Full `npm test` passed: 5 Rust tests and 103 Playwright tests, with 4 intentional project skips.
-- `npm run build` and `npm run build:site` passed; `dist/site` contains a 7.60 KB gzip initial JavaScript asset and 3.75 KB gzip stylesheet.
-- `npx tsc --noEmit --target ES2022 --module ESNext --moduleResolution bundler --strict --skipLibCheck site/src/main.ts`, `cargo fmt --check`, `cargo clippy -- -D warnings`, and `cargo package --locked --allow-dirty` passed.
-- `bash -n site/public/install.sh` passed. PowerShell is not installed in this Linux worker; the Windows installer remains covered by the browser/release tests and the published release manifest checks.
-- The v0.1.3 Linux archive SHA-256 is `84676836384b1d87e7a590147989656f82e77d6e2c73e24222cf984c7d8e03ca`, matching the published `SHA256SUMS`. Its binary reports `rehearsal 0.1.3`, writes the new setup instruction, and `rehearsal check --file <template>` rejects its missing schema with exit 2 as promised.
-- Successful cross-platform release workflow: [run 33271824772](https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/actions/runs/33271824772). The Homebrew tap formula is v0.1.3 at commit `6757ef97bc11360313975f36ec1002e019f45e49`.
-- Static deployment `3a98bd01-bc78-49a9-a07f-a060a16016fc` completed to [selfhost-upgrade-rehearsal.sociobot.in](https://selfhost-upgrade-rehearsal.sociobot.in). `verify-url.sh` reports HTTP 200, title/lang/one H1/main/alt text, and no load errors. The cold Playwright+Axe live audit covers `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, and a real 404 at 390×844: zero Axe violations, zero product console/page errors, no horizontal overflow, isolated demo storage, offline reset, same-origin-only demo requests, and correct install focus. See `.factory/evidence/polish-3/`.
-- Final mobile Lighthouse: Performance 100, Accessibility 100, Best Practices 100, and SEO 100; LCP 1.2 s, CLS 0, and TBT 20 ms. Evidence: `.factory/evidence/polish-3/lighthouse-live.json` (full-page screenshot collection disabled to avoid a browser-container artifact).
-
-## Run and deploy
+## Run or verify
 
 ```sh
 npm ci
 npm test
 npm run build
-./target/release/rehearsal --help
+./target/release/rehearsal demo --json
 ```
 
-The static deployment build is `npm ci && npm run build:site`, publishing `dist/site`. Release builds run from `.github/workflows/release.yml` on a `v*` tag or manual dispatch.
+The static deploy artifact is `dist/site`. Release and install details remain
+in `README.md` and `.github/workflows/release.yml`.
 
 ## Remaining work
 
-None.
+None. See `.factory/verification-8.md` for full independent evidence and
+severity assessment.
