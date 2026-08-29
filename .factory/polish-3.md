@@ -34,4 +34,9 @@ main landmark, no horizontal overflow, demo isolation/reset/offline behavior,
 no unexpected network requests, no console or page errors, and zero axe
 violations. Evidence: `.factory/evidence/polish-3/live-browser-audit.json`.
 
+Final mobile Lighthouse scores are Performance 100, Accessibility 100, Best
+Practices 100, and SEO 100 (LCP 1.2 s, CLS 0, TBT 20 ms). Evidence:
+`.factory/evidence/polish-3/lighthouse-live.json`; full-page screenshot
+collection was disabled to avoid a browser-container artifact.
+
 The shipped release is [v0.1.3](https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/tag/v0.1.3), with the updated Homebrew formula in the [tap](https://github.com/B-Divyesh/homebrew-selfhost-upgrade-rehearsal/blob/main/Formula/rehearsal.rb).

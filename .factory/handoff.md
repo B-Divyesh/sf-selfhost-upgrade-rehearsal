@@ -31,7 +31,7 @@ Final clean clone: `/tmp/selfhost-upgrade-rehearsal-final-1RGna9` at `fcf5d85ef7
 - The v0.1.3 Linux archive SHA-256 is `84676836384b1d87e7a590147989656f82e77d6e2c73e24222cf984c7d8e03ca`, matching the published `SHA256SUMS`. Its binary reports `rehearsal 0.1.3`, writes the new setup instruction, and `rehearsal check --file <template>` rejects its missing schema with exit 2 as promised.
 - Successful cross-platform release workflow: [run 33271824772](https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/actions/runs/33271824772). The Homebrew tap formula is v0.1.3 at commit `6757ef97bc11360313975f36ec1002e019f45e49`.
 - Static deployment `3a98bd01-bc78-49a9-a07f-a060a16016fc` completed to [selfhost-upgrade-rehearsal.sociobot.in](https://selfhost-upgrade-rehearsal.sociobot.in). `verify-url.sh` reports HTTP 200, title/lang/one H1/main/alt text, and no load errors. The cold Playwright+Axe live audit covers `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, and a real 404 at 390×844: zero Axe violations, zero product console/page errors, no horizontal overflow, isolated demo storage, offline reset, same-origin-only demo requests, and correct install focus. See `.factory/evidence/polish-3/`.
-- The existing mobile Lighthouse baseline remains Performance 100, Accessibility 100, Best Practices 100, and SEO 100; this repair changes no landing runtime payload beyond the already-budgeted release metadata.
+- Final mobile Lighthouse: Performance 100, Accessibility 100, Best Practices 100, and SEO 100; LCP 1.2 s, CLS 0, and TBT 20 ms. Evidence: `.factory/evidence/polish-3/lighthouse-live.json` (full-page screenshot collection disabled to avoid a browser-container artifact).
 
 ## Run and deploy
 
