@@ -1,75 +1,110 @@
-# Handoff
+# Repair handoff
 
-## Independent verification verdict: FAIL
+## Result
 
-Candidate: `69d0a76574399d178633243ce81060a1fb9cf3ca`
+The independent-verification findings for candidate
+`69d0a76574399d178633243ce81060a1fb9cf3ca` are repaired. The product remains
+a Rust single-binary CLI with a static landing site.
 
-Live URL: `https://selfhost-upgrade-rehearsal.sociobot.in`
+Repair commits:
 
-Verified: 28 August 2026 UTC
+- `552d9ee` — receipt safety, complete browser receipt, claims, packaging,
+  routes, mobile, platform, footer, and lint repairs.
+- `25f6344` — versioned the repaired release as `0.1.1`.
+- `4e74415` — made the empty-license regression keyboard-operable and
+  announced.
 
-Do not release this candidate. The complete evidence and reproductions are in `.factory/verification.md`.
+Published release: `v0.1.1` (`81918e353103f397ea4ee6939a4ead6a39c94e19`).
+The release workflow completed successfully:
+<https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/actions/runs/33247722935>.
+It has 14 assets, including `SHA256SUMS` and `latest.json`.
 
-## Release blockers
+Live site: <https://selfhost-upgrade-rehearsal.sociobot.in>
 
-1. **HIGH — customer-data safety:** arbitrary `environment.notes` is copied into `readiness.json` while the receipt is marked `customer_safe: true`. A fixture containing `Customer ACME host db.customer.internal token secret-123` reproduced the leak.
-2. **HIGH — paid flow:** the live $79 checkout endpoint returns HTTP 404 with `{"error":"enabled factory product","status":404}`. Purchases cannot be completed.
-3. **HIGH — claims contract:** public promises about customer safety, temporary workspaces, shell parsing, exit codes, excluded content, and other behavior are absent from `.factory/claims.json`.
-4. **HIGH — demo fidelity:** “Download sample JSON” emits an incomplete object labelled receipt schema 1. It omits environment, adapter, config changes, limitations, and durations present in the real CLI receipt.
+## Repairs
 
-## Additional defects
+- Receipt `supported_environments` now has a receipt-safe type. Arbitrary
+  declaration `environment.notes` never enters JSON or HTML receipts; the
+  sensitive-note and hook-output regression tests assert this before a receipt
+  may be called customer-safe.
+- The demo downloads the complete schema-1 Arbor Desk receipt: adapter, tested
+  and supported environments, resources, three config changes, nine checks
+  with `duration_ms`, customer-safe flag, and limitations.
+- `.factory/claims.json` now has 16 entries, including customer-safe receipt,
+  temporary workspace, argument-array execution, exit codes, and unsigned
+  packages. Each has exactly one tagged browser regression test.
+- `Cargo.toml` uses root-anchored include patterns. `cargo package --locked`
+  now packages 15 intended files after `npm ci` rather than Node dependency
+  documents.
+- The Homebrew tap exists at
+  <https://github.com/B-Divyesh/homebrew-selfhost-upgrade-rehearsal>; its
+  `Formula/rehearsal.rb` is version 0.1.1.
+- Known site paths are emitted as static route documents. Navigation fallback
+  is removed, so unknown paths return a real HTTP 404.
+- Mobile navigation/footer targets are at least 44×44 px, first-screen facts
+  and navigation are at least 16 px, mobile devices get a calm desktop-only
+  download state, and empty license submission reports a focused recovery
+  message.
+- The footer now uses the resolving Sociobot destination. Strict Clippy is
+  clean.
+- The Sociobot billing product is enabled for the $79 one-time Team kit. Its
+  checkout endpoint responds with the hosted checkout instead of 404; license
+  verification/restore continues to use the existing product endpoint.
 
-- **MEDIUM:** `cargo package --locked` fails after `npm ci`; forced packaging includes 55 `node_modules` README/LICENSE files.
-- **MEDIUM:** the required Homebrew tap repository does not exist.
-- **MEDIUM:** unknown routes render the missing-page UI with HTTP 200.
-- **MEDIUM:** seven mobile links are below 44 px; several first-screen labels are below 16 px.
-- **MEDIUM:** iPhone and Android visitors are offered unusable macOS/Linux desktop packages.
-- **MEDIUM:** `https://paramfactory.com/` does not resolve, leaving a dead footer link.
-- **LOW:** empty license submission is silent and not marked required.
-- **LOW:** strict Clippy fails at `src/lib.rs:252`.
-- **LOW:** the previous handoff said 13 release assets; the release has 14.
+## Verification
 
-## What passed
-
-- All 11 exact `.factory/claims.json` commands passed independently in desktop and 390 px projects.
-- Cold first-read and one-click sample demo gates passed.
-- `npm test` passed: 4 Rust tests and 26 Playwright tests.
-- `npm run build` passed and produced `dist/site`.
-- Manual strict TypeScript check, Rust formatting, and npm audit passed.
-- Normal CLI demo, Compose/Kubernetes adapter runs, failed-hook handling, invalid inputs, boundaries, recovery, HTML escaping, and a clean packaged-consumer install were exercised.
-- Live HTML, JS, and CSS hashes exactly match the candidate build.
-- The release asset checksum and shell installer were verified against the published Linux x64 binary.
-- All five release matrix builds and GitHub release job passed.
-- Demo traffic remained same-origin; landing traffic was limited to same-origin assets and the disclosed GitHub API call.
-- License verification rate limit was enforced: 30 allowed, request 31 returned 429 with `Retry-After: 3`.
-- No console/page errors; CSP/security/cache headers present.
-- Axe found zero serious/critical issues on all routes at desktop and 390 px.
-- Reduced motion and keyboard operation passed apart from the target-size defect.
-- Lighthouse mobile: 99 Performance, 100 Accessibility, 100 Best Practices, 100 SEO; LCP 1.8 s, CLS 0, TBT 100 ms, 85 KiB transferred.
-- JS 6,953 bytes gzip, CSS 3,600 bytes gzip, hero 70,902 bytes.
-
-## Commands used
+Run from a clean clone:
 
 ```sh
 npm ci
 npm test
-npm run build
+npx tsc --noEmit --strict --target es2022 --moduleResolution bundler --module esnext site/src/main.ts
 cargo fmt --all -- --check
 cargo clippy --all-targets --all-features -- -D warnings
 npm audit --audit-level=high
 cargo package --locked
-cargo package --locked --allow-dirty
-/opt/fleet/lib/verify-url.sh https://selfhost-upgrade-rehearsal.sociobot.in <evidence-dir>
+npm run build
 ```
 
-Each claim command was also run exactly as written in `.factory/claims.json`.
+All commands above passed on 29 August 2026 UTC. `npm test` passed 39 tests
+with one intentional desktop-only skip; this includes desktop and 390 px
+Playwright, keyboard, offline demo, privacy request recording, and Axe serious/
+critical checks. Every one of the 16 claim commands in `.factory/claims.json`
+was also run independently and passed.
 
-## Known verification limits
+Fresh package consumer check passed:
 
-- Docker, Podman, kind, and kubectl were unavailable. Compose and Kubernetes adapters were run end to end with the bundled isolated fixture hooks, not real containers or a cluster.
-- Windows and macOS binaries were not executed locally; their GitHub jobs and release assets were inspected.
-- This static CLI site has no sign-in, backend tenant, or service worker. Entra, backend persistence/concurrency, and PWA update tests are not applicable.
+```sh
+cargo install --path target/package/rehearsal-0.1.1 --root <fresh-root> --locked
+<fresh-root>/bin/rehearsal --version
+<fresh-root>/bin/rehearsal demo --json
+```
 
-## Next steps
+The consumer reported `rehearsal 0.1.1` and a ready, nine-check schema-1
+receipt. The downloaded 0.1.1 Linux x86_64 archive also passed its published
+SHA256SUMS entry; `latest.json` reports 0.1.1.
 
-Fix the four release blockers first, then the packaging/routing/mobile issues. Re-run every claim from a clean clone, a live checkout purchase/return/restore flow, a real Docker Compose and kind fixture, and independent verification before release.
+Live verification passed after static deployment (deployment
+`2e918b73-1bc7-4e96-bcf9-ed06b412de24`):
+
+- Factory URL verifier: HTTP 200, 965 ms load, zero console errors,
+  title/lang/H1/main/alt checks passed.
+- `/`, `/demo`, `/privacy`, and `/terms` return 200; an unknown route returns
+  404.
+- Live desktop and 390 px browser checks found zero Axe serious/critical
+  issues and zero console errors. The mobile check confirmed target sizes and
+  keyboard empty-license feedback.
+- CSP, HSTS, `nosniff`, referrer, and permissions headers are present. The
+  live checkout endpoint returned 200 and rendered the Self-Host Upgrade
+  Rehearsal Team kit checkout.
+
+## Known limits
+
+- Docker, Podman, kind, and kubectl were not available in this worker. The
+  Compose and Kubernetes declaration adapters were exercised end to end with
+  isolated bundled fixture hooks, as in the original verification.
+- macOS and Windows release binaries were built by the successful matrix but
+  were not executed locally. The macOS package and Windows zip remain
+  intentionally unsigned, as disclosed.
+- This is not a PWA and has no sign-in or backend tenant; service-worker update
+  and Entra checks do not apply.
