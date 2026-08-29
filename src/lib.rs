@@ -86,7 +86,7 @@ pub struct Receipt {
     pub adapter: String,
     pub status: String,
     pub tested_environment: TestedEnvironment,
-    pub supported_environments: Environment,
+    pub supported_environments: SupportedEnvironment,
     pub required_resources: Resources,
     pub config_changes: Vec<ConfigChange>,
     pub checks: Vec<Check>,
@@ -98,6 +98,23 @@ pub struct Receipt {
 pub struct TestedEnvironment {
     pub operating_system: String,
     pub architecture: String,
+}
+
+/// The declaration may contain private operator notes.  Receipts deliberately
+/// carry only the environment fields needed to explain their coverage.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+pub struct SupportedEnvironment {
+    pub operating_systems: Vec<String>,
+    pub architectures: Vec<String>,
+}
+
+impl From<&Environment> for SupportedEnvironment {
+    fn from(environment: &Environment) -> Self {
+        Self {
+            operating_systems: environment.operating_systems.clone(),
+            architectures: environment.architectures.clone(),
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -249,7 +266,7 @@ pub fn run_declaration(path: &Path, output: &Path) -> Result<RunOutput> {
     );
     let run_id = format!(
         "SHR-{}",
-        &format!("{:x}", hasher.finalize())[..12].to_uppercase()
+        format!("{:x}", hasher.finalize())[..12].to_uppercase()
     );
     let receipt = Receipt {
         receipt_schema: 1,
@@ -263,7 +280,7 @@ pub fn run_declaration(path: &Path, output: &Path) -> Result<RunOutput> {
             operating_system: std::env::consts::OS.into(),
             architecture: std::env::consts::ARCH.into(),
         },
-        supported_environments: declaration.environment.clone(),
+        supported_environments: SupportedEnvironment::from(&declaration.environment),
         required_resources: declaration.resources.clone(),
         config_changes: changes,
         checks,

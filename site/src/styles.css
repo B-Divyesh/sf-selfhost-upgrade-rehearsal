@@ -55,7 +55,7 @@ h3 { margin: 0 0 8px; font-family: Georgia, 'Times New Roman', serif; font-size:
 .button.primary:hover { background: var(--ink); }
 .button.secondary { color: var(--fern); background: transparent; }
 .button.disabled { background: var(--muted); border-color: var(--muted); box-shadow: none; }
-.plain-facts { margin: 0; padding: 18px 0 0; list-style: none; border-top: 1px solid var(--ink); font-size: .8rem; }
+.plain-facts { margin: 0; padding: 18px 0 0; list-style: none; border-top: 1px solid var(--ink); font-size: 1rem; }
 .plain-facts li { position: relative; padding: 5px 0 5px 20px; }
 .plain-facts li::before { content: "✓"; position: absolute; left: 0; color: var(--fern); font-weight: 900; }
 .specimen { position: relative; margin: 0; align-self: stretch; min-height: 600px; display: flex; flex-direction: column; justify-content: center; }
@@ -157,7 +157,7 @@ h3 { margin: 0 0 8px; font-family: Georgia, 'Times New Roman', serif; font-size:
   :root { font-size: 16px; }
   .site-header { padding-inline: 16px; }
   .site-header nav { gap: 12px; }
-  .site-header nav a { font-size: .68rem; }
+  .site-header nav a { font-size: 1rem; }
   .ruled-section { padding: 72px 18px; }
   .hero { padding-top: 48px; }
   h1 { font-size: 3.1rem; }
@@ -183,6 +183,13 @@ h3 { margin: 0 0 8px; font-family: Georgia, 'Times New Roman', serif; font-size:
   .receipt-stamp { align-self: flex-start; }
   .receipt-grid { grid-template-columns: 1fr; }
   .receipt-body { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* Navigation is used on touch devices as often as with a pointer. */
+.site-header a, .site-footer nav a, .demo-banner a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

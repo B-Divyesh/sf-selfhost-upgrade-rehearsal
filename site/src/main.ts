@@ -28,6 +28,37 @@ const demoLines = [
   ['HTML: report/readiness.html', 'muted']
 ] as const;
 
+// This is the bundled Arbor Desk fixture receipt, represented with the same
+// schema as the CLI. It contains no declaration notes, fixture records, or
+// hook output, so the browser demo has the same privacy boundary as a real run.
+const demoReceipt = {
+  receipt_schema: 1,
+  run_id: 'SHR-8A71C042D591',
+  product: 'Arbor Desk',
+  source_version: '1.8.4',
+  target_version: '2.0.0',
+  adapter: 'bundled fixture',
+  status: 'ready',
+  tested_environment: { operating_system: 'linux', architecture: 'x86_64' },
+  supported_environments: { operating_systems: ['linux', 'macos', 'windows'], architectures: ['x86_64', 'aarch64'] },
+  required_resources: { memory_mb: 768, disk_mb: 2048 },
+  config_changes: [
+    { path: 'database.ssl', change: 'removed', source_type: 'boolean', target_type: null },
+    { path: 'database.ssl_mode', change: 'added', source_type: null, target_type: 'string' },
+    { path: 'workers.count', change: 'added', source_type: null, target_type: 'number' }
+  ],
+  checks: [
+    'Preflight', 'Start source', 'Seed fixture', 'Create backup', 'Stop source',
+    'Start target', 'Restore backup', 'Run health check', 'Clean temporary services'
+  ].map(name => ({ name, status: 'passed', duration_ms: 1 })),
+  customer_safe: true,
+  limitations: [
+    'This receipt covers only the source and target versions shown here.',
+    'Only the declared operating systems and architectures are supported.',
+    'Hook output and fixture contents are intentionally excluded from this receipt.'
+  ]
+};
+
 function header(): string {
   return `<header class="site-header">
     <a class="wordmark" href="/" data-link aria-label="Self-Host Upgrade Rehearsal home">
@@ -45,7 +76,7 @@ function header(): string {
 function footer(): string {
   return `<footer class="site-footer">
     <p><strong>${PRODUCT}</strong><br><span>Readiness receipts for self-hosted upgrades.</span></p>
-    <nav aria-label="Footer navigation"><a href="/privacy" data-link>Privacy</a><a href="/terms" data-link>Terms</a><a href="https://paramfactory.com" rel="external">Built by Param Factory <span class="sr-only">(external site)</span></a></nav>
+    <nav aria-label="Footer navigation"><a href="/privacy" data-link>Privacy</a><a href="/terms" data-link>Terms</a><a href="https://sociobot.in" rel="external">Built by Param Factory <span class="sr-only">(external site)</span></a></nav>
     <p class="build">v0.1.0 · build 2026.08.28</p>
   </footer>`;
 }
@@ -130,7 +161,7 @@ rehearsal run --output release-proof</code></pre></div>
       <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Reuse the check in release CI</h2><p>The $79 one-time Team kit adds a release-matrix workflow and upgrade checklist.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
       <div class="license-box">
         <a class="button primary" href="${BILLING}/checkout">Buy the Team kit — $79</a>
-        <form id="license-form"><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false"><button type="submit">Verify license</button></div></form>
+        <form id="license-form"><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false" required aria-required="true" aria-describedby="license-status"><button type="submit">Verify license</button></div></form>
         <p id="license-status" class="fine-print" aria-live="polite">Payment opens Sociobot checkout.</p>
         <button id="team-download" class="button secondary hidden" type="button">Download Team CI kit</button>
       </div>
@@ -296,6 +327,7 @@ function setupCopyButtons(): void {
 
 function platformAsset(assets: ReleaseAsset[]): ReleaseAsset | undefined {
   const platform = navigator.userAgent.toLowerCase();
+  if (/android|iphone|ipad|ipod|mobile/.test(platform)) return undefined;
   const arch = platform.includes('arm') || platform.includes('aarch64') ? 'aarch64' : 'x86_64';
   const prefix = platform.includes('win') ? 'rehearsal-windows-x86_64' : platform.includes('mac') ? `rehearsal-macos-${arch}` : `rehearsal-linux-${arch}`;
   return assets.find(asset => asset.name.startsWith(prefix));
@@ -317,7 +349,14 @@ async function loadRelease(): Promise<void> {
       localStorage.setItem('release:cache', JSON.stringify({ time: Date.now(), value: release }));
     }
     const asset = platformAsset(release.assets || []);
-    if (!asset) throw new Error('platform package unavailable');
+    if (!asset) {
+      if (/android|iphone|ipad|ipod|mobile/.test(navigator.userAgent.toLowerCase())) {
+        platformNote.textContent = 'Desktop downloads are available for macOS, Windows, and Linux.';
+        note.textContent = 'This CLI does not run on phones or tablets.';
+        return;
+      }
+      throw new Error('platform package unavailable');
+    }
     button.href = asset.browser_download_url;
     button.textContent = `Download ${asset.name.replace('rehearsal-', '')}`;
     button.classList.remove('disabled');
@@ -344,6 +383,9 @@ function setupLicense(): void {
     if (token) {
       localStorage.setItem(`sb_license:${SLUG}`, token);
       verifyLicense(token, true);
+    } else {
+      document.querySelector('#license-status')!.textContent = 'Paste a license token, then verify it.';
+      document.querySelector<HTMLInputElement>('#license')?.focus();
     }
   });
   document.querySelector('#team-download')?.addEventListener('click', downloadTeamKit);
@@ -372,8 +414,7 @@ function setLicensed(valid: boolean, message: string): void {
 }
 
 function downloadSample(): void {
-  const receipt = { receipt_schema: 1, run_id: 'SHR-8A71C042D591', product: 'Arbor Desk', source_version: '1.8.4', target_version: '2.0.0', status: 'ready', required_resources: { memory_mb: 768, disk_mb: 2048 }, checks: demoLines.filter(line => line[0].startsWith('✓')).map(line => ({ name: line[0].slice(2), status: 'passed' })), customer_safe: true };
-  downloadFile('arbor-desk-readiness.json', JSON.stringify(receipt, null, 2), 'application/json');
+  downloadFile('arbor-desk-readiness.json', JSON.stringify(demoReceipt, null, 2), 'application/json');
 }
 
 function downloadTeamKit(): void {

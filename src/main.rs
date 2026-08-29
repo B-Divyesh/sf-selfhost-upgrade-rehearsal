@@ -103,13 +103,11 @@ fn run() -> Result<ExitCode> {
             let root = output.unwrap_or_else(|| {
                 std::env::temp_dir().join(format!("rehearsal-demo-{}", std::process::id()))
             });
-            if root.exists() {
-                if fs::read_dir(&root)?.next().is_some() {
-                    bail!(
-                        "{} is not empty; choose a new demo output directory",
-                        root.display()
-                    );
-                }
+            if root.exists() && fs::read_dir(&root)?.next().is_some() {
+                bail!(
+                    "{} is not empty; choose a new demo output directory",
+                    root.display()
+                );
             }
             fs::create_dir_all(&root)?;
             write_demo(&root)?;

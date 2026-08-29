@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --config site/vite.config.ts",
     "build:assets": "node scripts/build-images.mjs",
-    "build:site": "npm run build:assets && vite build --config site/vite.config.ts",
+    "build:site": "npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs",
     "build": "cargo build --release && npm run build:site",
     "test": "cargo test && npm run build:site && playwright test",
     "test:site": "playwright test",

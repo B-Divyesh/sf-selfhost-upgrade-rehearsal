@@ -63,6 +63,41 @@
     "sandbox": "fresh temporary declaration with distinct secret values; run all no-op hooks; inspect JSON receipt"
   },
   {
+    "id": "customer-safe-receipt",
+    "claim": "Customer-safe receipts omit declaration notes, hook output, and fixture contents.",
+    "where": "landing, demo, README, receipt privacy copy",
+    "test": "npm test -- --grep @claim:customer-safe-receipt",
+    "sandbox": "fresh temporary declaration with a sensitive note and hook output; run the CLI and assert neither appears in the JSON receipt"
+  },
+  {
+    "id": "temporary-workspace",
+    "claim": "The CLI uses a new temporary directory for rehearsal seed, backup, restore, and health checks.",
+    "where": "landing, README",
+    "test": "npm test -- --grep @claim:temporary-workspace",
+    "sandbox": "run the bundled demo without an output path; assert the isolated demo completes with a generated receipt"
+  },
+  {
+    "id": "argument-arrays",
+    "claim": "Commands are argument arrays, so no shell parsing happens inside the CLI.",
+    "where": "README",
+    "test": "npm test -- --grep @claim:argument-arrays",
+    "sandbox": "run a declaration containing shell metacharacters in a hook argument; assert its literal command succeeds and no sentinel file is created"
+  },
+  {
+    "id": "exit-codes",
+    "claim": "A failed check returns exit code 1. Invalid input returns exit code 2.",
+    "where": "README",
+    "test": "npm test -- --grep @claim:exit-codes",
+    "sandbox": "fresh declarations with a failing hook and invalid schema; assert process exit codes"
+  },
+  {
+    "id": "unsigned-packages",
+    "claim": "Published macOS and Windows packages are unsigned.",
+    "where": "landing, README",
+    "test": "npm test -- --grep @claim:unsigned-packages",
+    "sandbox": "inspect the release workflow and installation documentation for the unsigned package formats and absence of signing steps"
+  },
+  {
     "id": "cli-no-upload",
     "claim": "The CLI has no built-in network client or telemetry path.",
     "where": "README, privacy",

@@ -47,3 +47,50 @@ fn demo_refuses_to_overwrite_a_nonempty_directory() {
         "keep me"
     );
 }
+
+#[test]
+fn receipt_redacts_declaration_notes_before_marking_it_customer_safe() {
+    let temp = tempfile::tempdir().unwrap();
+    let declaration = temp.path().join("rehearsal.yml");
+    let source = std::fs::read_to_string("examples/arbor-desk/rehearsal.yml").unwrap();
+    let secret = "Customer ACME host db.customer.internal token secret-123";
+    let binary = assert_cmd::cargo::cargo_bin("rehearsal")
+        .to_string_lossy()
+        .replace('\\', "\\\\");
+    std::fs::write(
+        &declaration,
+        source
+            .replace("notes: Synthetic records only", &format!("notes: {secret}"))
+            .replace("[rehearsal,", &format!("[\"{binary}\",")),
+    )
+    .unwrap();
+    std::fs::copy(
+        "examples/arbor-desk/schema-1.8.yml",
+        temp.path().join("schema-1.8.yml"),
+    )
+    .unwrap();
+    std::fs::copy(
+        "examples/arbor-desk/schema-2.0.yml",
+        temp.path().join("schema-2.0.yml"),
+    )
+    .unwrap();
+
+    // Use the bundled binary for fixture hooks while keeping the declaration
+    // and output in a fresh directory, just as a customer would.
+    let output = temp.path().join("report");
+    Command::cargo_bin("rehearsal")
+        .unwrap()
+        .args([
+            "run",
+            "--file",
+            declaration.to_str().unwrap(),
+            "--output",
+            output.to_str().unwrap(),
+        ])
+        .assert()
+        .success();
+    let receipt = std::fs::read_to_string(output.join("readiness.json")).unwrap();
+    assert!(receipt.contains("\"customer_safe\": true"));
+    assert!(!receipt.contains(secret));
+    assert!(!receipt.contains("\"notes\""));
+}

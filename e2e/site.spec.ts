@@ -9,6 +9,36 @@ import { promisify } from 'node:util';
 const exec = promisify(execFile);
 const root = resolve(import.meta.dirname, '..');
 
+function declaration(options: { notes?: string; preflight?: string } = {}): string {
+  const hook = '[/usr/bin/true]';
+  return `schema: 1
+product: Receipt privacy test
+adapter: fixture
+source: { version: 1.0.0, config_schema: old.yml }
+target: { version: 2.0.0, config_schema: new.yml }
+environment:
+  operating_systems: [linux]
+  architectures: [x86_64]
+${options.notes ? `  notes: "${options.notes}"\n` : ''}resources: { memory_mb: 512, disk_mb: 1024 }
+hooks:
+  preflight: ${options.preflight || hook}
+  start_source: ${hook}
+  seed: ${hook}
+  backup: ${hook}
+  stop_source: ${hook}
+  start_target: ${hook}
+  restore: ${hook}
+  health: ${hook}
+  cleanup: ${hook}
+`;
+}
+
+async function writeMinimalDeclaration(dir: string, options: { notes?: string; preflight?: string } = {}): Promise<void> {
+  await writeFile(join(dir, 'old.yml'), 'database:\n  password: old-secret\n');
+  await writeFile(join(dir, 'new.yml'), 'database:\n  password: new-secret\n  port: 5432\n');
+  await writeFile(join(dir, 'rehearsal.yml'), declaration(options));
+}
+
 test('landing has one clear page outline and no serious accessibility errors', async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
@@ -25,7 +55,7 @@ test('landing has one clear page outline and no serious accessibility errors', a
   }
 });
 
-test('@claim:demo-receipt demo shows and downloads a readiness receipt', async ({ page }) => {
+test('@claim:demo-receipt demo downloads the complete schema-1 readiness receipt', async ({ page }) => {
   await page.goto('/demo');
   await expect(page.getByRole('heading', { level: 2, name: 'Arbor Desk 1.8.4 → 2.0.0' })).toBeVisible();
   await expect(page.getByText('9 passed')).toBeVisible();
@@ -34,7 +64,21 @@ test('@claim:demo-receipt demo shows and downloads a readiness receipt', async (
   const file = await (await download).createReadStream();
   let text = '';
   for await (const chunk of file!) text += chunk.toString();
-  expect(JSON.parse(text).status).toBe('ready');
+  const receipt = JSON.parse(text);
+  expect(receipt).toMatchObject({
+    receipt_schema: 1,
+    product: 'Arbor Desk',
+    adapter: 'bundled fixture',
+    status: 'ready',
+    tested_environment: { operating_system: 'linux', architecture: 'x86_64' },
+    supported_environments: { operating_systems: ['linux', 'macos', 'windows'], architectures: ['x86_64', 'aarch64'] },
+    required_resources: { memory_mb: 768, disk_mb: 2048 },
+    customer_safe: true
+  });
+  expect(receipt.config_changes).toHaveLength(3);
+  expect(receipt.limitations).toHaveLength(3);
+  expect(receipt.checks).toHaveLength(9);
+  expect(receipt.checks.every((check: { duration_ms: unknown }) => typeof check.duration_ms === 'number')).toBe(true);
 });
 
 test('@claim:offline-demo bundled demo runs after the page goes offline', async ({ page, context }) => {
@@ -120,6 +164,54 @@ test('@claim:schema-redaction receipt schema changes exclude values', async () =
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
+test('@claim:customer-safe-receipt customer-safe receipts omit declaration notes and hook output', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-safe-'));
+  const secret = 'Customer ACME host db.customer.internal token secret-123';
+  try {
+    await writeMinimalDeclaration(dir, { notes: secret, preflight: `[/usr/bin/printf, "${secret}"]` });
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
+    const receipt = await readFile(join(dir, 'report/readiness.json'), 'utf8');
+    expect(receipt).toContain('"customer_safe": true');
+    expect(receipt).not.toContain(secret);
+    expect(receipt).not.toContain('"notes"');
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:temporary-workspace demo creates its own temporary project directory', async () => {
+  const { stdout } = await exec(join(root, 'target/debug/rehearsal'), ['demo', '--json']);
+  const receipt = JSON.parse(stdout);
+  expect(receipt.status).toBe('ready');
+  expect(receipt.run_id).toMatch(/^SHR-[A-F0-9]{12}$/);
+});
+
+test('@claim:argument-arrays hook arguments are passed without shell parsing', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-args-'));
+  const sentinel = join(dir, 'must-not-exist');
+  try {
+    await writeMinimalDeclaration(dir, { preflight: `[/usr/bin/printf, "literal; touch ${sentinel}"]` });
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
+    await expect(async () => readFile(sentinel, 'utf8')).rejects.toThrow();
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:exit-codes failed checks return 1 and invalid declarations return 2', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-exit-'));
+  try {
+    await writeMinimalDeclaration(dir, { preflight: '[/usr/bin/false]' });
+    await expect(exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')])).rejects.toMatchObject({ code: 1 });
+    await writeFile(join(dir, 'invalid.yml'), 'schema: 99\n');
+    await expect(exec(join(root, 'target/debug/rehearsal'), ['check', '--file', join(dir, 'invalid.yml')])).rejects.toMatchObject({ code: 2 });
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:unsigned-packages release workflow makes unsigned package formats explicit', async () => {
+  const readme = await readFile(join(root, 'README.md'), 'utf8');
+  const workflow = await readFile(join(root, '.github/workflows/release.yml'), 'utf8');
+  expect(readme).toContain('unsigned macOS `.pkg`, Windows zip');
+  expect(workflow).not.toMatch(/codesign|signtool|notar/i);
+  expect(workflow).toContain('pkgbuild --root');
+});
+
 test('@claim:cli-no-upload CLI contains no network client or telemetry path', async () => {
   const cargo = await readFile(join(root, 'Cargo.toml'), 'utf8');
   const source = `${await readFile(join(root, 'src/lib.rs'), 'utf8')}\n${await readFile(join(root, 'src/main.rs'), 'utf8')}`;
@@ -150,4 +242,27 @@ test('routes update title, focus, and history', async ({ page }) => {
   await expect(page.locator('h1')).toBeFocused();
   await page.goBack();
   await expect(page).toHaveTitle('Self-Host Upgrade Rehearsal — test upgrades first');
+});
+
+test('mobile navigation targets, empty-license feedback, and mobile downloads are safe', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'mobile-only regression coverage');
+  await page.goto('/');
+  const targets = await page.locator('.site-header a, .site-footer nav a').evaluateAll(links => links.map(link => {
+    const rect = link.getBoundingClientRect();
+    return { width: rect.width, height: rect.height };
+  }));
+  expect(targets.every(target => target.width >= 44 && target.height >= 44)).toBe(true);
+  expect(await page.locator('.plain-facts').evaluate(element => Number.parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(16);
+  await page.getByRole('button', { name: 'Verify license' }).click();
+  await expect(page.getByText('Paste a license token, then verify it.')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Download rehearsal-/ })).toHaveCount(0);
+  await expect(page.getByText('Desktop downloads are available for macOS, Windows, and Linux.')).toBeVisible();
+});
+
+test('built route documents prevent a navigation fallback from turning unknown paths into soft 404s', async () => {
+  const config = JSON.parse(await readFile(join(root, 'site/public/staticwebapp.config.json'), 'utf8'));
+  expect(config.navigationFallback).toBeUndefined();
+  for (const route of ['demo', 'privacy', 'terms']) {
+    expect(await readFile(join(root, 'dist/site', route, 'index.html'), 'utf8')).resolves.toContain('<div id="app"></div>');
+  }
 });
