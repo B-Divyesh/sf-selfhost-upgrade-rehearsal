@@ -56,6 +56,13 @@
     "sandbox": "read both shipped installers; assert checksum verification precedes installation"
   },
   {
+    "id": "installer-provenance-rollback",
+    "claim": "Release archives have GitHub Actions provenance and installers can roll back to a tagged release after verifying its SHA256 checksum.",
+    "where": "README verify and roll back section, GitHub Release notes",
+    "test": "npm test -- --grep @claim:installer-provenance-rollback",
+    "sandbox": "fresh clone; inspect the provenance attestation workflow, rollback documentation, and both version-aware installer scripts"
+  },
+  {
     "id": "mit-core",
     "claim": "The core CLI is free under the MIT License.",
     "where": "landing facts, README",
@@ -197,7 +204,7 @@
   },
   {
     "id": "scoop-manifest",
-    "claim": "The documented Scoop release manifest is published and valid.",
+    "claim": "The documented Scoop bucket publishes a valid selfhost-upgrade-rehearsal manifest.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:scoop-manifest",
     "sandbox": "fresh clone; recorded published Scoop manifest; assert current version, Windows asset URL, and SHA256"
@@ -266,11 +273,11 @@
     "sandbox": "fresh temporary declaration and demo; run all three commands with --json and parse each response"
   },
   {
-    "id": "release-manifest",
-    "claim": "The website reads its local release manifest and opens matching GitHub download assets.",
+    "id": "release-metadata",
+    "claim": "The website reads cached public GitHub release metadata and opens matching GitHub download assets.",
     "where": "privacy",
-    "test": "npm test -- --grep @claim:release-manifest",
-    "sandbox": "fresh browser context; record the same-origin manifest request and assert its GitHub asset mapping"
+    "test": "npm test -- --grep @claim:release-metadata",
+    "sandbox": "fresh browser context; record the GitHub API request, assert its matching asset mapping, local cache, and no static-manifest request"
   },
   {
     "id": "license-browser-storage",

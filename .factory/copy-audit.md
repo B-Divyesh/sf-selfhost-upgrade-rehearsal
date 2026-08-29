@@ -44,7 +44,7 @@ Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyph
 | CLI installation | 2 | Pass |
 | Install one binary | 3 | Pass |
 | Checking published downloads… | 3 | Pass |
-| Release v0.1.3 is ready for this device. | 7 | Pass |
+| Release vX.Y.Z is ready for this device. | 7 | Pass; `release-metadata` |
 | Install on macOS, Windows, or Linux. | 6 | Pass; `supported-platforms` |
 | No phone or tablet package is provided. | 7 | Pass; `supported-platforms` |
 | Downloads are being published | 4 | Pass |
@@ -85,7 +85,7 @@ Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyph
 | Readiness receipts for self-hosted upgrades. | 5 | Pass |
 | Terms | 1 | Pass |
 | Built by Param Factory | 4 | Pass |
-| v0.1.3 · build 2026.08.29 | 3 | Pass |
+| v0.1.4 · build 2026.08.29 | 3 | Pass |
 
 No landing sentence exceeds 22 words. No banned marketing word appears. The first screen says the job, audience, first action, and three facts in one breath.
 
@@ -112,6 +112,10 @@ No landing sentence exceeds 22 words. No banned marketing word appears. The firs
 | `npm test` runs Rust, claim, accessibility, desktop, and 390 px browser checks. | 12 | Pass; `test-coverage` |
 | `npm run build:site` writes `dist/site/index.html`. | 5 | Pass; `site-build-output` |
 | The complete deployable static site is in `dist/site`. | 8 | Pass; `deploy-directory` |
+| Scoop uses the published bucket. | 5 | Pass; `scoop-manifest` |
+| The installers download the matching release `SHA256SUMS` file and check the archive before installing it. | 15 | Pass; `installer-checksum` |
+| GitHub Actions also records build provenance for every release asset. | 10 | Pass; `installer-provenance-rollback` |
+| To install an earlier tagged release, set `REHEARSAL_VERSION` to its full tag. | 12 | Pass; `installer-provenance-rollback` |
 
 ## Terminology
 

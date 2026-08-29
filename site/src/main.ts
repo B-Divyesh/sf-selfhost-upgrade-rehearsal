@@ -8,8 +8,12 @@ const INACTIVE_LICENSE_NOTICE = 'License no longer active. You can buy a new lic
 
 type Route = '/' | '/demo' | '/privacy' | '/terms' | '/404';
 type ReleaseAsset = { name: string; browser_download_url: string };
-type ReleaseManifest = { version: string; platforms: Record<string, string> };
+type GitHubRelease = { tag_name: string; assets: ReleaseAsset[] };
 type RouteMetadata = { title: string; description: string; canonical: string };
+
+const RELEASE_API = `https://api.github.com/repos/${REPO}/releases/latest`;
+const RELEASE_CACHE_KEY = `release_metadata:${SLUG}`;
+const RELEASE_CACHE_MAX_AGE_MS = 60 * 60 * 1000;
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 let terminalTimer: number | undefined;
@@ -80,7 +84,7 @@ function footer(): string {
   return `<footer class="site-footer">
     <p><strong>${PRODUCT}</strong><br><span>Readiness receipts for self-hosted upgrades.</span></p>
     <nav aria-label="Footer navigation"><a href="/privacy" data-link>Privacy</a><a href="/terms" data-link>Terms</a><a href="https://sociobot.in" rel="external">Built by Param Factory <span class="sr-only">(external site)</span></a></nav>
-    <p class="build">v0.1.3 · build 2026.08.29</p>
+    <p class="build">v0.1.4 · build 2026.08.29</p>
   </footer>`;
 }
 
@@ -89,7 +93,7 @@ function shell(content: string): string {
 }
 
 function landing(): string {
-  return shell(`<main id="main">
+  return shell(`<main id="main" tabindex="-1">
     <section class="hero ruled-section" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">Upgrade rehearsal for self-hosted products</p>
@@ -180,7 +184,7 @@ function terminal(id: string): string {
 
 function demo(): string {
   return shell(`<div class="demo-banner" role="status"><span><strong>Demo</strong> — sample data, nothing is saved</span><span><button id="reset-demo" type="button">Reset demo</button><a href="/#install" id="start-real">Install the CLI</a></span></div>
-    <main id="main" class="demo-page">
+    <main id="main" class="demo-page" tabindex="-1">
       <section class="demo-intro"><p class="eyebrow">Bundled sample demo · Arbor Desk</p><h1 tabindex="-1">Inspect a finished upgrade rehearsal</h1><p>This recording shows the Arbor Desk 1.8.4 to 2.0.0 sample demo.</p></section>
       <section aria-labelledby="demo-run-title"><h2 id="demo-run-title" class="sr-only">Sample terminal run</h2>${terminal('demo-terminal')}</section>
       <section class="full-receipt" aria-labelledby="receipt-title">
@@ -196,7 +200,7 @@ function demo(): string {
 }
 
 function privacy(): string {
-  return legalPage('Privacy', 'Keep rehearsal data on your machine', `<p>The CLI runs on your machine. It does not send project files, hook output, or receipts to us.</p><h2>Website requests</h2><p>The website reads its release manifest locally. Download links open the matching GitHub release asset.</p><p>License checks send the license token to Sociobot. We store the token and a daily verdict in your browser.</p><h2>Demo storage</h2><p>The browser demo uses session storage keys that start with <code>demo:</code>. Closing the tab clears them.</p><h2>Payments</h2><p>Sociobot and Dodo process checkout details. This site does not receive card numbers.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with a privacy question.</p>`);
+  return legalPage('Privacy', 'Keep rehearsal data on your machine', `<p>The CLI runs on your machine. It does not send project files, hook output, or receipts to us.</p><h2>Website requests</h2><p>The website reads public GitHub release metadata to choose a download. Download links open the matching GitHub release asset.</p><p>License checks send the license token to Sociobot. We store the token and a daily verdict in your browser.</p><h2>Demo storage</h2><p>The browser demo uses session storage keys that start with <code>demo:</code>. Closing the tab clears them.</p><h2>Payments</h2><p>Sociobot and Dodo process checkout details. This site does not receive card numbers.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with a privacy question.</p>`);
 }
 
 function terms(): string {
@@ -204,11 +208,11 @@ function terms(): string {
 }
 
 function legalPage(label: string, title: string, body: string): string {
-  return shell(`<main id="main" class="legal"><p class="eyebrow">${label} · effective 28 August 2026</p><h1 tabindex="-1">${title}</h1>${body}</main>`);
+  return shell(`<main id="main" class="legal" tabindex="-1"><p class="eyebrow">${label} · effective 28 August 2026</p><h1 tabindex="-1">${title}</h1>${body}</main>`);
 }
 
 function notFound(): string {
-  return shell(`<main id="main" class="missing"><p class="eyebrow">Error 404</p><h1 tabindex="-1">Page not found</h1><p>This link does not point to a page in Self-Host Upgrade Rehearsal.</p><a class="button primary" href="/" data-link>Return home</a></main>`);
+  return shell(`<main id="main" class="missing" tabindex="-1"><p class="eyebrow">Error 404</p><h1 tabindex="-1">Page not found</h1><p>This link does not point to a page in Self-Host Upgrade Rehearsal.</p><a class="button primary" href="/" data-link>Return home</a></main>`);
 }
 
 function currentRoute(): Route {
@@ -388,16 +392,35 @@ function platformAsset(assets: ReleaseAsset[]): ReleaseAsset | undefined {
   return assets.find(asset => asset.name.startsWith(prefix));
 }
 
+function readCachedRelease(): GitHubRelease | undefined {
+  try {
+    const cached = JSON.parse(localStorage.getItem(RELEASE_CACHE_KEY) || 'null') as { savedAt?: unknown; release?: GitHubRelease } | null;
+    if (!cached || typeof cached.savedAt !== 'number' || Date.now() - cached.savedAt > RELEASE_CACHE_MAX_AGE_MS) return undefined;
+    if (!cached.release || typeof cached.release.tag_name !== 'string' || !Array.isArray(cached.release.assets)) return undefined;
+    return cached.release;
+  } catch {
+    return undefined;
+  }
+}
+
+async function getRelease(): Promise<GitHubRelease> {
+  const cached = readCachedRelease();
+  if (cached) return cached;
+  const response = await fetch(RELEASE_API, { headers: { Accept: 'application/vnd.github+json' } });
+  if (!response.ok) throw new Error('release unavailable');
+  const release = await response.json() as GitHubRelease;
+  if (typeof release.tag_name !== 'string' || !Array.isArray(release.assets)) throw new Error('invalid release metadata');
+  localStorage.setItem(RELEASE_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), release }));
+  return release;
+}
+
 async function loadRelease(): Promise<void> {
   const button = document.querySelector<HTMLAnchorElement>('#platform-download')!;
   const note = document.querySelector('#release-note')!;
   const platformNote = document.querySelector('#platform-note')!;
   try {
-    const response = await fetch('/latest.json', { headers: { Accept: 'application/json' } });
-    if (!response.ok) throw new Error('release unavailable');
-    const manifest = await response.json() as ReleaseManifest;
-    const assets = Object.values(manifest.platforms || {}).map(url => ({ name: url.split('/').pop() || '', browser_download_url: url }));
-    const asset = platformAsset(assets);
+    const release = await getRelease();
+    const asset = platformAsset(release.assets);
     if (!asset) {
       if (/android|iphone|ipad|ipod|mobile/.test(navigator.userAgent.toLowerCase())) {
         platformNote.textContent = 'Install on macOS, Windows, or Linux.';
@@ -409,7 +432,7 @@ async function loadRelease(): Promise<void> {
     button.href = asset.browser_download_url;
     button.textContent = `Download ${asset.name.replace('rehearsal-', '')}`;
     button.classList.remove('disabled');
-    platformNote.textContent = `Release v${manifest.version} is ready for this device.`;
+    platformNote.textContent = `Release ${release.tag_name} is ready for this device.`;
     note.textContent = 'The download comes from the matching GitHub release.';
   } catch {
     platformNote.textContent = 'Downloads are being published or this device is offline.';

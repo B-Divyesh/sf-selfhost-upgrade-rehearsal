@@ -15,6 +15,8 @@ env:
 
 permissions:
   contents: write
+  attestations: write
+  id-token: write
 
 jobs:
   build:
@@ -109,17 +111,27 @@ jobs:
           mac_arm_hash="$(awk '/macos-aarch64.tar.gz$/ {print $1}' "$sums")"
           mac_intel_hash="$(awk '/macos-x86_64.tar.gz$/ {print $1}' "$sums")"
           linux_hash="$(awk '/linux-x86_64.tar.gz$/ {print $1}' "$sums")"
-          sed -e "s/__VERSION__/$version/g" -e "s/__WINDOWS_SHA256__/$win_hash/g" packaging/scoop/rehearsal.json > release-assets/rehearsal-scoop.json
+          sed -e "s/__VERSION__/$version/g" -e "s/__WINDOWS_SHA256__/$win_hash/g" packaging/scoop/rehearsal.json > release-assets/selfhost-upgrade-rehearsal.json
           sed -e "s/__VERSION__/$version/g" -e "s/__MAC_ARM_SHA256__/$mac_arm_hash/g" -e "s/__MAC_INTEL_SHA256__/$mac_intel_hash/g" -e "s/__LINUX_SHA256__/$linux_hash/g" packaging/homebrew/rehearsal.rb > release-assets/rehearsal.rb
           mkdir -p release-assets/winget
           sed -e "s/__VERSION__/$version/g" packaging/winget/publisher.yaml > release-assets/winget/Sociobot.Rehearsal.yaml
           sed -e "s/__VERSION__/$version/g" packaging/winget/locale.yaml > release-assets/winget/Sociobot.Rehearsal.locale.en-US.yaml
           sed -e "s/__VERSION__/$version/g" -e "s/__WINDOWS_SHA256__/$win_hash/g" packaging/winget/installer.yaml > release-assets/winget/Sociobot.Rehearsal.installer.yaml
           (cd release-assets && zip -r "rehearsal-winget-${version}.zip" winget)
+      - name: Attest release assets
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: release-assets/*
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.RELEASE_TAG }}
           generate_release_notes: true
+          body: |
+            Every archive is listed in `SHA256SUMS`. GitHub Actions build provenance is available with:
+
+            `gh attestation verify <asset> --repo ${{ github.repository }}`
+
+            Install the latest release with the site installers. To roll back, set `REHEARSAL_VERSION=vX.Y.Z` before running the installer; it verifies that tagged release's checksum before replacing the binary.
           files: release-assets/*
 
   update-tap:
@@ -154,4 +166,30 @@ jobs:
             exit 0
           fi
           git commit -m "rehearsal ${RELEASE_TAG}"
+          git push
+
+  update-scoop:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish Scoop manifest
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then echo "FACTORY_GITHUB_TOKEN is required to update the Scoop bucket."; exit 1; fi
+          gh auth setup-git
+          mkdir -p release-assets
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern selfhost-upgrade-rehearsal.json --dir release-assets
+          gh repo clone "${GITHUB_REPOSITORY_OWNER}/scoop-bucket" scoop-bucket
+          cp release-assets/selfhost-upgrade-rehearsal.json scoop-bucket/selfhost-upgrade-rehearsal.json
+          cd scoop-bucket
+          git config user.name "Param Factory"
+          git config user.email "factory@sociobot.in"
+          git add selfhost-upgrade-rehearsal.json
+          if git diff --cached --quiet; then
+            echo "Scoop manifest already publishes ${RELEASE_TAG}."
+            exit 0
+          fi
+          git commit -m "selfhost-upgrade-rehearsal ${RELEASE_TAG}"
           git push

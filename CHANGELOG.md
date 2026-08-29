@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Replace stale static release discovery with the GitHub Releases API, a one-hour local cache, and an offline publishing state.
+- Publish the named Scoop bucket manifest, attest release assets, and document checksum-verified rollback installers.
+- Make skip links move keyboard focus to the main landmark.
 - Keep the isolated demo disclosure and reset controls visible while a phone user scrolls.
 - Replace the false customer-installation boundary with the tested built-in-client and configured-hook boundary.
 - Add claim coverage for supported platforms, browser-session lifetime, development tools, tests, and static deployment output.

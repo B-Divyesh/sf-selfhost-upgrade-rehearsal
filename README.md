@@ -39,13 +39,32 @@ Homebrew packages use the published tap:
 brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal
 ```
 
-Scoop uses the release manifest:
+Scoop uses the published bucket:
 
 ```powershell
-scoop install https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/latest/download/rehearsal-scoop.json
+scoop bucket add b-divyesh https://github.com/B-Divyesh/scoop-bucket
+scoop install selfhost-upgrade-rehearsal
 ```
 
-Each release also carries `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, and checksums.
+Each release also carries `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`.
+
+## Verify and roll back an installer
+
+The installers download the matching release `SHA256SUMS` file and check the archive before installing it. GitHub Actions also records build provenance for every release asset; verify it with GitHub CLI:
+
+```sh
+gh attestation verify rehearsal-linux-x86_64.tar.gz --repo B-Divyesh/sf-selfhost-upgrade-rehearsal
+```
+
+To install an earlier tagged release, set `REHEARSAL_VERSION` to its full tag. The installer checks that release's checksum before replacing the binary:
+
+```sh
+curl -fsSL https://selfhost-upgrade-rehearsal.sociobot.in/install.sh | REHEARSAL_VERSION=v0.1.3 sh
+```
+
+```powershell
+$env:REHEARSAL_VERSION = 'v0.1.3'; irm https://selfhost-upgrade-rehearsal.sociobot.in/install.ps1 | iex
+```
 
 ## Declare an upgrade path
 
@@ -141,7 +160,7 @@ Package the Rust crate without publishing it:
 cargo package --locked
 ```
 
-The complete deployable static site is in `dist/site`. Tag a version such as `v0.1.3` to run the cross-platform GitHub release workflow.
+The complete deployable static site is in `dist/site`. Tag a version such as `v0.1.4` to run the cross-platform GitHub release workflow.
 
 ## License
 
