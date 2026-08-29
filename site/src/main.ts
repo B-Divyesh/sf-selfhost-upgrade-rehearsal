@@ -161,7 +161,7 @@ rehearsal run --output release-proof</code></pre></div>
       <div><p class="eyebrow">Optional paid kit</p><h2 id="paid-title">Reuse the check in release CI</h2><p>The $79 one-time Team kit adds a release-matrix workflow and upgrade checklist.</p><ul><li>The CLI and both receipt formats stay free.</li><li>Sociobot is the merchant of record.</li><li>Refunds are handled through Sociobot.</li></ul></div>
       <div class="license-box">
         <a class="button primary" href="${BILLING}/checkout">Buy the Team kit — $79</a>
-        <form id="license-form"><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false" required aria-required="true" aria-describedby="license-status"><button type="submit">Verify license</button></div></form>
+        <form id="license-form" novalidate><label for="license">Have a license? Paste it</label><div><input id="license" name="license" autocomplete="off" spellcheck="false" required aria-required="true" aria-describedby="license-status"><button type="submit">Verify license</button></div></form>
         <p id="license-status" class="fine-print" aria-live="polite">Payment opens Sociobot checkout.</p>
         <button id="team-download" class="button secondary hidden" type="button">Download Team CI kit</button>
       </div>

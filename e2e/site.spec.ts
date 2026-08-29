@@ -253,7 +253,8 @@ test('mobile navigation targets, empty-license feedback, and mobile downloads ar
   }));
   expect(targets.every(target => target.width >= 44 && target.height >= 44)).toBe(true);
   expect(await page.locator('.plain-facts').evaluate(element => Number.parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(16);
-  await page.getByRole('button', { name: 'Verify license' }).click();
+  await page.getByRole('button', { name: 'Verify license' }).focus();
+  await page.keyboard.press('Enter');
   await expect(page.getByText('Paste a license token, then verify it.')).toBeVisible();
   await expect(page.getByRole('link', { name: /Download rehearsal-/ })).toHaveCount(0);
   await expect(page.getByText('Desktop downloads are available for macOS, Windows, and Linux.')).toBeVisible();
