@@ -4,7 +4,7 @@
   "homepage": "https://selfhost-upgrade-rehearsal.sociobot.in",
   "license": "MIT",
   "url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.3/rehearsal-windows-x86_64.zip",
-  "hash": "032db661e465b71c17613d18db968d9b9c74e100a7ea0179b5a6df4657cab7d8",
+  "hash": "d8a4b6881e21f15938f034247189c8b4b32926e700e7112b226f5eb121e51504",
   "bin": "rehearsal.exe",
   "checkver": { "github": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal" },
   "autoupdate": { "url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v$version/rehearsal-windows-x86_64.zip" }

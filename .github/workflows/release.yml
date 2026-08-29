@@ -136,6 +136,9 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_GITHUB_TOKEN }}
         run: |
           if [ -z "$GH_TOKEN" ]; then echo "FACTORY_GITHUB_TOKEN is required to update the Homebrew tap."; exit 1; fi
+          # The CLI token authenticates API calls, while this configures Git
+          # itself for the clone-and-push sequence below.
+          gh auth setup-git
           gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern rehearsal.rb --dir release-assets
           gh repo clone "${GITHUB_REPOSITORY_OWNER}/homebrew-selfhost-upgrade-rehearsal" tap
           mkdir -p tap/Formula
