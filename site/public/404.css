@@ -7,7 +7,7 @@ a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
 .skip-link:focus { transform: translateY(0); }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 .site-header { max-width: 1200px; min-height: 88px; margin: auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 2px solid var(--ink); }
-.wordmark { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: .78rem; font-weight: 800; line-height: 1.15; text-transform: uppercase; letter-spacing: .09em; }
+.wordmark { min-width: 44px; min-height: 44px; display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: .78rem; font-weight: 800; line-height: 1.15; text-transform: uppercase; letter-spacing: .09em; }
 .wordmark svg { width: 38px; height: 38px; fill: none; stroke: var(--fern); stroke-width: 2.4; stroke-linecap: round; }
 .wordmark svg .ground { stroke: var(--orange); }
 .site-header nav, .site-footer nav { display: flex; gap: clamp(16px, 4vw, 40px); align-items: center; }

@@ -62,6 +62,46 @@ test('landing has one clear page outline and no serious accessibility errors', a
   }
 });
 
+test('@regression:first-screen-facts all three facts fit common desktop first screens at legible size', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chromium', 'desktop geometry is covered once at both required viewport sizes');
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 1366, height: 768 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/');
+    const facts = await page.locator('.plain-facts li').evaluateAll(items => items.map(item => {
+      const box = item.getBoundingClientRect();
+      return {
+        top: box.top,
+        bottom: box.bottom,
+        fontSize: Number.parseFloat(getComputedStyle(item).fontSize)
+      };
+    }));
+
+    expect(facts, `${viewport.width}x${viewport.height} should contain exactly three facts`).toHaveLength(3);
+    for (const fact of facts) {
+      expect(fact.top, `fact should begin inside ${viewport.width}x${viewport.height}`).toBeGreaterThanOrEqual(0);
+      expect(fact.bottom, `fact should end inside ${viewport.width}x${viewport.height}`).toBeLessThanOrEqual(viewport.height);
+      expect(fact.fontSize, `fact should remain at least 16px in ${viewport.width}x${viewport.height}`).toBeGreaterThanOrEqual(16);
+    }
+  }
+});
+
+test('@regression:404-wordmark standalone 404 wordmark is a 44px target on desktop and mobile', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chromium', 'standalone page geometry is covered once at both required viewport sizes');
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/404.html');
+    const target = await page.getByRole('link', { name: 'Self-Host Upgrade Rehearsal home' }).evaluate(link => {
+      const box = link.getBoundingClientRect();
+      return { width: box.width, height: box.height };
+    });
+
+    expect(target.width, `wordmark width at ${viewport.width}px`).toBeGreaterThanOrEqual(44);
+    expect(target.height, `wordmark height at ${viewport.width}px`).toBeGreaterThanOrEqual(44);
+  }
+});
+
 test('@claim:demo-receipt demo downloads the complete schema-1 readiness receipt', async ({ page }) => {
   await page.goto('/?demo=1');
   await expect(page.getByRole('heading', { level: 2, name: 'Arbor Desk 1.8.4 → 2.0.0' })).toBeVisible();
