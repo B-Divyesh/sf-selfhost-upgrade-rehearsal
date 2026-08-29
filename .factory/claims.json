@@ -35,6 +35,13 @@
     "sandbox": "fresh temporary directory; bundled synthetic fixture; assert each receipt check passed"
   },
   {
+    "id": "declared-resource-minimums",
+    "claim": "The receipt records declared memory and disk minimums.",
+    "where": "Open Graph and Twitter metadata, landing, README",
+    "test": "npm test -- --grep @claim:declared-resource-minimums",
+    "sandbox": "fresh temporary declaration with explicit memory and disk minimums; run the CLI and inspect the JSON receipt"
+  },
+  {
     "id": "compose-kubernetes-declarations",
     "claim": "The CLI validates Compose and Kubernetes declarations before launch.",
     "where": "landing, README",

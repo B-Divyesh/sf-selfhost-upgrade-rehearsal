@@ -9,8 +9,15 @@ import { promisify } from 'node:util';
 const exec = promisify(execFile);
 const root = resolve(import.meta.dirname, '..');
 
-function declaration(options: { notes?: string; preflight?: string } = {}): string {
+type DeclarationOptions = {
+  notes?: string;
+  preflight?: string;
+  resources?: { memory_mb: number; disk_mb: number };
+};
+
+function declaration(options: DeclarationOptions = {}): string {
   const hook = '[/usr/bin/true]';
+  const resources = options.resources || { memory_mb: 512, disk_mb: 1024 };
   return `schema: 1
 product: Receipt privacy test
 adapter: fixture
@@ -19,7 +26,7 @@ target: { version: 2.0.0, config_schema: new.yml }
 environment:
   operating_systems: [linux]
   architectures: [x86_64]
-${options.notes ? `  notes: "${options.notes}"\n` : ''}resources: { memory_mb: 512, disk_mb: 1024 }
+${options.notes ? `  notes: "${options.notes}"\n` : ''}resources: { memory_mb: ${resources.memory_mb}, disk_mb: ${resources.disk_mb} }
 hooks:
   preflight: ${options.preflight || hook}
   start_source: ${hook}
@@ -33,7 +40,7 @@ hooks:
 `;
 }
 
-async function writeMinimalDeclaration(dir: string, options: { notes?: string; preflight?: string } = {}): Promise<void> {
+async function writeMinimalDeclaration(dir: string, options: DeclarationOptions = {}): Promise<void> {
   await writeFile(join(dir, 'old.yml'), 'database:\n  password: old-secret\n');
   await writeFile(join(dir, 'new.yml'), 'database:\n  password: new-secret\n  port: 5432\n');
   await writeFile(join(dir, 'rehearsal.yml'), declaration(options));
@@ -118,6 +125,19 @@ test('@claim:upgrade-hooks CLI checks backup, restore, and health hooks', async 
     for (const name of ['Create backup', 'Restore backup', 'Run health check']) {
       expect(receipt.checks.find((check: { name: string }) => check.name === name)?.status).toBe('passed');
     }
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:declared-resource-minimums receipt records the declared memory and disk minimums', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-resources-'));
+  try {
+    await writeMinimalDeclaration(dir, { resources: { memory_mb: 1536, disk_mb: 4096 } });
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, 'report')]);
+    const receipt = JSON.parse(await readFile(join(dir, 'report/readiness.json'), 'utf8'));
+    expect(receipt.required_resources).toEqual({ memory_mb: 1536, disk_mb: 4096 });
+    const metadata = await readFile(join(root, 'site/index.html'), 'utf8');
+    expect(metadata).toContain('record declared resource minimums');
+    expect(metadata).not.toContain('resource checks');
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
@@ -233,6 +253,20 @@ test('@claim:team-kit-license valid license restores the Team CI kit', async ({ 
   for await (const chunk of stream!) text += chunk.toString();
   expect(text).toContain('Upgrade checklist');
   expect(text).toContain('matrix:');
+});
+
+test('a cached invalid license keeps its inactive notice after reload', async ({ page }) => {
+  let verificationRequests = 0;
+  await page.route('https://api.sociobot.in/**', async route => {
+    verificationRequests += 1;
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ valid: false, reason: 'invalid', expires_at: null }) });
+  });
+  await page.goto('/?license=invalid-license');
+  await expect(page.getByText('License no longer active. You can buy a new license.')).toBeVisible();
+  await page.reload();
+  await expect(page.getByText('License no longer active. You can buy a new license.')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Download Team CI kit' })).toBeHidden();
+  expect(verificationRequests).toBe(1);
 });
 
 test('routes update title, focus, and history', async ({ page }) => {

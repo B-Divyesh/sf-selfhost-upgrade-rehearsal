@@ -4,6 +4,7 @@ const PRODUCT = 'Self-Host Upgrade Rehearsal';
 const SLUG = 'selfhost-upgrade-rehearsal';
 const REPO = 'B-Divyesh/sf-selfhost-upgrade-rehearsal';
 const BILLING = `https://api.sociobot.in/api/v1/products/${SLUG}`;
+const INACTIVE_LICENSE_NOTICE = 'License no longer active. You can buy a new license.';
 
 type Route = '/' | '/demo' | '/privacy' | '/terms' | '/404';
 type ReleaseAsset = { name: string; browser_download_url: string };
@@ -194,11 +195,11 @@ function demo(): string {
 }
 
 function privacy(): string {
-  return legalPage('Privacy', 'Keep rehearsal data on your machine', `<p>The CLI runs on your machine. It does not send project files, hook output, or receipts to us.</p><h2>Website requests</h2><p>The website requests release metadata from GitHub. GitHub receives your IP address and browser details.</p><p>License checks send the license token to Sociobot. We store the token and a daily verdict in your browser.</p><h2>Demo storage</h2><p>The browser demo uses session storage keys that start with <code>demo:</code>. Closing the tab clears them.</p><h2>Payments</h2><p>Sociobot and Dodo process checkout details. This site does not receive card numbers.</p><h2>Contact</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with a privacy question.</p>`);
+  return legalPage('Privacy', 'Keep rehearsal data on your machine', `<p>The CLI runs on your machine. It does not send project files, hook output, or receipts to us.</p><h2>Website requests</h2><p>The website requests release metadata from GitHub. GitHub receives your IP address and browser details.</p><p>License checks send the license token to Sociobot. We store the token and a daily verdict in your browser.</p><h2>Demo storage</h2><p>The browser demo uses session storage keys that start with <code>demo:</code>. Closing the tab clears them.</p><h2>Payments</h2><p>Sociobot and Dodo process checkout details. This site does not receive card numbers.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with a privacy question.</p>`);
 }
 
 function terms(): string {
-  return legalPage('Terms', 'Use receipts as tested evidence', `<p>Self-Host Upgrade Rehearsal is provided under the MIT License.</p><h2>Receipt scope</h2><p>A receipt describes one declared test. It does not promise success in an unlisted environment.</p><p>You remain responsible for backups, release decisions, and customer instructions.</p><h2>Team kit</h2><p>The Team kit costs $79 as a one-time purchase. Sociobot is the merchant of record.</p><p>Refunds are handled through Sociobot. A refund revokes the related license.</p><h2>Fair use</h2><p>Do not use the service to test systems you do not control.</p><h2>Contact</h2><p>Email <a href="mailto:support@sociobot.in">support@sociobot.in</a> with a terms question.</p>`);
+  return legalPage('Terms', 'Use receipts as tested evidence', `<p>Self-Host Upgrade Rehearsal is provided under the MIT License.</p><h2>Receipt scope</h2><p>A receipt describes one declared test. It does not promise success in an unlisted environment.</p><p>You remain responsible for backups, release decisions, and customer instructions.</p><h2>Team kit</h2><p>The Team kit costs $79 as a one-time purchase. Sociobot is the merchant of record.</p><p>Refunds are handled through Sociobot. A refund revokes the related license.</p><h2>Fair use</h2><p>Do not use the service to test systems you do not control.</p><h2>Contact</h2><p>Email <a class="contact-link" href="mailto:support@sociobot.in">support@sociobot.in</a> with a terms question.</p>`);
 }
 
 function legalPage(label: string, title: string, body: string): string {
@@ -392,6 +393,7 @@ function setupLicense(): void {
   const token = localStorage.getItem(`sb_license:${SLUG}`);
   const verdict = JSON.parse(localStorage.getItem(`sb_license_verdict:${SLUG}`) || 'null');
   if (token && verdict?.valid) setLicensed(true, 'Team kit active.');
+  if (token && verdict && !verdict.valid) setLicensed(false, INACTIVE_LICENSE_NOTICE);
   if (token && (!verdict || verdict.time < Date.now() - 86_400_000)) verifyLicense(token, false);
 }
 
@@ -402,7 +404,7 @@ async function verifyLicense(token: string, announced: boolean): Promise<void> {
     const response = await fetch(`${BILLING}/verify?license=${encodeURIComponent(token)}`);
     const verdict = await response.json();
     localStorage.setItem(`sb_license_verdict:${SLUG}`, JSON.stringify({ valid: verdict.valid === true, time: Date.now() }));
-    setLicensed(verdict.valid === true, verdict.valid ? 'Team kit active.' : 'License no longer active. You can buy a new license.');
+    setLicensed(verdict.valid === true, verdict.valid ? 'Team kit active.' : INACTIVE_LICENSE_NOTICE);
   } catch {
     if (announced && status) status.textContent = 'The license check is offline. Try again when connected.';
   }
