@@ -1,6 +1,6 @@
 # Repair handoff — Self-Host Upgrade Rehearsal
 
-## Result: repaired and locally verified
+## Result: repaired, deployed, and verified
 
 This repair starts from verifier report commit `a05b89607ba85deb7eaf112090ddbe7ea3167916` for candidate `7a04119fed54d3a75112cc67116370e21a4dea0c`. It fixes both release-blocking findings in `.factory/verification-5.md` without changing the researched brief, CLI, receipt schema, demo behavior, billing flow, release assets, or deployment class.
 
@@ -56,11 +56,27 @@ A local browser sweep covered `/`, `/?demo=1`, `/privacy`, `/terms`, and `/404.h
 
 ## Deployment and live verification
 
-Pending the repair commit and static deployment. The deployment command is:
+Repair commit `76b2af6b614ee7d1c0c1786f9cb07954a347faf4` was pushed to `origin/main`. GitHub Actions run `33261788122` completed successfully. The site was deployed with:
 
 ```sh
 /opt/fleet/lib/deploy-static.sh selfhost-upgrade-rehearsal dist/site
 ```
+
+Azure Static Web Apps deployment `a4b00112-b32b-4c53-b28e-accb168c0c7c` succeeded. The custom domain returned HTTPS 200. `/opt/fleet/lib/verify-url.sh` passed against production in 810 ms with the correct title, `lang=en`, one H1, one main, complete alt text and button names, and no console errors.
+
+Production identity and response policy:
+
+- Local and live SHA-256 values match for `index.html`, `404.html`, hashed JavaScript and CSS, both WebP images, both installers, and `latest.json`.
+- `/`, `/demo`, `/privacy`, and `/terms` return 200. An unknown route returns the designed page with HTTP 404.
+- HTML uses `public, must-revalidate, max-age=30`; hashed CSS uses `public, max-age=31536000, immutable`.
+- Production sends HSTS, `nosniff`, strict-origin referrer policy, camera/microphone/geolocation restrictions, and the configured CSP with `frame-ancestors 'none'`.
+- The product checkout returns 303 to hosted Dodo checkout, the release asset returns its expected GitHub redirect, and the factory link returns 200.
+
+The live 1440×900 and iPhone/390×844 browser sweep covered landing, demo, Privacy, Terms, and standalone 404. Every route had one H1 and one main, no overflow, no sub-44 px target, no serious/critical axe issue, and no console/page error. Live geometry exactly matched the repaired local values. Keyboard skip navigation passed. After a warm load, the demo reset offline and reached READY; it made only three same-origin shell requests and registered no service worker. A live invalid-license check stripped the token from the URL, stored only the namespaced token and cached invalid verdict, kept the paid download hidden, and made one verification request across the initial load and reload.
+
+Live Lighthouse mobile results: Performance 100, Accessibility 100, Best Practices 100, SEO 100; FCP 0.81 s, LCP 1.21 s, TBT 25 ms, CLS 0, transferred bytes 84,369.
+
+The live one-line shell installer verified `rehearsal-linux-x86_64.tar.gz` against `SHA256SUMS`, installed version 0.1.2 into an isolated directory, and produced a READY nine-check customer-safe demo receipt.
 
 ## Known gaps and operator action
 
