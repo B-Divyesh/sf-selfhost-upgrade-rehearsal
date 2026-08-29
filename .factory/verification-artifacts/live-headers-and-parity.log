@@ -1,0 +1,161 @@
+===== / =====
+HTTP/2 200 
+content-type: text/html
+date: Sat, 29 Aug 2026 15:23:56 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 1782
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /demo =====
+HTTP/2 200 
+content-type: text/html
+date: Sat, 29 Aug 2026 15:23:56 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 1751
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /privacy =====
+HTTP/2 200 
+content-type: text/html
+date: Sat, 29 Aug 2026 15:23:57 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 1733
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /terms =====
+HTTP/2 200 
+content-type: text/html
+date: Sat, 29 Aug 2026 15:23:56 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 1728
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /latest.json =====
+HTTP/2 200 
+content-type: application/json
+date: Sat, 29 Aug 2026 15:23:56 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 736
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /assets/index-Ciep9Kdj.js =====
+HTTP/2 200 
+content-type: text/javascript
+date: Sat, 29 Aug 2026 15:23:56 GMT
+cache-control: public, max-age=31536000, immutable
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 21607
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /assets/index-B9IVHe6m.css =====
+HTTP/2 200 
+content-type: text/css
+date: Sat, 29 Aug 2026 15:23:57 GMT
+cache-control: public, max-age=31536000, immutable
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 13071
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /specimen-upgrade.webp =====
+HTTP/2 200 
+content-type: image/webp
+date: Sat, 29 Aug 2026 15:23:57 GMT
+cache-control: public, max-age=86400
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 70902
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+===== /verification-5-not-found =====
+HTTP/2 404 
+content-type: text/html
+date: Sat, 29 Aug 2026 15:23:58 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "10768770"
+last-modified: Sat, 29 Aug 2026 14:57:33 GMT
+content-length: 2831
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; connect-src 'self' https://api.sociobot.in; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.sociobot.in; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+2e874c2e471d880c90104822ad2e4438d3c01a940f23d780a9d8876f2be52dab  live:index.html
+2e874c2e471d880c90104822ad2e4438d3c01a940f23d780a9d8876f2be52dab  local:index.html
+018c33bb3fa0033e4ab7e016f19144d1d0353a4cd1f4e9a2abf851dded59e7a8  live:assets/index-Ciep9Kdj.js
+018c33bb3fa0033e4ab7e016f19144d1d0353a4cd1f4e9a2abf851dded59e7a8  local:assets/index-Ciep9Kdj.js
+11121e419759fcebec1e2ef15365e532cc1a82b0293f19fd6768672287419c83  live:assets/index-B9IVHe6m.css
+11121e419759fcebec1e2ef15365e532cc1a82b0293f19fd6768672287419c83  local:assets/index-B9IVHe6m.css
+278b1f35e76f0680afcbb9b96914f6d3ba33d4500e0c48e37e961945de8d560e  live:specimen-upgrade.webp
+278b1f35e76f0680afcbb9b96914f6d3ba33d4500e0c48e37e961945de8d560e  local:specimen-upgrade.webp
+7f1ddb589b4cd28193080c3e041c8882638b7282bd3ad7ed01321c0248e7ee97  live:og-card.webp
+7f1ddb589b4cd28193080c3e041c8882638b7282bd3ad7ed01321c0248e7ee97  local:og-card.webp
+40e965f4056bea2048c59b58a820adbecb280ddf716fe6cb5f9c94ba10319547  live:install.sh
+40e965f4056bea2048c59b58a820adbecb280ddf716fe6cb5f9c94ba10319547  local:install.sh
+7c97f02e16527f9885c105e309b664aae1747954dc0f3628983a05acde991ae8  live:install.ps1
+7c97f02e16527f9885c105e309b664aae1747954dc0f3628983a05acde991ae8  local:install.ps1
+f7f32c39e4e0e2e255e9a32289e1cded9a6a7c158204224a7e4eadc29241f950  live:latest.json
+f7f32c39e4e0e2e255e9a32289e1cded9a6a7c158204224a7e4eadc29241f950  local:latest.json
+temporary parity files: /tmp/tmp.QO2MKm7C3I

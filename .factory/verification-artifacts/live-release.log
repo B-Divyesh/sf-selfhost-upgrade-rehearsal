@@ -1,0 +1,80 @@
+{
+  "tag_name": "v0.1.2",
+  "published_at": "2026-08-29T14:23:39Z",
+  "assets": [
+    {
+      "name": "latest.json",
+      "size": 736,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/latest.json"
+    },
+    {
+      "name": "rehearsal-0.1.2-linux-amd64.deb",
+      "size": 561196,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-0.1.2-linux-amd64.deb"
+    },
+    {
+      "name": "rehearsal-0.1.2-linux-x86_64.rpm",
+      "size": 567134,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-0.1.2-linux-x86_64.rpm"
+    },
+    {
+      "name": "rehearsal-linux-aarch64.tar.gz",
+      "size": 524533,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-aarch64.tar.gz"
+    },
+    {
+      "name": "rehearsal-linux-x86_64.tar.gz",
+      "size": 565106,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-linux-x86_64.tar.gz"
+    },
+    {
+      "name": "rehearsal-macos-aarch64.pkg",
+      "size": 451516,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-aarch64.pkg"
+    },
+    {
+      "name": "rehearsal-macos-aarch64.tar.gz",
+      "size": 452824,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-aarch64.tar.gz"
+    },
+    {
+      "name": "rehearsal-macos-x86_64.pkg",
+      "size": 492742,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-x86_64.pkg"
+    },
+    {
+      "name": "rehearsal-macos-x86_64.tar.gz",
+      "size": 493829,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-macos-x86_64.tar.gz"
+    },
+    {
+      "name": "rehearsal-scoop.json",
+      "size": 653,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-scoop.json"
+    },
+    {
+      "name": "rehearsal-windows-x86_64.zip",
+      "size": 458953,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-windows-x86_64.zip"
+    },
+    {
+      "name": "rehearsal-winget-0.1.2.zip",
+      "size": 1402,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal-winget-0.1.2.zip"
+    },
+    {
+      "name": "rehearsal.rb",
+      "size": 1047,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/rehearsal.rb"
+    },
+    {
+      "name": "SHA256SUMS",
+      "size": 865,
+      "browser_download_url": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.2/SHA256SUMS"
+    }
+  ]
+}
+linux_x64_expected=baae9909cffe06c7d5a3ba0f0f50eb2c8678a02461eb89fe05c1e2f6152f3f3a
+linux_x64_actual=baae9909cffe06c7d5a3ba0f0f50eb2c8678a02461eb89fe05c1e2f6152f3f3a
+rehearsal 0.1.2
+release_dir=/tmp/tmp.hJX1iCoJKP

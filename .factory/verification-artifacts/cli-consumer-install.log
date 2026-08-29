@@ -1,0 +1,103 @@
+consumer_root=/tmp/tmp.1LX28ppvUm
+  Installing rehearsal v0.1.2 (/work/repo/target/package/rehearsal-0.1.2)
+    Updating crates.io index
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling syn v3.0.4
+   Compiling typenum v1.20.1
+   Compiling serde_core v1.0.229
+   Compiling utf8parse v0.2.2
+   Compiling libc v0.2.189
+   Compiling anstyle-parse v1.0.0
+   Compiling cfg-if v1.0.4
+   Compiling zmij v1.0.23
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling getrandom v0.4.3
+   Compiling anstyle-query v1.1.5
+   Compiling colorchoice v1.0.5
+   Compiling anstyle v1.0.14
+   Compiling rustix v1.1.4
+   Compiling serde v1.0.229
+   Compiling anstream v1.0.0
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling serde_derive v1.0.229
+   Compiling itoa v1.0.18
+   Compiling linux-raw-sys v0.12.1
+   Compiling strsim v0.11.1
+   Compiling bitflags v2.13.1
+   Compiling equivalent v1.0.2
+   Compiling clap_lex v1.1.0
+   Compiling serde_json v1.0.151
+   Compiling anyhow v1.0.104
+   Compiling heck v0.5.0
+   Compiling hashbrown v0.17.1
+   Compiling indexmap v2.14.0
+   Compiling clap_derive v4.6.4
+   Compiling clap_builder v4.6.6
+   Compiling digest v0.10.7
+   Compiling cpufeatures v0.2.17
+   Compiling ryu v1.0.23
+   Compiling fastrand v2.5.0
+   Compiling memchr v2.8.3
+   Compiling once_cell v1.21.4
+   Compiling unsafe-libyaml v0.2.11
+   Compiling serde_yaml v0.9.34+deprecated
+   Compiling tempfile v3.27.0
+   Compiling sha2 v0.10.9
+   Compiling clap v4.6.6
+   Compiling rehearsal v0.1.2 (/work/repo/target/package/rehearsal-0.1.2)
+    Finished `release` profile [optimized] target(s) in 45.65s
+  Installing /tmp/tmp.1LX28ppvUm/bin/rehearsal
+   Installed package `rehearsal v0.1.2 (/work/repo/target/package/rehearsal-0.1.2)` (executable `rehearsal`)
+warning: be sure to add `/tmp/tmp.1LX28ppvUm/bin` to your PATH to be able to run the installed binaries
+rehearsal 0.1.2
+Rehearse a self-hosted upgrade before customers do.
+
+Usage: rehearsal <COMMAND>
+
+Commands:
+  init   Write a checked starter declaration
+  check  Validate a declaration without launching services
+  run    Run every upgrade hook and write JSON and HTML receipts
+  demo   Run bundled sample data in an isolated temporary directory
+  help   Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+{"receipt_schema":1,"run_id":"SHR-7DC85EE75460","product":"Arbor Desk","source_version":"1.8.4","target_version":"2.0.0","adapter":"sample demo","status":"ready","tested_environment":{"operating_system":"linux","architecture":"x86_64"},"supported_environments":{"operating_systems":["linux","macos","windows"],"architectures":["x86_64","aarch64"]},"required_resources":{"memory_mb":768,"disk_mb":2048},"config_changes":[{"path":"database.ssl","change":"removed","source_type":"boolean","target_type":null},{"path":"database.ssl_mode","change":"added","source_type":null,"target_type":"string"},{"path":"workers.count","change":"added","source_type":null,"target_type":"number"}],"checks":[{"name":"Preflight","status":"passed","duration_ms":1},{"name":"Start source","status":"passed","duration_ms":1},{"name":"Seed sample data","status":"passed","duration_ms":1},{"name":"Create backup","status":"passed","duration_ms":1},{"name":"Stop source","status":"passed","duration_ms":1},{"name":"Start target","status":"passed","duration_ms":1},{"name":"Restore backup","status":"passed","duration_ms":1},{"name":"Run health check","status":"passed","duration_ms":1},{"name":"Clean temporary services","status":"passed","duration_ms":1}],"customer_safe":true,"limitations":["This receipt covers only the source and target versions shown here.","Only the declared operating systems and architectures are supported.","Hook output and sample data are intentionally excluded from this receipt."]}
+{
+  "receipt_schema": 1,
+  "product": "Arbor Desk",
+  "status": "ready",
+  "source_version": "1.8.4",
+  "target_version": "2.0.0",
+  "required_resources": {
+    "memory_mb": 768,
+    "disk_mb": 2048
+  },
+  "checks": 9,
+  "config_changes": 3,
+  "customer_safe": true
+}
+missing_file_exit=2
+error: could not read /tmp/definitely-missing-rehearsal.yml: No such file or directory (os error 2)
+unknown_command_exit=2
+error: unrecognized subcommand 'nonexistent-command'
+
+Usage: rehearsal <COMMAND>
+
+For more information, try '--help'.
+live_install_root=/tmp/tmp.oxOQk6fYEQ
+rehearsal-linux-x86_64.tar.gz: OK
+Installed rehearsal in /tmp/tmp.oxOQk6fYEQ/bin and verified its SHA256 checksum.
+rehearsal 0.1.2
+{
+  "status": "ready",
+  "checks": 9,
+  "customer_safe": true
+}

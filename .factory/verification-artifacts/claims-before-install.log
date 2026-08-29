@@ -1,0 +1,2676 @@
+
+===== CLAIM demo-receipt: npm test -- --grep @claim:demo-receipt =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:demo-receipt
+
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded anstyle-parse v1.0.0
+  Downloaded anstyle-query v1.1.5
+  Downloaded cfg-if v1.0.4
+  Downloaded heck v0.5.0
+  Downloaded block-buffer v0.10.4
+  Downloaded predicates-tree v1.0.13
+  Downloaded colorchoice v1.0.5
+  Downloaded anstream v1.0.0
+  Downloaded anstyle v1.0.14
+  Downloaded aho-corasick v1.1.5
+  Downloaded fastrand v2.5.0
+  Downloaded clap_derive v4.6.4
+  Downloaded is_terminal_polyfill v1.70.2
+  Downloaded normalize-line-endings v0.3.0
+  Downloaded difflib v0.4.0
+  Downloaded equivalent v1.0.2
+  Downloaded float-cmp v0.10.0
+  Downloaded itoa v1.0.18
+  Downloaded version_check v0.9.5
+  Downloaded autocfg v1.5.1
+  Downloaded assert_cmd v2.2.2
+  Downloaded clap_lex v1.1.0
+  Downloaded predicates-core v1.0.10
+  Downloaded wait-timeout v0.2.1
+  Downloaded unicode-ident v1.0.24
+  Downloaded utf8parse v0.2.2
+  Downloaded cpufeatures v0.2.17
+  Downloaded digest v0.10.7
+  Downloaded zmij v1.0.23
+  Downloaded serde_derive v1.0.229
+  Downloaded quote v1.0.47
+  Downloaded predicates v3.1.4
+  Downloaded generic-array v0.14.7
+  Downloaded strsim v0.11.1
+  Downloaded crypto-common v0.1.7
+  Downloaded errno v0.3.14
+  Downloaded getrandom v0.4.3
+  Downloaded anyhow v1.0.104
+  Downloaded clap v4.6.6
+  Downloaded sha2 v0.10.9
+  Downloaded once_cell v1.21.4
+  Downloaded ryu v1.0.23
+  Downloaded serde_core v1.0.229
+  Downloaded tempfile v3.27.0
+  Downloaded termtree v0.5.1
+  Downloaded unsafe-libyaml v0.2.11
+  Downloaded indexmap v2.14.0
+  Downloaded proc-macro2 v1.0.107
+  Downloaded serde v1.0.229
+  Downloaded serde_yaml v0.9.34+deprecated
+  Downloaded bitflags v2.13.1
+  Downloaded num-traits v0.2.19
+  Downloaded memchr v2.8.3
+  Downloaded serde_json v1.0.151
+  Downloaded typenum v1.20.1
+  Downloaded regex v1.13.1
+  Downloaded clap_builder v4.6.6
+  Downloaded hashbrown v0.17.1
+  Downloaded regex-syntax v0.8.11
+  Downloaded syn v3.0.4
+  Downloaded bstr v1.13.1
+  Downloaded rustix v1.1.4
+  Downloaded libc v0.2.189
+  Downloaded regex-automata v0.4.18
+  Downloaded linux-raw-sys v0.12.1
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.24
+   Compiling memchr v2.8.3
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling libc v0.2.189
+   Compiling syn v3.0.4
+   Compiling anstyle v1.0.14
+   Compiling serde_core v1.0.229
+   Compiling typenum v1.20.1
+   Compiling utf8parse v0.2.2
+   Compiling autocfg v1.5.1
+   Compiling num-traits v0.2.19
+   Compiling anstyle-parse v1.0.0
+   Compiling aho-corasick v1.1.5
+   Compiling rustix v1.1.4
+   Compiling regex-syntax v0.8.11
+   Compiling zmij v1.0.23
+   Compiling getrandom v0.4.3
+   Compiling serde v1.0.229
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling cfg-if v1.0.4
+   Compiling anstyle-query v1.1.5
+   Compiling colorchoice v1.0.5
+   Compiling anstream v1.0.0
+   Compiling regex-automata v0.4.18
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling serde_derive v1.0.229
+   Compiling heck v0.5.0
+   Compiling clap_lex v1.1.0
+   Compiling serde_json v1.0.151
+   Compiling hashbrown v0.17.1
+   Compiling equivalent v1.0.2
+   Compiling bitflags v2.13.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling itoa v1.0.18
+   Compiling strsim v0.11.1
+   Compiling anyhow v1.0.104
+   Compiling clap_builder v4.6.6
+   Compiling indexmap v2.14.0
+   Compiling clap_derive v4.6.4
+   Compiling digest v0.10.7
+   Compiling ryu v1.0.23
+   Compiling predicates-core v1.0.10
+   Compiling cpufeatures v0.2.17
+   Compiling once_cell v1.21.4
+   Compiling unsafe-libyaml v0.2.11
+   Compiling fastrand v2.5.0
+   Compiling tempfile v3.27.0
+   Compiling serde_yaml v0.9.34+deprecated
+   Compiling sha2 v0.10.9
+   Compiling float-cmp v0.10.0
+   Compiling clap v4.6.6
+   Compiling regex v1.13.1
+   Compiling difflib v0.4.0
+   Compiling assert_cmd v2.2.2
+   Compiling normalize-line-endings v0.3.0
+   Compiling termtree v0.5.1
+   Compiling predicates-tree v1.0.13
+   Compiling predicates v3.1.4
+   Compiling bstr v1.13.1
+   Compiling wait-timeout v0.2.1
+   Compiling rehearsal v0.1.2 (/work/repo)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 47.43s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT demo-receipt: FAIL (exit 1) =====
+
+===== CLAIM offline-demo: npm test -- --grep @claim:offline-demo =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:offline-demo
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT offline-demo: FAIL (exit 1) =====
+
+===== CLAIM demo-network-privacy: npm test -- --grep @claim:demo-network-privacy =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:demo-network-privacy
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT demo-network-privacy: FAIL (exit 1) =====
+
+===== CLAIM cli-receipts: npm test -- --grep @claim:cli-receipts =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:cli-receipts
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT cli-receipts: FAIL (exit 1) =====
+
+===== CLAIM upgrade-hooks: npm test -- --grep @claim:upgrade-hooks =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:upgrade-hooks
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT upgrade-hooks: FAIL (exit 1) =====
+
+===== CLAIM declared-resource-minimums: npm test -- --grep @claim:declared-resource-minimums =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:declared-resource-minimums
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT declared-resource-minimums: FAIL (exit 1) =====
+
+===== CLAIM compose-kubernetes-declarations: npm test -- --grep @claim:compose-kubernetes-declarations =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:compose-kubernetes-declarations
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT compose-kubernetes-declarations: FAIL (exit 1) =====
+
+===== CLAIM installer-checksum: npm test -- --grep @claim:installer-checksum =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:installer-checksum
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT installer-checksum: FAIL (exit 1) =====
+
+===== CLAIM mit-core: npm test -- --grep @claim:mit-core =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:mit-core
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT mit-core: FAIL (exit 1) =====
+
+===== CLAIM schema-redaction: npm test -- --grep @claim:schema-redaction =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:schema-redaction
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT schema-redaction: FAIL (exit 1) =====
+
+===== CLAIM customer-safe-receipt: npm test -- --grep @claim:customer-safe-receipt =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:customer-safe-receipt
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT customer-safe-receipt: FAIL (exit 1) =====
+
+===== CLAIM temporary-workspace: npm test -- --grep @claim:temporary-workspace =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:temporary-workspace
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT temporary-workspace: FAIL (exit 1) =====
+
+===== CLAIM argument-arrays: npm test -- --grep @claim:argument-arrays =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:argument-arrays
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT argument-arrays: FAIL (exit 1) =====
+
+===== CLAIM exit-codes: npm test -- --grep @claim:exit-codes =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:exit-codes
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT exit-codes: FAIL (exit 1) =====
+
+===== CLAIM unsigned-packages: npm test -- --grep @claim:unsigned-packages =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:unsigned-packages
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT unsigned-packages: FAIL (exit 1) =====
+
+===== CLAIM cli-no-upload: npm test -- --grep @claim:cli-no-upload =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:cli-no-upload
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT cli-no-upload: FAIL (exit 1) =====
+
+===== CLAIM team-kit-license: npm test -- --grep @claim:team-kit-license =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:team-kit-license
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT team-kit-license: FAIL (exit 1) =====
+
+===== CLAIM declared-upgrade-path: npm test -- --grep @claim:declared-upgrade-path =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:declared-upgrade-path
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT declared-upgrade-path: FAIL (exit 1) =====
+
+===== CLAIM customer-boundary: npm test -- --grep @claim:customer-boundary =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:customer-boundary
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT customer-boundary: FAIL (exit 1) =====
+
+===== CLAIM receipt-scope: npm test -- --grep @claim:receipt-scope =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:receipt-scope
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT receipt-scope: FAIL (exit 1) =====
+
+===== CLAIM team-kit-price-scope: npm test -- --grep @claim:team-kit-price-scope =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:team-kit-price-scope
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT team-kit-price-scope: FAIL (exit 1) =====
+
+===== CLAIM free-cli-formats: npm test -- --grep @claim:free-cli-formats =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:free-cli-formats
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT free-cli-formats: FAIL (exit 1) =====
+
+===== CLAIM sociobot-merchant: npm test -- --grep @claim:sociobot-merchant =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-merchant
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT sociobot-merchant: FAIL (exit 1) =====
+
+===== CLAIM sociobot-refunds: npm test -- --grep @claim:sociobot-refunds =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-refunds
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT sociobot-refunds: FAIL (exit 1) =====
+
+===== CLAIM sociobot-checkout: npm test -- --grep @claim:sociobot-checkout =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-checkout
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT sociobot-checkout: FAIL (exit 1) =====
+
+===== CLAIM published-platform-download: npm test -- --grep @claim:published-platform-download =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:published-platform-download
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT published-platform-download: FAIL (exit 1) =====
+
+===== CLAIM homebrew-tap: npm test -- --grep @claim:homebrew-tap =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:homebrew-tap
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT homebrew-tap: FAIL (exit 1) =====
+
+===== CLAIM scoop-manifest: npm test -- --grep @claim:scoop-manifest =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:scoop-manifest
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT scoop-manifest: FAIL (exit 1) =====
+
+===== CLAIM release-asset-set: npm test -- --grep @claim:release-asset-set =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:release-asset-set
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT release-asset-set: FAIL (exit 1) =====
+
+===== CLAIM receipt-contents: npm test -- --grep @claim:receipt-contents =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:receipt-contents
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT receipt-contents: FAIL (exit 1) =====
+
+===== CLAIM release-workflow: npm test -- --grep @claim:release-workflow =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:release-workflow
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT release-workflow: FAIL (exit 1) =====
+
+===== CLAIM sample-demo-parity: npm test -- --grep @claim:sample-demo-parity =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sample-demo-parity
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT sample-demo-parity: FAIL (exit 1) =====
+
+===== CLAIM sociobot-license-api: npm test -- --grep @claim:sociobot-license-api =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:sociobot-license-api
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT sociobot-license-api: FAIL (exit 1) =====
+
+===== CLAIM no-embedded-payment-provider: npm test -- --grep @claim:no-embedded-payment-provider =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:no-embedded-payment-provider
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT no-embedded-payment-provider: FAIL (exit 1) =====
+
+===== CLAIM demo-storage-isolation: npm test -- --grep @claim:demo-storage-isolation =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:demo-storage-isolation
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT demo-storage-isolation: FAIL (exit 1) =====
+
+===== CLAIM starter-templates: npm test -- --grep @claim:starter-templates =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:starter-templates
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT starter-templates: FAIL (exit 1) =====
+
+===== CLAIM json-output: npm test -- --grep @claim:json-output =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:json-output
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT json-output: FAIL (exit 1) =====
+
+===== CLAIM release-manifest: npm test -- --grep @claim:release-manifest =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:release-manifest
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT release-manifest: FAIL (exit 1) =====
+
+===== CLAIM license-browser-storage: npm test -- --grep @claim:license-browser-storage =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:license-browser-storage
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT license-browser-storage: FAIL (exit 1) =====
+
+===== CLAIM no-card-collection: npm test -- --grep @claim:no-card-collection =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:no-card-collection
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT no-card-collection: FAIL (exit 1) =====
+
+===== CLAIM dodo-checkout-processing: npm test -- --grep @claim:dodo-checkout-processing =====
+
+> selfhost-upgrade-rehearsal@0.1.2 test
+> cargo test && npm run build:site && playwright test --grep @claim:dodo-checkout-processing
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (target/debug/deps/rehearsal-da70bb3259a62e20)
+
+running 1 test
+test tests::schema_diff_never_includes_values ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/rehearsal-1af613f98526467c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-27f196f1e3a208d8)
+
+running 4 tests
+test bad_declaration_explains_the_next_step ... ok
+test demo_refuses_to_overwrite_a_nonempty_directory ... ok
+test demo_writes_both_receipts ... ok
+test receipt_redacts_declaration_notes_before_marking_it_customer_safe ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rehearsal
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:site
+> npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs
+
+
+> selfhost-upgrade-rehearsal@0.1.2 build:assets
+> node scripts/build-images.mjs
+
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from /work/repo/scripts/build-images.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+===== RESULT dodo-checkout-processing: FAIL (exit 1) =====
+
+CLAIMS TOTAL=41 FAILURES=41 LOG=/tmp/selfhost-claim-tests.log

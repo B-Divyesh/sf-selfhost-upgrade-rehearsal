@@ -1,0 +1,65 @@
+qa_dir=/tmp/tmp.MLpmlhmNeZ
+zero_resource_exit=2
+error: resource minimums must be greater than zero
+same_version_exit=2
+error: source and target versions match; choose an actual upgrade path
+{
+  "status": "ready",
+  "required_resources": {
+    "memory_mb": 18446744073709551615,
+    "disk_mb": 18446744073709551615
+  }
+}
+failed_hook_exit=1
+{
+  "status": "not ready",
+  "checks": [
+    {
+      "name": "Preflight",
+      "status": "failed",
+      "duration_ms": 1
+    },
+    {
+      "name": "Start source",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Seed sample data",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Create backup",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Stop source",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Start target",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Restore backup",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Run health check",
+      "status": "not run",
+      "duration_ms": 0
+    },
+    {
+      "name": "Clean temporary services",
+      "status": "passed",
+      "duration_ms": 1
+    }
+  ]
+}
+nonempty_demo_exit=2 sentinel_sha=d407f3c5d4d5aa24588fa455633346e16a6a87891a5b02c7053d823a76087508
+error: /tmp/tmp.Eb1NARvw8D is not empty; choose a new demo output directory
