@@ -17,7 +17,7 @@ Perfection-loop round 1 is complete. All 17 findings in `.factory/review-1.md` a
 - Updated the Homebrew tap at commit `ff3e872`. Future release jobs now fail clearly if the cross-repository token is absent instead of silently skipping the tap.
 - Updated `.factory/catalog-description.txt`, `.factory/copy-audit.md`, `.factory/demo.md`, and `.factory/polish-1.md`.
 
-Implementation commits: `be7cf71`, `f741f23`, and `ccef542`. Release workflow run: `33257395063`.
+Implementation commits: `be7cf71`, `f741f23`, `ccef542`, and `6553be7`. Release workflow run: `33257395063`.
 
 ## Verification
 
@@ -42,8 +42,8 @@ npm audit --audit-level=high
 
 Live verification at `https://selfhost-upgrade-rehearsal.sociobot.in`:
 
-- Static deployment ID: `62b5959b-3133-4988-9a7c-f800077791b1`.
-- Cold verifier: HTTP 200 in 972 ms, correct title/lang/main, one H1, no missing alt text, no unlabeled buttons, and no console or page errors.
+- Static deployment ID: `70bfba99-e215-497e-b805-ff468c07b326`.
+- Cold verifier: HTTP 200 in 878 ms, correct title/lang/main, one H1, no missing alt text, no unlabeled buttons, and no console or page errors.
 - Routes: `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, `/latest.json`, `/install.sh`, and `/install.ps1` returned 200; an unknown path returned the designed HTTP 404.
 - Mobile: no horizontal overflow at 390 px on landing, demo, Privacy, Terms, or 404; 200% text reflow remained within the viewport.
 - Accessibility: axe reported 0 serious/critical findings on every public route and 404. Keyboard route focus and back navigation passed.

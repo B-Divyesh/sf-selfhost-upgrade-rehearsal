@@ -32,7 +32,7 @@ The earlier verification issues cited by review 1 remain covered: true 404 statu
 - Demo: `https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1`
 - Release: `https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/tag/v0.1.2`
 - GitHub Actions release run: `33257395063`
-- Static deployment: `62b5959b-3133-4988-9a7c-f800077791b1`
+- Static deployment: `70bfba99-e215-497e-b805-ff468c07b326`
 - Cold verifier output: `.factory/evidence/live/verify.json`
 - Desktop capture: `.factory/evidence/live/screenshot-desktop.png`
 - Mobile landing: `.factory/evidence/live/landing-390.png`
