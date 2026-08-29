@@ -138,10 +138,10 @@ function landing(): string {
           <button type="button" data-copy="curl -fsSL https://${SLUG}.sociobot.in/install.sh | sh">Copy macOS and Linux install</button>
           <button type="button" data-copy="irm https://${SLUG}.sociobot.in/install.ps1 | iex">Copy Windows install</button>
         </div>
-        <pre><code id="install-command">curl -fsSL https://${SLUG}.sociobot.in/install.sh | sh</code></pre>
+        <pre tabindex="0" aria-label="Install command"><code id="install-command">curl -fsSL https://${SLUG}.sociobot.in/install.sh | sh</code></pre>
         <p class="fine-print">Installers verify SHA256 before placing the binary on your path. Published packages are unsigned.</p>
       </div>
-      <div class="usage-note"><p class="eyebrow">First run</p><pre><code>rehearsal init compose
+      <div class="usage-note"><p class="eyebrow">First run</p><pre tabindex="0" aria-label="First run commands"><code>rehearsal init compose
 # edit rehearsal.yml
 rehearsal check
 rehearsal run --output release-proof</code></pre></div>
