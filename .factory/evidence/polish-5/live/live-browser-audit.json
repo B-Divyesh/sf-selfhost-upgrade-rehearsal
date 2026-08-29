@@ -1,0 +1,236 @@
+{
+  "checked_at": "2026-08-29T23:46:30.375Z",
+  "base": "https://selfhost-upgrade-rehearsal.sociobot.in",
+  "routes": [
+    {
+      "name": "landing",
+      "path": "/",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "description": "Rehearse Compose or Kubernetes upgrades and issue customer-safe readiness receipts.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": false,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "name": "demo-query",
+      "path": "/?demo=1",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "description": "Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": false,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "name": "demo-route",
+      "path": "/demo",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "description": "Run the isolated Arbor Desk sample demo and inspect its customer-safe readiness receipt.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": false,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "name": "privacy",
+      "path": "/privacy",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "description": "See what the local CLI, browser demo, release lookup, and license check handle.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/privacy",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": false,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "name": "terms",
+      "path": "/terms",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "description": "Read the receipt limits, Team kit purchase terms, and operator responsibilities.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/terms",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": false,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "name": "404",
+      "path": "/polish-5-cold-missing",
+      "status": 404,
+      "expectedStatus": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "description": "This link does not point to a page in Self-Host Upgrade Rehearsal.",
+      "canonical": "https://selfhost-upgrade-rehearsal.sociobot.in/404.html",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "header": 1,
+      "footer": 1,
+      "privacy": true,
+      "terms": true,
+      "overflow": false,
+      "seriousCriticalAxe": [],
+      "errors": []
+    }
+  ],
+  "checks": {
+    "firstScreen": {
+      "heading": "Rehearse upgrades before customers do",
+      "action": "Try it with sample data",
+      "actionHref": "/?demo=1",
+      "factCount": 3,
+      "factsFit": true,
+      "overflow": false
+    },
+    "demo": {
+      "banner": {
+        "position": "sticky",
+        "top": 0,
+        "bottom": 81.1875,
+        "viewportHeight": 844
+      },
+      "downloadedReceipt": {
+        "product": "Arbor Desk",
+        "source": "1.8.4",
+        "target": "2.0.0",
+        "status": "ready",
+        "checks": 9
+      },
+      "storageAtEntry": {
+        "realProject": "keep",
+        "realSession": "keep",
+        "demoKeys": [
+          "demo:active"
+        ]
+      },
+      "storageBeforeExit": {
+        "realProject": "keep",
+        "realSession": "keep",
+        "demoKeys": []
+      },
+      "exit": {
+        "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install",
+        "focus": "install-title",
+        "demoKeys": [],
+        "realProject": "keep"
+      },
+      "closeReopen": {
+        "demoKeys": [],
+        "realProject": "keep"
+      },
+      "requests": [
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        },
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-3xi3EC34.js",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        },
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-CB5JWaCw.css",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        },
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/specimen-upgrade.webp",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        },
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/?demo=1",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        },
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-3xi3EC34.js",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        },
+        {
+          "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-CB5JWaCw.css",
+          "method": "GET",
+          "body": null,
+          "origin": "https://selfhost-upgrade-rehearsal.sociobot.in"
+        }
+      ],
+      "onlySameOrigin": true
+    },
+    "navigation": {
+      "privacyFocus": true,
+      "backFocus": true,
+      "install": {
+        "top": 0.4375,
+        "focus": "install-title"
+      },
+      "url": "https://selfhost-upgrade-rehearsal.sociobot.in/#install"
+    },
+    "releaseFallback": {
+      "label": "Open GitHub releases",
+      "href": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases",
+      "note": "Try again later or open the release page (external site)."
+    },
+    "currentRelease": {
+      "status": "Release v0.1.4 is ready for this device.",
+      "label": "Download linux-x86_64.tar.gz",
+      "href": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.4/rehearsal-linux-x86_64.tar.gz",
+      "source": "The download comes from the matching GitHub release."
+    },
+    "commerce": {
+      "price": "The Team kit costs $79 as a one-time purchase.",
+      "merchant": "Dodo Payments is the merchant of record. It handles order questions and returns."
+    }
+  }
+}

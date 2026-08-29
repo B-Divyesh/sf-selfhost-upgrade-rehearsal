@@ -1,0 +1,21 @@
+{
+  "implementation_commit": "a40c6d64d36a8a98d59fd573fbb36b4991d15f9e",
+  "clean_clone": "/tmp/rehearsal-polish5-clean-bcb3o6",
+  "clean_clone_claims": { "passed": 47, "failed": 0 },
+  "clean_clone_full_suite": { "rust_passed": 5, "playwright_passed": 121, "playwright_skipped": 5 },
+  "quality_gates": {
+    "npm_ci": "passed; 0 vulnerabilities",
+    "npm_run_lint": "passed",
+    "npm_run_build": "passed",
+    "cargo_package_locked": "passed"
+  },
+  "bundle_bytes": { "javascript_raw": 22948, "javascript_gzip": 7780, "css_raw": 13411, "css_gzip": 3780 },
+  "deployment": {
+    "id": "753d9ef2-fa7a-4b7e-881b-6de507bf7d01",
+    "url": "https://selfhost-upgrade-rehearsal.sociobot.in"
+  },
+  "live_lighthouse": { "performance": 100, "accessibility": 100, "best_practices": 100, "seo": 100, "lcp_ms": 1651.58, "tbt_ms": 19, "cls": 0 },
+  "live_routes": { "landing": 200, "demo_query": 200, "demo": 200, "privacy": 200, "terms": 200, "unknown": 404 },
+  "live_browser": { "console_errors": 0, "serious_or_critical_axe": 0, "horizontal_overflow_routes": 0, "demo_only_same_origin_requests": true },
+  "release": { "version": "0.1.4", "fixture_parity": true, "attestation_digest_parity": true, "linux_archive_checksum": "passed" }
+}
