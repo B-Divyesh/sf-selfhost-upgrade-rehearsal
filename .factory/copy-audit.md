@@ -1,6 +1,6 @@
-# Copy audit — perfection loop 5
+# Copy audit — repair 6
 
-Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyphenated terms, versions, prices, commands, and filenames as one word. Code output and URLs are not prose.
+Audited 2026-08-30 against `site/src/main.ts` and `README.md`. Counts treat hyphenated terms, versions, prices, commands, and filenames as one word. Code output and URLs are not prose.
 
 ## Landing page
 

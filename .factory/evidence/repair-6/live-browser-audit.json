@@ -1,0 +1,151 @@
+{
+  "audits": [
+    {
+      "viewport": "desktop",
+      "path": "/",
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/?demo=1",
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/demo",
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/privacy",
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/terms",
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/",
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/?demo=1",
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/demo",
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/privacy",
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/terms",
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "smallTargets": [],
+      "runningAnimations": 0,
+      "serious": []
+    }
+  ],
+  "keyboard": {
+    "skipFocused": true,
+    "mainFocused": true,
+    "focusStyle": {
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(166, 58, 36)"
+    }
+  },
+  "identity": {
+    "releaseHref": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-linux-x86_64.tar.gz",
+    "swRegistrations": 0
+  },
+  "demo": {
+    "requests": [
+      {
+        "url": "https://selfhost-upgrade-rehearsal.sociobot.in/demo",
+        "method": "GET",
+        "data": null
+      },
+      {
+        "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-_5jUxj35.js",
+        "method": "GET",
+        "data": null
+      },
+      {
+        "url": "https://selfhost-upgrade-rehearsal.sociobot.in/assets/index-CB5JWaCw.css",
+        "method": "GET",
+        "data": null
+      }
+    ],
+    "storage": {
+      "local": [],
+      "session": []
+    },
+    "onlySameOrigin": true,
+    "offlineReplay": true
+  }
+}
