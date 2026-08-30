@@ -860,7 +860,7 @@ test('real 404 document has the common shell, recovery action, and complete meta
   await expect(page.getByRole('link', { name: 'Self-Host Upgrade Rehearsal home' })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Privacy', exact: true })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Footer navigation' }).getByRole('link', { name: 'Terms', exact: true })).toBeVisible();
-  await expect(page.getByText('v0.1.5 · build 2026.08.29')).toBeVisible();
+  await expect(page.getByText('v0.1.5 · build 2026.08.30')).toBeVisible();
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'This link does not point to a page in Self-Host Upgrade Rehearsal.');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://selfhost-upgrade-rehearsal.sociobot.in/404.html');
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'Page not found — Self-Host Upgrade Rehearsal');

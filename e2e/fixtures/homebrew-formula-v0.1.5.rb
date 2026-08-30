@@ -7,16 +7,16 @@ class Rehearsal < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v#{version}/rehearsal-macos-aarch64.tar.gz"
-      sha256 "12757bee8f861ff524e4c2425ef3b3e8d720ff361b6eb4a8661cc5250d82d741"
+      sha256 "b1231afef52f8f9840b3c61bac3c6cb790f4388262078e0f568381a0403cc034"
     else
       url "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v#{version}/rehearsal-macos-x86_64.tar.gz"
-      sha256 "8db93350ddb5752ff08f5dc404cf29f1006b7043c20b093e466d96107f73c68f"
+      sha256 "f9152d216655f7c9b6b70f8d3f7b6e906f6c0dc3c4127969b5451fee9a6651c2"
     end
   end
 
   on_linux do
     url "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v#{version}/rehearsal-linux-x86_64.tar.gz"
-    sha256 "d5ba325542908d43af0a02dda5361c9e432f04f10284bbf4f05a4ad1726846b7"
+    sha256 "f0ca9d0ea06bf9600cc7d3dbcaab7191305540473d897cc06d1b23cc5ab3ef1d"
   end
 
   def install
