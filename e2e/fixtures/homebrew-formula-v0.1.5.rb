@@ -1,7 +1,7 @@
 class Rehearsal < Formula
   desc "Rehearse self-hosted upgrades and issue readiness receipts"
   homepage "https://selfhost-upgrade-rehearsal.sociobot.in"
-  version "0.1.4"
+  version "0.1.5"
   license "MIT"
 
   on_macos do

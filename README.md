@@ -46,11 +46,11 @@ scoop bucket add b-divyesh https://github.com/B-Divyesh/scoop-bucket
 scoop install selfhost-upgrade-rehearsal
 ```
 
-Release v0.1.4 includes `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`.
+Release v0.1.5 includes `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`.
 
 ## Verify and roll back an installer
 
-The installers download the matching release `SHA256SUMS` file and check the archive before installing it. Release v0.1.4 has GitHub provenance for every asset; verify it with GitHub CLI:
+The installers download the matching release `SHA256SUMS` file and check the archive before installing it. Release v0.1.5 has GitHub provenance for every asset; verify it with GitHub CLI:
 
 ```sh
 gh attestation verify rehearsal-linux-x86_64.tar.gz --repo B-Divyesh/sf-selfhost-upgrade-rehearsal
@@ -160,7 +160,7 @@ Package the Rust crate without publishing it:
 cargo package --locked
 ```
 
-The complete deployable static site is in `dist/site`. Tag a version such as `v0.1.4` to run the cross-platform GitHub release workflow.
+The complete deployable static site is in `dist/site`. Tag a version such as `v0.1.5` to run the cross-platform GitHub release workflow.
 
 ## License
 

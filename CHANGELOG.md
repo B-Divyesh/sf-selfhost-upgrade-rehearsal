@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.1.5 — 2026-08-30
+
+- Show the tested host, declared supported environments, and environment limitation in customer-facing HTML receipts.
 - Replace stale static release discovery with the GitHub Releases API, a one-hour local cache, and an offline publishing state.
 - Publish the named Scoop bucket manifest, attest release assets, and document checksum-verified rollback installers.
 - Make skip links move keyboard focus to the main landmark.

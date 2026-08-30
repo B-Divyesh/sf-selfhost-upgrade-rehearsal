@@ -10,13 +10,13 @@ const exec = promisify(execFile);
 const root = resolve(import.meta.dirname, '..');
 const releaseApiUrl = 'https://api.github.com/repos/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/latest';
 const releaseApiResponse = {
-  tag_name: 'v0.1.4',
+  tag_name: 'v0.1.5',
   assets: [
-    { name: 'rehearsal-linux-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.4/rehearsal-linux-x86_64.tar.gz' },
-    { name: 'rehearsal-linux-aarch64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.4/rehearsal-linux-aarch64.tar.gz' },
-    { name: 'rehearsal-macos-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.4/rehearsal-macos-x86_64.tar.gz' },
-    { name: 'rehearsal-macos-aarch64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.4/rehearsal-macos-aarch64.tar.gz' },
-    { name: 'rehearsal-windows-x86_64.zip', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.4/rehearsal-windows-x86_64.zip' }
+    { name: 'rehearsal-linux-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-linux-x86_64.tar.gz' },
+    { name: 'rehearsal-linux-aarch64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-linux-aarch64.tar.gz' },
+    { name: 'rehearsal-macos-x86_64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-macos-x86_64.tar.gz' },
+    { name: 'rehearsal-macos-aarch64.tar.gz', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-macos-aarch64.tar.gz' },
+    { name: 'rehearsal-windows-x86_64.zip', browser_download_url: 'https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-windows-x86_64.zip' }
   ]
 };
 
@@ -264,8 +264,8 @@ test('@claim:installer-provenance-rollback release documents GitHub provenance a
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   const workflow = await readFile(join(root, '.github/workflows/release.yml'), 'utf8');
   const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string; digest: string; browser_download_url: string }> };
-  const attestation = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-attestation-v0.1.4.json'), 'utf8')) as { tag_name: string; git_commit: string; subjects: Array<{ name: string; sha256: string }> };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.5.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string; digest: string; browser_download_url: string }> };
+  const attestation = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-attestation-v0.1.5.json'), 'utf8')) as { tag_name: string; git_commit: string; subjects: Array<{ name: string; sha256: string }> };
   expect(readme).toContain('gh attestation verify rehearsal-linux-x86_64.tar.gz --repo B-Divyesh/sf-selfhost-upgrade-rehearsal');
   expect(readme).toContain('REHEARSAL_VERSION=v0.1.3');
   expect(readme).toContain(`Release v${packageJson.version} has GitHub provenance for every asset`);
@@ -488,16 +488,16 @@ test('@claim:published-platform-download release metadata selects a matching Git
     body: JSON.stringify(releaseApiResponse)
   }));
   await page.goto('/');
-  await expect(page.getByText('Release v0.1.4 is ready for this device.')).toBeVisible();
+  await expect(page.getByText('Release v0.1.5 is ready for this device.')).toBeVisible();
   await expect(page.getByText('The download comes from the matching GitHub release.')).toBeVisible();
   const download = page.locator('#platform-download');
   await expect(download).toHaveText(/Download (linux|macos|windows)-/);
-  await expect(download).toHaveAttribute('href', /github\.com\/B-Divyesh\/sf-selfhost-upgrade-rehearsal\/releases\/download\/v0\.1\.4\/rehearsal-(linux|macos|windows)-/);
+  await expect(download).toHaveAttribute('href', /github\.com\/B-Divyesh\/sf-selfhost-upgrade-rehearsal\/releases\/download\/v0\.1\.5\/rehearsal-(linux|macos|windows)-/);
 });
 
 test('@claim:supported-platforms published packages cover desktop systems and omit phone packages', async () => {
   const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string }> };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.5.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string }> };
   expect(release.tag_name).toBe(`v${packageJson.version}`);
   const names = release.assets.map(asset => asset.name);
   for (const required of [
@@ -516,9 +516,9 @@ test('@claim:supported-platforms published packages cover desktop systems and om
 test('@claim:homebrew-tap documented Homebrew formula is published', async () => {
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { assets: Array<{ name: string; digest: string }> };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.5.json'), 'utf8')) as { assets: Array<{ name: string; digest: string }> };
   expect(readme).toContain('brew install B-Divyesh/selfhost-upgrade-rehearsal/rehearsal');
-  const formula = await readFile(join(root, 'e2e/fixtures/homebrew-formula-v0.1.4.rb'), 'utf8');
+  const formula = await readFile(join(root, 'e2e/fixtures/homebrew-formula-v0.1.5.rb'), 'utf8');
   expect(formula).toContain('class Rehearsal < Formula');
   expect(formula).toContain(`version "${packageJson.version}"`);
   for (const assetName of ['rehearsal-macos-aarch64.tar.gz', 'rehearsal-macos-x86_64.tar.gz', 'rehearsal-linux-x86_64.tar.gz']) {
@@ -533,12 +533,12 @@ test('@claim:scoop-manifest documented Scoop manifest is published and valid', a
   const readme = await readFile(join(root, 'README.md'), 'utf8');
   const workflow = await readFile(join(root, '.github/workflows/release.yml'), 'utf8');
   const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { assets: Array<{ name: string; digest: string }> };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.5.json'), 'utf8')) as { assets: Array<{ name: string; digest: string }> };
   expect(readme).toContain('scoop bucket add b-divyesh https://github.com/B-Divyesh/scoop-bucket');
   expect(readme).toContain('scoop install selfhost-upgrade-rehearsal');
   expect(workflow).toContain('gh repo clone "${GITHUB_REPOSITORY_OWNER}/scoop-bucket" scoop-bucket');
   expect(workflow).toContain('scoop-bucket/selfhost-upgrade-rehearsal.json');
-  const manifest = JSON.parse(await readFile(join(root, 'e2e/fixtures/scoop-manifest-v0.1.4.json'), 'utf8')) as { version: string; url: string; hash: string };
+  const manifest = JSON.parse(await readFile(join(root, 'e2e/fixtures/scoop-manifest-v0.1.5.json'), 'utf8')) as { version: string; url: string; hash: string };
   const windows = release.assets.find(asset => asset.name === 'rehearsal-windows-x86_64.zip');
   expect(manifest.version).toBe(packageJson.version);
   expect(manifest.url).toBe(`https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v${packageJson.version}/rehearsal-windows-x86_64.zip`);
@@ -547,7 +547,7 @@ test('@claim:scoop-manifest documented Scoop manifest is published and valid', a
 
 test('@claim:release-asset-set published release carries every documented package', async () => {
   const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string };
-  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.4.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string; digest: string; browser_download_url: string }> };
+  const release = JSON.parse(await readFile(join(root, 'e2e/fixtures/github-release-v0.1.5.json'), 'utf8')) as { tag_name: string; assets: Array<{ name: string; digest: string; browser_download_url: string }> };
   expect(release.tag_name).toBe(`v${packageJson.version}`);
   const names = release.assets.map(asset => asset.name);
   for (const pattern of [/\.deb$/, /\.rpm$/, /\.pkg$/, /windows-x86_64\.zip$/, /winget.*\.zip$/, /^SHA256SUMS$/, /^latest\.json$/]) {
@@ -720,12 +720,12 @@ test('@claim:release-metadata website reads and caches CORS-safe GitHub release 
     return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(releaseApiResponse) });
   });
   await page.goto('/');
-  await expect(page.getByText('Release v0.1.4 is ready for this device.')).toBeVisible();
+  await expect(page.getByText('Release v0.1.5 is ready for this device.')).toBeVisible();
   expect(requests.filter(url => url === releaseApiUrl)).toHaveLength(1);
   expect(requests.some(url => url.endsWith('/latest.json'))).toBe(false);
-  expect(await page.evaluate(() => localStorage.getItem('release_metadata:selfhost-upgrade-rehearsal'))).toContain('v0.1.4');
+  expect(await page.evaluate(() => localStorage.getItem('release_metadata:selfhost-upgrade-rehearsal'))).toContain('v0.1.5');
   await page.reload();
-  await expect(page.getByText('Release v0.1.4 is ready for this device.')).toBeVisible();
+  await expect(page.getByText('Release v0.1.5 is ready for this device.')).toBeVisible();
   expect(requests.filter(url => url === releaseApiUrl)).toHaveLength(1);
   const config = JSON.parse(await readFile(join(root, 'site/public/staticwebapp.config.json'), 'utf8')) as { globalHeaders: Record<string, string> };
   expect(config.globalHeaders['Content-Security-Policy']).toContain("connect-src 'self' https://api.github.com https://api.sociobot.in");
@@ -860,7 +860,7 @@ test('real 404 document has the common shell, recovery action, and complete meta
   await expect(page.getByRole('link', { name: 'Self-Host Upgrade Rehearsal home' })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Privacy', exact: true })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Footer navigation' }).getByRole('link', { name: 'Terms', exact: true })).toBeVisible();
-  await expect(page.getByText('v0.1.4 · build 2026.08.29')).toBeVisible();
+  await expect(page.getByText('v0.1.5 · build 2026.08.29')).toBeVisible();
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'This link does not point to a page in Self-Host Upgrade Rehearsal.');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://selfhost-upgrade-rehearsal.sociobot.in/404.html');
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'Page not found — Self-Host Upgrade Rehearsal');

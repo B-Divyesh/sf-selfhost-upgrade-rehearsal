@@ -57,10 +57,10 @@
   },
   {
     "id": "installer-provenance-rollback",
-    "claim": "Release v0.1.4 assets have GitHub provenance and installers can roll back to a tagged release after verifying its SHA256 checksum.",
+    "claim": "Release v0.1.5 assets have GitHub provenance and installers can roll back to a tagged release after verifying its SHA256 checksum.",
     "where": "README verify and roll back section, GitHub Release notes",
     "test": "npm test -- --grep @claim:installer-provenance-rollback",
-    "sandbox": "fresh clone; recorded v0.1.4 release and GitHub attestation fixtures; match every published asset digest; inspect both version-aware installer scripts"
+    "sandbox": "fresh clone; recorded v0.1.5 release and GitHub attestation fixtures; match every published asset digest; inspect both version-aware installer scripts"
   },
   {
     "id": "mit-core",
@@ -204,10 +204,10 @@
   },
   {
     "id": "release-asset-set",
-    "claim": "Release v0.1.4 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
+    "claim": "Release v0.1.5 includes deb, rpm, unsigned pkg, Windows zip, Winget, checksums, and latest manifest assets.",
     "where": "README install section",
     "test": "npm test -- --grep @claim:release-asset-set",
-    "sandbox": "fresh clone; recorded v0.1.4 GitHub release response; bind tag to package version and assert every documented asset pattern and digest"
+    "sandbox": "fresh clone; recorded v0.1.5 GitHub release response; bind tag to package version and assert every documented asset pattern and digest"
   },
   {
     "id": "path-placeholders",

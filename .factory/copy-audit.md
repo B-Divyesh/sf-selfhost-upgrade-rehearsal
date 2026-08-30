@@ -85,7 +85,7 @@ Audited 2026-08-29 against `site/src/main.ts` and `README.md`. Counts treat hyph
 | Readiness receipts for self-hosted upgrades. | 5 | Pass |
 | Terms | 1 | Pass |
 | Built by Param Factory | 4 | Pass |
-| v0.1.4 · build 2026.08.29 | 3 | Pass |
+| v0.1.5 · build 2026.08.30 | 3 | Pass |
 
 No landing sentence exceeds 22 words. No banned marketing word appears. The first screen says the job, audience, first action, and three facts in one breath.
 
@@ -113,9 +113,9 @@ No landing sentence exceeds 22 words. No banned marketing word appears. The firs
 | `npm run build:site` writes `dist/site/index.html`. | 5 | Pass; `site-build-output` |
 | The complete deployable static site is in `dist/site`. | 8 | Pass; `deploy-directory` |
 | Scoop uses the published bucket. | 5 | Pass; `scoop-manifest` |
-| Release v0.1.4 includes `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`. | 15 | Pass; `release-asset-set` |
+| Release v0.1.5 includes `.deb`, `.rpm`, unsigned macOS `.pkg`, Windows zip, Winget manifests, `SHA256SUMS`, and `latest.json`. | 15 | Pass; `release-asset-set` |
 | The installers download the matching release `SHA256SUMS` file and check the archive before installing it. | 15 | Pass; `installer-checksum` |
-| Release v0.1.4 has GitHub provenance for every asset. | 9 | Pass; `installer-provenance-rollback` |
+| Release v0.1.5 has GitHub provenance for every asset. | 9 | Pass; `installer-provenance-rollback` |
 | To install an earlier tagged release, set `REHEARSAL_VERSION` to its full tag. | 12 | Pass; `installer-provenance-rollback` |
 | Use `{source_dir}` and `{work_dir}` as path placeholders. | 7 | Pass; `path-placeholders` |
 
