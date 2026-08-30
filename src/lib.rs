@@ -454,8 +454,27 @@ fn receipt_html(receipt: &Receipt) -> String {
                 .collect::<String>()
         )
     };
+    let supported_operating_systems = receipt
+        .supported_environments
+        .operating_systems
+        .iter()
+        .map(|value| escape(value))
+        .collect::<Vec<_>>()
+        .join(", ");
+    let supported_architectures = receipt
+        .supported_environments
+        .architectures
+        .iter()
+        .map(|value| escape(value))
+        .collect::<Vec<_>>()
+        .join(", ");
+    let limitations = receipt
+        .limitations
+        .iter()
+        .map(|limitation| format!("<li>{}</li>", escape(limitation)))
+        .collect::<String>();
     format!(
-        r#"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Readiness receipt — {product}</title><style>body{{background:#f3eedc;color:#18332d;font:17px/1.55 system-ui;margin:0}}main{{max-width:760px;margin:auto;padding:48px 24px}}h1,h2{{font-family:Georgia,serif}}.stamp{{border:3px solid #c84b2f;color:#9d2e2e;display:inline-block;padding:8px 16px;text-transform:uppercase;font-weight:800}}table{{width:100%;border-collapse:collapse}}th,td{{border-bottom:1px solid #76956c;text-align:left;padding:10px}}code{{font-family:ui-monospace,monospace}}footer{{margin-top:48px;border-top:2px solid #18332d;padding-top:16px}}</style></head><body><main><p>Self-Host Upgrade Rehearsal · {run_id}</p><h1>{source} → {target}</h1><p class="stamp">{status}</p><p>{product} was tested with {adapter} on {os}/{arch}.</p><h2>Checks</h2><table><thead><tr><th>Check</th><th>Result</th><th>Time</th></tr></thead><tbody>{checks}</tbody></table><h2>Config schema changes</h2>{changes}<h2>Required resources</h2><p>{memory} MB memory · {disk} MB disk</p><h2>Coverage limits</h2><ul><li>This receipt covers only the versions shown above.</li><li>Hook output and sample data are not included.</li></ul><footer>Customer-safe receipt schema 1</footer></main></body></html>"#,
+        r#"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Readiness receipt — {product}</title><style>body{{background:#f3eedc;color:#18332d;font:17px/1.55 system-ui;margin:0}}main{{max-width:760px;margin:auto;padding:48px 24px}}h1,h2{{font-family:Georgia,serif}}.stamp{{border:3px solid #c84b2f;color:#9d2e2e;display:inline-block;padding:8px 16px;text-transform:uppercase;font-weight:800}}table{{width:100%;border-collapse:collapse}}th,td{{border-bottom:1px solid #76956c;text-align:left;padding:10px}}dt{{font-weight:700;margin-top:10px}}dd{{margin-left:0}}code{{font-family:ui-monospace,monospace}}footer{{margin-top:48px;border-top:2px solid #18332d;padding-top:16px}}</style></head><body><main><p>Self-Host Upgrade Rehearsal · {run_id}</p><h1>{source} → {target}</h1><p class="stamp">{status}</p><p>{product} was tested with {adapter}.</p><h2>Environment scope</h2><dl><dt>Tested host</dt><dd>{os}/{arch}</dd><dt>Declared supported operating systems</dt><dd>{supported_operating_systems}</dd><dt>Declared supported architectures</dt><dd>{supported_architectures}</dd></dl><h2>Checks</h2><table><thead><tr><th>Check</th><th>Result</th><th>Time</th></tr></thead><tbody>{checks}</tbody></table><h2>Config schema changes</h2>{changes}<h2>Required resources</h2><p>{memory} MB memory · {disk} MB disk</p><h2>Coverage limits</h2><ul>{limitations}</ul><footer>Customer-safe receipt schema 1</footer></main></body></html>"#,
         product = escape(&receipt.product),
         run_id = escape(&receipt.run_id),
         source = escape(&receipt.source_version),
@@ -464,10 +483,13 @@ fn receipt_html(receipt: &Receipt) -> String {
         adapter = escape(&receipt.adapter),
         os = escape(&receipt.tested_environment.operating_system),
         arch = escape(&receipt.tested_environment.architecture),
+        supported_operating_systems = supported_operating_systems,
+        supported_architectures = supported_architectures,
         checks = checks,
         changes = changes,
         memory = receipt.required_resources.memory_mb,
-        disk = receipt.required_resources.disk_mb
+        disk = receipt.required_resources.disk_mb,
+        limitations = limitations
     )
 }
 
@@ -520,6 +542,48 @@ pub fn fixture_step(step: &str) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn html_receipt_separates_tested_host_from_declared_support_scope() {
+        let receipt = Receipt {
+            receipt_schema: 1,
+            run_id: "SHR-TEST".into(),
+            product: "Scope Test".into(),
+            source_version: "1.0.0".into(),
+            target_version: "2.0.0".into(),
+            adapter: "Docker Compose".into(),
+            status: "ready".into(),
+            tested_environment: TestedEnvironment {
+                operating_system: "linux".into(),
+                architecture: "x86_64".into(),
+            },
+            supported_environments: SupportedEnvironment {
+                operating_systems: vec!["linux".into(), "macos".into(), "windows".into()],
+                architectures: vec!["x86_64".into(), "aarch64".into()],
+            },
+            required_resources: Resources {
+                memory_mb: 512,
+                disk_mb: 1024,
+            },
+            config_changes: Vec::new(),
+            checks: Vec::new(),
+            customer_safe: true,
+            limitations: vec![
+                "This receipt covers only the source and target versions shown here.".into(),
+                "Only the declared operating systems and architectures are supported.".into(),
+            ],
+        };
+
+        let html = receipt_html(&receipt);
+        assert!(html.contains("<dt>Tested host</dt><dd>linux/x86_64</dd>"));
+        assert!(html.contains(
+            "<dt>Declared supported operating systems</dt><dd>linux, macos, windows</dd>"
+        ));
+        assert!(html.contains("<dt>Declared supported architectures</dt><dd>x86_64, aarch64</dd>"));
+        for limitation in &receipt.limitations {
+            assert!(html.contains(&format!("<li>{limitation}</li>")));
+        }
+    }
 
     #[test]
     fn schema_diff_never_includes_values() {

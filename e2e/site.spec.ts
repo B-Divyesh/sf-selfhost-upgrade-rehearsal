@@ -421,6 +421,12 @@ test('@claim:receipt-scope receipt names only its tested versions and supported 
     });
     expect(receipt.limitations).toContain('This receipt covers only the source and target versions shown here.');
     expect(receipt.limitations).toContain('Only the declared operating systems and architectures are supported.');
+    const html = await readFile(join(dir, 'report/readiness.html'), 'utf8');
+    expect(html).toContain(`<dt>Tested host</dt><dd>${receipt.tested_environment.operating_system}/${receipt.tested_environment.architecture}</dd>`);
+    expect(html).toContain('<dt>Declared supported operating systems</dt><dd>linux, macos, windows</dd>');
+    expect(html).toContain('<dt>Declared supported architectures</dt><dd>x86_64, aarch64</dd>');
+    expect(html).toContain('<li>This receipt covers only the source and target versions shown here.</li>');
+    expect(html).toContain('<li>Only the declared operating systems and architectures are supported.</li>');
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
@@ -583,6 +589,18 @@ test('@claim:receipt-contents receipt contains every documented readiness field'
     expect(receipt.source_version).toBe('1.8.4');
     expect(receipt.target_version).toBe('2.0.0');
     expect(receipt.supported_environments.operating_systems).toEqual(['linux', 'macos', 'windows']);
+    const html = await readFile(join(dir, 'report/readiness.html'), 'utf8');
+    for (const field of [
+      '1.8.4',
+      '2.0.0',
+      'database.ssl',
+      '768 MB memory',
+      '2048 MB disk',
+      'Create backup',
+      `${receipt.tested_environment.operating_system}/${receipt.tested_environment.architecture}`,
+      'linux, macos, windows',
+      'x86_64, aarch64'
+    ]) expect(html).toContain(field);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 

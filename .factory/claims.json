@@ -144,7 +144,7 @@
     "claim": "A receipt covers only its listed versions and supported environments.",
     "where": "hero caption, landing limits, demo, README",
     "test": "npm test -- --grep @claim:receipt-scope",
-    "sandbox": "fresh CLI sample demo; inspect version, environment, and explicit limitation fields"
+    "sandbox": "fresh CLI sample demo; inspect JSON and HTML for separate tested-host and declared-support fields plus every explicit limitation"
   },
   {
     "id": "team-kit-price-scope",
@@ -221,7 +221,7 @@
     "claim": "A receipt contains schema changes, declared resource minimums, checks, tested versions, and supported environments.",
     "where": "landing preview and README",
     "test": "npm test -- --grep @claim:receipt-contents",
-    "sandbox": "fresh temporary directory; run the CLI sample demo and assert every documented receipt field"
+    "sandbox": "fresh temporary directory; run the CLI sample demo and assert every documented receipt field in JSON and customer-facing HTML"
   },
   {
     "id": "release-workflow",
