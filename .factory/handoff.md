@@ -1,56 +1,52 @@
-# Perfection-loop round 5 handoff — PASS
+# Independent verification 11 handoff — FAIL
 
-## Delivered repair
+## Result
 
-- Implementation commit: `a40c6d64d36a8a98d59fd573fbb36b4991d15f9e`
-- Production: <https://selfhost-upgrade-rehearsal.sociobot.in>
-- Deployment ID: `753d9ef2-fa7a-4b7e-881b-6de507bf7d01`
-- Artifact class remains `cli-installers`; release `v0.1.4` remains the published binary release.
+**FAIL** for candidate `871da0650d35b1f628a868de820a437691753e57` at
+<https://selfhost-upgrade-rehearsal.sociobot.in>, verified 2026-08-30 UTC.
 
-Round 5 closes every finding in reviews 1–5. The landing page now uses direct first-screen wording and a one-click isolated demo. Demo entry, reset, exit, offline behavior, real-data isolation, route focus, titles, metadata, 404 handling, legal links, mobile layout, release fallback, and commercial copy were verified in production.
+The live deployment is byte-identical to the candidate and nearly every quality
+gate passes, but the customer-facing HTML readiness receipt omits the declared
+supported environments and their scope limitation. This is release blocking
+because the product tells vendors to share that HTML receipt with customers,
+while the brief requires reports to separate tested scope from unsupported
+environments.
 
-The release claims now use current `v0.1.4` GitHub, Homebrew, Scoop, and provenance fixtures. Tests bind the package version, release tag, asset names, URLs, checksums, and attested subjects. The hook placeholder test executes a real hook with both `{source_dir}` and `{work_dir}`. The merchant claim is based on a recorded Sociobot checkout redirect and Dodo checkout footer; the unsupported refund-revocation sentence was removed.
+Full evidence is in `.factory/verification-11.md`.
 
-## Clean-clone verification
+## Verification summary
 
-Clean clone: `/tmp/rehearsal-polish5-clean-bcb3o6`
+- Mandatory `.factory/claims.json` run: **47/47 exact commands passed**.
+- Cold first-read and one-click sample demo: passed.
+- `npm ci`, `npm test`, `npm run lint`, `npm run build`, and
+  `cargo package --locked`: passed.
+- Packaged-crate consumer install, CLI normal/invalid/failure/recovery cases,
+  live checksum-verifying installer, release archive checksum, Homebrew/Scoop
+  metadata, and GitHub provenance lookup: passed.
+- Live desktop/390 px, keyboard, focus, reduced motion, route metadata, links,
+  privacy request log, storage isolation, security headers, caching, and Axe:
+  passed.
+- Mobile Lighthouse: 97 Performance, 100 Accessibility, 100 Best Practices,
+  100 SEO; LCP 1.7 s, TBT 180 ms, CLS 0.
+- License verification allowance: 30 successful requests in one burst; request
+  31 returned 429 with `Retry-After: 4`.
+- Live root, route documents, JS/CSS, installers, images, and 404 bytes match the
+  candidate exactly.
 
-- `npm ci`: passed; 0 vulnerabilities.
-- Every command in `.factory/claims.json`: 47/47 passed independently.
-- `npm test`: 5 Rust tests and 121 Playwright tests passed; 5 intentional platform skips.
-- `npm run lint`: passed.
-- `npm run build`: passed and produced `dist/site`.
-- `cargo package --locked`: passed, including packaged-crate verification.
-- Initial JavaScript: 22,948 bytes raw / 7,780 bytes gzip.
-- CSS: 13,411 bytes raw / 3,780 bytes gzip.
+## Release-blocking defect
 
-## Production verification
+`readiness.json` contains separate `tested_environment` and
+`supported_environments` fields plus the declared-environment limitation.
+`readiness.html` contains only the tested Linux/x86_64 sentence. It omits macOS,
+Windows, aarch64, and the limitation that only declared systems and architectures
+are supported. Existing receipt-scope and receipt-contents claim tests inspect
+only JSON, so all claim commands pass without proving the customer HTML output.
 
-- Factory `verify-url.sh`: passed with no console errors; load time 634 ms.
-- Lighthouse mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 100; LCP 1.65 s, TBT 19 ms, CLS 0.
-- Browser/Axe audit: `/`, `/?demo=1`, `/demo`, `/privacy`, and `/terms` returned 200 with no serious or critical Axe issues; unknown routes returned the designed 404.
-- Mobile 390 px: no horizontal overflow; first-screen action and three facts remain visible.
-- Demo: sample receipt generated for Arbor Desk 1.8.4 → 2.0.0 with 9 checks; reset worked offline; exit cleared only `demo:` storage and preserved real-data sentinels.
-- Privacy flow: browser requests during the demo were same-origin, bodyless GET requests only.
-- Release API fallback: displayed `Open GitHub releases` with the correct destination and no console error.
-- Release integrity: the downloaded Linux archive matched `SHA256SUMS`; live GitHub release assets and attestations matched recorded fixtures.
-- Checkout: Sociobot returned a 303 to Dodo checkout, whose footer identifies Dodo Payments as merchant of record and handler of order inquiries and returns.
-- Production HTML, JS, CSS, and installer scripts matched the deployed `dist/site` bytes.
+## Required next step
 
-Evidence and the finding-by-finding matrix are in `.factory/evidence/polish-5/` and `.factory/polish-5.md`.
+Render tested and declared-supported environments separately in
+`receipt_html`, include the environment limitation, and extend the relevant
+claim tests to assert both JSON and HTML. Then rebuild, publish a new candidate,
+and rerun independent verification.
 
-## Run again
-
-```sh
-npm ci
-npm test
-npm run lint
-npm run build
-cargo package --locked
-```
-
-Run each exact command in `.factory/claims.json` to reproduce the 47 isolated claim checks.
-
-## Known gaps and operator action
-
-None. macOS and Windows artifacts remain intentionally unsigned, as documented for this product class. No secrets, billing, DNS, or other operator action is required for this repair.
+No product code was changed during this verification.
