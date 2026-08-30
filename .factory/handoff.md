@@ -1,74 +1,35 @@
-# Polish 6 handoff — complete
+# Review 7 handoff — PASS
 
-Self-Host Upgrade Rehearsal is repaired and deployed. The product code repair
-is commit `0e1b92839c310e0cae06d10f2a2f82affd7a3f57` (`test: prove workspace
-and receipt output claims`), pushed to `main` and deployed as Azure Static Web
-Apps deployment `cb269a80-d28b-4e6c-a909-ab3776834ac9`.
+## What was done
 
-## What changed
+Performed the requested adversarial first-read review without changing product
+code. The live site was opened cold at 390 × 844 and 1440 × 900, then checked
+through its demo, legal pages, direct routes, 404, navigation, Back behavior,
+metadata, links, storage, request log, and release identity.
 
-- The `temporary-workspace` claim now observes four real hook processes,
-  proving seed, backup, restore, and health share a new OS-temp workspace and
-  that a later rehearsal gets a different workspace.
-- The README promise that `rehearsal demo` prints JSON and HTML paths now has
-  its own observable `receipt-path-output` claim test.
-- The manifest now has 48 one-to-one claim IDs/tests. The catalog sentence is
-  verb-first, 73 characters, and says: “Rehearse self-hosted upgrades and
-  issue customer-safe readiness receipts.”
-- All cumulative review 1–6 fixes were rechecked. Their mapping and live
-  evidence are in `.factory/polish-6.md`.
+The review is recorded in .factory/review-7.md. It has a PASS verdict and no
+findings. This handoff replaces the earlier implementation handoff with the
+review-specific evidence for the current work order.
 
 ## Verification
 
-From a fresh remote clone at the repair commit,
-`/tmp/selfhost-upgrade-rehearsal-clean-33kD0E`, every one of the 48 exact
-commands in `.factory/claims.json` completed independently. The manifest/tag
-audit found 48 unique claim IDs and exactly 48 unique matching `@claim:` tags.
+- Fresh live landing read: job, audience, and Try it with sample data action
+  are visible before scrolling at both required viewports.
+- Fresh live demo: immediate realistic Arbor Desk receipt, sticky disclosure,
+  working Reset demo, download, same-origin/bodyless requests only, and
+  isolated demo storage. A real-data storage sentinel was unchanged.
+- Routes: landing, both demo URLs, Privacy, Terms, and 404 had one H1/main,
+  appropriate titles, descriptions, canonicals, common shell, no mobile
+  overflow, and valid recovery/navigation behavior.
+- Links: internal routes returned 200; the intentional missing route returned
+  404; the GitHub artifact, Sociobot, and checkout redirect chain resolved.
+- Clean clone: /tmp/selfhost-review7-clean at
+  e496dd039a6a6c29b4b4d95c4cc1ff14b1c1e8fe after npm ci. All 48 exact
+  commands from .factory/claims.json were run independently and passed.
+- Local quality: npm run build produced dist/site; npm run lint passed.
 
-The local quality gate passed:
+## Known gaps and next steps
 
-```sh
-npm ci
-npm test
-npm run lint
-npm run build
-cargo package --locked
-```
-
-That includes 6 Rust tests, 3 release-identity tests, 126 passing Playwright
-cases and 4 intentional project-condition skips. The production build writes
-`dist/site`; initial JavaScript is 22.95 kB raw / 7.78 kB gzip and CSS is
-13.41 kB raw / 3.78 kB gzip.
-
-Cold production checks at <https://selfhost-upgrade-rehearsal.sociobot.in>
-passed: HTTP 200; distinct route metadata; a real 404; one H1/main per route;
-no mobile overflow; keyboard skip/install focus; persistent 390 px demo
-banner; demo storage isolation/reset/offline replay; same-origin bodyless demo
-requests; and zero serious/critical Playwright Axe violations on landing,
-query demo, `/demo`, Privacy, Terms, and 404 at desktop and 390 px. The live
-identity is no-store and names the repair commit. `verify-url.sh` evidence is
-under `.factory/evidence/polish-6/live-verify/`; the complete browser audit,
-screenshots, and 100/100/100/100 mobile Lighthouse report are under
-`.factory/evidence/polish-6/`.
-
-## Run and deploy
-
-```sh
-npm ci
-npm test
-npm run build:site
-npm run dev
-```
-
-The static deployable directory is `dist/site`. Release the CLI by tagging a
-`v*` version; the GitHub Actions workflow builds the documented packages and
-updates release metadata. Run the sample locally with `cargo run -- demo` or
-the browser sandbox with `npm run build:site && npm run preview`, then open
-`/?demo=1`.
-
-## Operator notes
-
-There are no unresolved product findings. The macOS package and Windows zip
-are intentionally unsigned and are labelled as such; the Team kit remains an
-optional Sociobot/Dodo purchase and does not gate the free CLI or receipt
-formats.
+No review finding or known gap remains. Future changes to the release version,
+sample fixture, payment text, or CLI behavior should retain the existing
+one-claim/one-observable-test mapping and repeat this review checklist.
