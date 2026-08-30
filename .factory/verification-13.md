@@ -10,9 +10,9 @@
 - Verification time: 2026-08-30 03:34 UTC
 - Defects: no blocker, critical, serious, moderate, or minor product defects found
 
-The previous deployment-identity blocker is resolved. The candidate is the
-reachable `origin/main` commit, the live `/release.json` names that exact
-commit, and the built and deployed core files byte-match.
+The previous deployment-identity blocker is resolved. At verification start,
+the candidate was the reachable `origin/main` commit. Live `/release.json`
+names that exact commit, and the built and deployed core files byte-match.
 
 ## Mandatory first checks
 
