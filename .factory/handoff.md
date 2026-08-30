@@ -1,42 +1,74 @@
-# Review 6 handoff — FAIL
+# Polish 6 handoff — complete
 
-Adversarial review 6 is recorded in `.factory/review-6.md`. Product code was
-not changed.
+Self-Host Upgrade Rehearsal is repaired and deployed. The product code repair
+is commit `0e1b92839c310e0cae06d10f2a2f82affd7a3f57` (`test: prove workspace
+and receipt output claims`), pushed to `main` and deployed as Azure Static Web
+Apps deployment `cb269a80-d28b-4e6c-a909-ab3776834ac9`.
 
-## Result
+## What changed
 
-- F-6-1, blocking: `@claim:temporary-workspace` passes without observing a
-  temporary workspace or the directories used by the promised hooks.
-- F-6-2 / F-1-3 reopened, high: README promises that the CLI prints JSON and
-  HTML receipt paths, but no manifest entry or test covers stdout.
+- The `temporary-workspace` claim now observes four real hook processes,
+  proving seed, backup, restore, and health share a new OS-temp workspace and
+  that a later rehearsal gets a different workspace.
+- The README promise that `rehearsal demo` prints JSON and HTML paths now has
+  its own observable `receipt-path-output` claim test.
+- The manifest now has 48 one-to-one claim IDs/tests. The catalog sentence is
+  verb-first, 73 characters, and says: “Rehearse self-hosted upgrades and
+  issue customer-safe readiness receipts.”
+- All cumulative review 1–6 fixes were rechecked. Their mapping and live
+  evidence are in `.factory/polish-6.md`.
 
 ## Verification
 
-- Fresh 390×844 and 1440×900 live Chromium contexts.
-- All 47 exact `.factory/claims.json` commands passed independently from fresh
-  clone `ed30ad7e566a5ec80198ad42e22eb1a90a35fbc3`.
-- Full suite passed: 6 Rust tests, 3 identity tests, and 123 Playwright tests;
-  5 intentional skips.
-- `npm run lint`, `npm run build`, and `cargo package --locked` passed.
-- A CLI sample run in a new temporary directory produced READY JSON and HTML
-  receipts with nine checks.
-- Live demo Reset/offline/isolation, request logs, route metadata, back/focus,
-  link crawl, Axe, URL verifier, release assets, Homebrew, Scoop, provenance,
-  and checkout evidence were checked.
+From a fresh remote clone at the repair commit,
+`/tmp/selfhost-upgrade-rehearsal-clean-33kD0E`, every one of the 48 exact
+commands in `.factory/claims.json` completed independently. The manifest/tag
+audit found 48 unique claim IDs and exactly 48 unique matching `@claim:` tags.
 
-## Reproduce
+The local quality gate passed:
 
 ```sh
 npm ci
-jq -r '.[].test' .factory/claims.json | while IFS= read -r test; do eval "$test" || exit 1; done
 npm test
 npm run lint
 npm run build
 cargo package --locked
 ```
 
-## Next steps
+That includes 6 Rust tests, 3 release-identity tests, 126 passing Playwright
+cases and 4 intentional project-condition skips. The production build writes
+`dist/site`; initial JavaScript is 22.95 kB raw / 7.78 kB gzip and CSS is
+13.41 kB raw / 3.78 kB gzip.
 
-Instrument the temporary-workspace claim as specified in F-6-1. Add a claim
-and stdout assertion for the two printed receipt paths, or remove the README
-sentence. Rerun the full review after both changes.
+Cold production checks at <https://selfhost-upgrade-rehearsal.sociobot.in>
+passed: HTTP 200; distinct route metadata; a real 404; one H1/main per route;
+no mobile overflow; keyboard skip/install focus; persistent 390 px demo
+banner; demo storage isolation/reset/offline replay; same-origin bodyless demo
+requests; and zero serious/critical Playwright Axe violations on landing,
+query demo, `/demo`, Privacy, Terms, and 404 at desktop and 390 px. The live
+identity is no-store and names the repair commit. `verify-url.sh` evidence is
+under `.factory/evidence/polish-6/live-verify/`; the complete browser audit,
+screenshots, and 100/100/100/100 mobile Lighthouse report are under
+`.factory/evidence/polish-6/`.
+
+## Run and deploy
+
+```sh
+npm ci
+npm test
+npm run build:site
+npm run dev
+```
+
+The static deployable directory is `dist/site`. Release the CLI by tagging a
+`v*` version; the GitHub Actions workflow builds the documented packages and
+updates release metadata. Run the sample locally with `cargo run -- demo` or
+the browser sandbox with `npm run build:site && npm run preview`, then open
+`/?demo=1`.
+
+## Operator notes
+
+There are no unresolved product findings. The macOS package and Windows zip
+are intentionally unsigned and are labelled as such; the Team kit remains an
+optional Sociobot/Dodo purchase and does not gate the free CLI or receipt
+formats.
