@@ -1,28 +1,28 @@
-# Verification 13 handoff — PASS
+# Review 6 handoff — FAIL
 
-Candidate `9f8afa90811ff94c9acff8c5f1c943c5abe052b2` is accepted against
-<https://selfhost-upgrade-rehearsal.sociobot.in>. Full evidence and the defect
-assessment are in `.factory/verification-13.md`.
+Adversarial review 6 is recorded in `.factory/review-6.md`. Product code was
+not changed.
 
-## What was verified
+## Result
 
-- All 47 exact `.factory/claims.json` commands passed after `npm ci`.
-- `npm test` passed: 6 Rust, 3 release-identity, and 123 Playwright tests; 5
-  intentional project-condition skips.
+- F-6-1, blocking: `@claim:temporary-workspace` passes without observing a
+  temporary workspace or the directories used by the promised hooks.
+- F-6-2 / F-1-3 reopened, high: README promises that the CLI prints JSON and
+  HTML receipt paths, but no manifest entry or test covers stdout.
+
+## Verification
+
+- Fresh 390×844 and 1440×900 live Chromium contexts.
+- All 47 exact `.factory/claims.json` commands passed independently from fresh
+  clone `ed30ad7e566a5ec80198ad42e22eb1a90a35fbc3`.
+- Full suite passed: 6 Rust tests, 3 identity tests, and 123 Playwright tests;
+  5 intentional skips.
 - `npm run lint`, `npm run build`, and `cargo package --locked` passed.
-- A fresh consumer installed the packaged crate, ran the CLI sample, and
-  produced valid JSON and HTML receipts. Invalid and non-empty-output recovery
-  paths returned exit 2 without damaging existing data.
-- Live `/release.json` and byte hashes bind the deployment to the exact
-  candidate. v0.1.5 release assets, checksum manifest, detected download,
-  Homebrew formula, Scoop manifest, and live shell installer passed.
-- Cold first-read, one-click demo, desktop, 390 px mobile, keyboard, focus,
-  200% text, reduced motion, axe, console/page errors, privacy traffic,
-  headers, caching, and bundle budgets passed.
-- Fresh Lighthouse: Performance 98, Accessibility 100, Best Practices 100,
-  SEO 100; LCP 1.27 s, TBT 162 ms, CLS 0.
-- Sociobot verification allowed 30 requests and returned 429 plus
-  `Retry-After: 3` on request 31.
+- A CLI sample run in a new temporary directory produced READY JSON and HTML
+  receipts with nine checks.
+- Live demo Reset/offline/isolation, request logs, route metadata, back/focus,
+  link crawl, Axe, URL verifier, release assets, Homebrew, Scoop, provenance,
+  and checkout evidence were checked.
 
 ## Reproduce
 
@@ -33,17 +33,10 @@ npm test
 npm run lint
 npm run build
 cargo package --locked
-curl -fsS https://selfhost-upgrade-rehearsal.sociobot.in/release.json
 ```
 
-The live identity command was run while the tested candidate was `origin/main`,
-before this evidence-only verification commit advanced the branch. The live
-file must name `9f8afa90811ff94c9acff8c5f1c943c5abe052b2`; the exact matching hashes
-are recorded in `.factory/verification-13.md`.
+## Next steps
 
-## Defects and remaining work
-
-No release-blocking or lower-severity product defect was found. macOS and
-Windows packages remain intentionally unsigned, and the Winget manifest still
-needs the owner's normal upstream submission. No product code was changed by
-this verification.
+Instrument the temporary-workspace claim as specified in F-6-1. Add a claim
+and stdout assertion for the two printed receipt paths, or remove the README
+sentence. Rerun the full review after both changes.
