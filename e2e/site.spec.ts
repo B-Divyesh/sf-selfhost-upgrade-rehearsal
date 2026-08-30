@@ -73,6 +73,24 @@ test('landing has one clear page outline and no serious accessibility errors', a
   }
 });
 
+test('@regression:release-identity deployed metadata equals the exact build commit', async ({ request }) => {
+  const response = await request.get('/release.json');
+  expect(response.ok()).toBe(true);
+  const identity = await response.json() as { schema: number; product: string; version: string; commit: string };
+  const { stdout } = await exec('git', ['rev-parse', 'HEAD'], { cwd: root });
+  expect(identity).toEqual({
+    schema: 1,
+    product: 'selfhost-upgrade-rehearsal',
+    version: '0.1.5',
+    commit: stdout.trim()
+  });
+
+  const responsePolicy = JSON.parse(await readFile(join(root, 'site/public/staticwebapp.config.json'), 'utf8')) as {
+    routes: Array<{ route: string; headers?: Record<string, string> }>;
+  };
+  expect(responsePolicy.routes.find(route => route.route === '/release.json')?.headers?.['Cache-Control']).toBe('no-store');
+});
+
 test('@regression:route-accessibility Demo, Privacy, and Terms have no serious accessibility errors', async ({ page }) => {
   for (const path of ['/?demo=1', '/privacy', '/terms']) {
     await page.goto(path);
@@ -786,7 +804,7 @@ test('@claim:test-coverage npm test includes Rust, claim, accessibility, desktop
   const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { scripts: Record<string, string> };
   const playwright = await readFile(join(root, 'playwright.config.ts'), 'utf8');
   const suite = `${await readFile(join(root, 'e2e/site.spec.ts'), 'utf8')}\n${await readFile(join(root, 'e2e/viewport-390.spec.ts'), 'utf8')}`;
-  expect(packageJson.scripts.test).toBe('cargo test && npm run build:site && playwright test');
+  expect(packageJson.scripts.test).toBe('cargo test && npm run build:site && npm run test:identity && playwright test');
   expect(playwright).toContain("name: 'chromium'");
   expect(playwright).toContain("name: 'viewport-390'");
   expect(suite).toContain("from '@axe-core/playwright'");

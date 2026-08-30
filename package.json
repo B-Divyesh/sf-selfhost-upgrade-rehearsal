@@ -13,8 +13,10 @@
     "build:site": "npm run build:assets && vite build --config site/vite.config.ts && node scripts/build-site.mjs",
     "build": "cargo build --release && npm run build:site",
     "typecheck": "tsc --noEmit --strict --target ES2022 --moduleResolution bundler --module ESNext --lib ES2022,DOM site/src/main.ts",
-    "lint": "cargo fmt --check && cargo clippy --all-targets --all-features -- -D warnings && npm run typecheck",
-    "test": "cargo test && npm run build:site && playwright test",
+    "lint": "cargo fmt --check && cargo clippy --all-targets --all-features -- -D warnings && npm run typecheck && node --check scripts/release-identity.mjs && node --check tests/release-identity.test.mjs",
+    "test": "cargo test && npm run build:site && npm run test:identity && playwright test",
+    "test:identity": "node --test tests/release-identity.test.mjs",
+    "verify:release": "node scripts/release-identity.mjs --remote origin --branch main",
     "test:site": "playwright test",
     "preview": "vite preview --config site/vite.config.ts"
   },

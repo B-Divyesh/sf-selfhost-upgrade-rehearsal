@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { createLocalReleaseIdentity } from './release-identity.mjs';
 
 const dist = fileURLToPath(new URL('../dist/site/', import.meta.url));
 
@@ -37,3 +38,9 @@ for (const [route, metadata] of Object.entries(routeMetadata)) {
     .replace(/<meta name="twitter:description" content="[^"]+" \/>/, `<meta name="twitter:description" content="${metadata.description}" />`);
   await writeFile(`${dist}${route}/index.html`, routeDocument);
 }
+
+const releaseIdentity = await createLocalReleaseIdentity({
+  cwd: fileURLToPath(new URL('../', import.meta.url)),
+  expectedCommit: process.env.RELEASE_COMMIT
+});
+await writeFile(`${dist}release.json`, `${JSON.stringify(releaseIdentity, null, 2)}\n`);
