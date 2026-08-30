@@ -1,0 +1,228 @@
+{
+  "checkedAt": "2026-08-30T02:49:42.767Z",
+  "base": "https://selfhost-upgrade-rehearsal.sociobot.in",
+  "expectedCommit": "6260d9b79e1e7ed858ebb1d7b03eab19dd3d221a",
+  "routes": [
+    {
+      "viewport": "desktop",
+      "name": "landing",
+      "path": "/",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "name": "demo-query",
+      "path": "/?demo=1",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "name": "demo-route",
+      "path": "/demo",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "name": "privacy",
+      "path": "/privacy",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "name": "terms",
+      "path": "/terms",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "name": "not-found",
+      "path": "/repair-7-missing",
+      "status": 404,
+      "expectedStatus": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "name": "landing",
+      "path": "/",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Self-Host Upgrade Rehearsal — test upgrades first",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "name": "demo-query",
+      "path": "/?demo=1",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "name": "demo-route",
+      "path": "/demo",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Demo — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "name": "privacy",
+      "path": "/privacy",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Privacy — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "name": "terms",
+      "path": "/terms",
+      "status": 200,
+      "expectedStatus": 200,
+      "title": "Terms — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "name": "not-found",
+      "path": "/repair-7-missing",
+      "status": 404,
+      "expectedStatus": 404,
+      "title": "Page not found — Self-Host Upgrade Rehearsal",
+      "lang": "en",
+      "h1": 1,
+      "main": 1,
+      "overflow": false,
+      "missingAlt": 0,
+      "seriousCriticalAxe": [],
+      "errors": []
+    }
+  ],
+  "checks": {
+    "keyboardAndMotion": {
+      "skip": {
+        "focused": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "outlineColor": "rgb(166, 58, 36)"
+      },
+      "mainFocused": true,
+      "reducedMotion": {
+        "animationDuration": "1e-05s",
+        "transitionDuration": "1e-05s",
+        "runningAnimations": 0
+      }
+    },
+    "offlinePrivacy": {
+      "sameOriginBodyless": true,
+      "requests": [],
+      "demoKeysBeforeReset": [
+        "demo:active"
+      ],
+      "demoState": {
+        "realProject": "keep",
+        "realSession": "keep",
+        "demoKeys": [],
+        "serviceWorkers": 0
+      }
+    },
+    "releaseUpdate": {
+      "note": "Release v0.1.5 is ready for this device.",
+      "href": "https://github.com/B-Divyesh/sf-selfhost-upgrade-rehearsal/releases/download/v0.1.5/rehearsal-linux-x86_64.tar.gz"
+    },
+    "releaseIdentity": {
+      "status": 200,
+      "cacheControl": "no-store",
+      "schema": 1,
+      "product": "selfhost-upgrade-rehearsal",
+      "version": "0.1.5",
+      "commit": "6260d9b79e1e7ed858ebb1d7b03eab19dd3d221a"
+    }
+  }
+}
