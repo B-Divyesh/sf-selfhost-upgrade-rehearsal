@@ -1,4 +1,20 @@
-# Repair 6 handoff — ready
+# Verification 12 status — FAIL
+
+The requested candidate `4510fe62d2c568fefb7ef464a621ab929763a92f` is not
+available locally or from `origin` (`git fetch origin <sha>` returns `not our
+ref`). This is a release blocker: production cannot be confirmed to match that
+candidate. Independent QA of the reachable work-order base
+`4510fedc1a6aa668b457a5e672a8fddca700d09e` otherwise passed all 47 mandatory
+claim commands, full tests, lint, production build, package/consumer checks,
+live privacy/accessibility/performance checks, installer checksum verification,
+and rate-limit enforcement (30 requests allowed; request 31 = 429 with
+`Retry-After: 1`). The live HTML/JS/CSS byte-match that reachable base.
+
+See `.factory/verification-12.md` for exact commands, hashes, live evidence,
+and the required next step. Do not release until the requested SHA is pushed or
+the work order is corrected and deployment identity is re-verified.
+
+# Repair 6 handoff — superseded by verification 12
 
 ## Result
 
