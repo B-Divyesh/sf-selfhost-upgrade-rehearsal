@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { execFile } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 import { promisify } from 'node:util';
 
 const exec = promisify(execFile);
@@ -332,11 +332,55 @@ test('@claim:customer-safe-receipt customer-safe receipts omit declaration notes
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test('@claim:temporary-workspace demo creates its own temporary project directory', async () => {
-  const { stdout } = await exec(join(root, 'target/debug/rehearsal'), ['demo', '--json']);
-  const receipt = JSON.parse(stdout);
-  expect(receipt.status).toBe('ready');
-  expect(receipt.run_id).toMatch(/^SHR-[A-F0-9]{12}$/);
+test('@claim:temporary-workspace seed, backup, restore, and health share a new OS-temporary workspace per rehearsal', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-workspace-'));
+  const observed = join(dir, 'observed-workspaces.ndjson');
+  const probe = join(dir, 'record-workspace.mjs');
+  const run = async (): Promise<string> => {
+    await writeFile(observed, '');
+    await exec(join(root, 'target/debug/rehearsal'), ['run', '--file', join(dir, 'rehearsal.yml'), '--output', join(dir, `report-${Date.now()}-${Math.random()}`)]);
+    const entries = (await readFile(observed, 'utf8')).trim().split('\n').map(line => JSON.parse(line) as { step: string; workspace: string });
+    expect(entries.map(entry => entry.step).sort()).toEqual(['backup', 'health', 'restore', 'seed']);
+    const workspaces = new Set(entries.map(entry => resolve(entry.workspace)));
+    expect(workspaces.size).toBe(1);
+    const workspace = [...workspaces][0]!;
+    expect(workspace).not.toBe(resolve(dir));
+    expect(relative(resolve(dir), workspace).startsWith('..')).toBe(true);
+    expect(relative(resolve(tmpdir()), workspace).startsWith('..')).toBe(false);
+    expect(workspace).toMatch(/[\\/]rehearsal-[^\\/]+$/);
+    return workspace;
+  };
+
+  try {
+    await writeMinimalDeclaration(dir);
+    await writeFile(probe, "import { appendFileSync } from 'node:fs';\nappendFileSync(process.argv[2], JSON.stringify({ step: process.argv[3], workspace: process.cwd() }) + '\\n');\n");
+    const declarationPath = join(dir, 'rehearsal.yml');
+    const source = await readFile(declarationPath, 'utf8');
+    const hook = (step: string) => JSON.stringify([process.execPath, probe, observed, step]);
+    await writeFile(declarationPath, source
+      .replace('seed: [/usr/bin/true]', `seed: ${hook('seed')}`)
+      .replace('backup: [/usr/bin/true]', `backup: ${hook('backup')}`)
+      .replace('restore: [/usr/bin/true]', `restore: ${hook('restore')}`)
+      .replace('health: [/usr/bin/true]', `health: ${hook('health')}`));
+
+    const firstWorkspace = await run();
+    const secondWorkspace = await run();
+    expect(secondWorkspace).not.toBe(firstWorkspace);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('@claim:receipt-path-output demo prints usable JSON and HTML receipt paths', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rehearsal-path-output-'));
+  try {
+    const { stdout } = await exec(join(root, 'target/debug/rehearsal'), ['demo', '--output', dir]);
+    const jsonPath = stdout.match(/^JSON: (.+)$/m)?.[1];
+    const htmlPath = stdout.match(/^HTML: (.+)$/m)?.[1];
+    expect(jsonPath).toBeTruthy();
+    expect(htmlPath).toBeTruthy();
+    const receipt = JSON.parse(await readFile(jsonPath!, 'utf8'));
+    expect(receipt.status).toBe('ready');
+    expect(await readFile(htmlPath!, 'utf8')).toContain('Customer-safe receipt');
+  } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
 test('@claim:argument-arrays hook arguments are passed without shell parsing', async () => {

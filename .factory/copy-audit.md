@@ -106,6 +106,7 @@ No landing sentence exceeds 22 words. No banned marketing word appears. The firs
 | Copy | Words | Result |
 | --- | ---: | --- |
 | Run the sample demo | 4 | Pass; terminology matches site and CLI |
+| It prints the paths to JSON and HTML receipts. | 9 | Pass; `receipt-path-output` |
 | Start with a declaration template. | 5 | Pass; `starter-templates` |
 | Add your schema files and hook commands before running `rehearsal check`. | 11 | Pass; `starter-templates` |
 | Requirements: stable Rust, Node 22, and npm. | 7 | Pass; `development-requirements` |
@@ -130,4 +131,4 @@ No landing sentence exceeds 22 words. No banned marketing word appears. The firs
 | Paid CI download | Team kit |
 | Tested source-to-target change | upgrade path |
 
-Catalog description: “Rehearse self-hosted upgrades and share customer-safe readiness receipts.” It is 73 characters, starts with a verb, and contains no banned word.
+Catalog description: “Rehearse self-hosted upgrades and issue customer-safe readiness receipts.” It is 73 characters, starts with a verb, and contains no banned word.

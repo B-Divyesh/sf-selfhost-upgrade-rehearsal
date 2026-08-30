@@ -88,7 +88,14 @@
     "claim": "The CLI uses a new temporary directory for rehearsal seed, backup, restore, and health checks.",
     "where": "landing, README",
     "test": "npm test -- --grep @claim:temporary-workspace",
-    "sandbox": "run the bundled demo without an output path; assert the isolated demo completes with a generated receipt"
+    "sandbox": "fresh declaration; instrument seed, backup, restore, and health hooks to record their working directory outside the workspace; assert one new OS-temporary directory per run and distinct directories across two runs"
+  },
+  {
+    "id": "receipt-path-output",
+    "claim": "The sample demo prints the paths to JSON and HTML receipts.",
+    "where": "README sample demo section",
+    "test": "npm test -- --grep @claim:receipt-path-output",
+    "sandbox": "fresh temporary directory; run rehearsal demo without --json, parse the JSON and HTML path lines, and inspect both files"
   },
   {
     "id": "argument-arrays",
