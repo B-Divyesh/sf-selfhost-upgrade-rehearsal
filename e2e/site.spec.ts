@@ -889,6 +889,11 @@ test('real 404 document has the common shell, recovery action, and complete meta
 
 test('mobile navigation targets, empty-license feedback, and mobile downloads are safe', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'mobile-only regression coverage');
+  await page.route(releaseApiUrl, route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify(releaseApiResponse)
+  }));
   await page.goto('/');
   const targets = await page.locator('.site-header a, .site-footer nav a').evaluateAll(links => links.map(link => {
     const rect = link.getBoundingClientRect();
