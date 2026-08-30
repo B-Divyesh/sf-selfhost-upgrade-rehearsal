@@ -33,8 +33,13 @@ npm test
 npm run lint
 npm run build
 cargo package --locked
-npm run verify:release -- --expected "$(git rev-parse HEAD)" --site https://selfhost-upgrade-rehearsal.sociobot.in
+curl -fsS https://selfhost-upgrade-rehearsal.sociobot.in/release.json
 ```
+
+The live identity command was run while the tested candidate was `origin/main`,
+before this evidence-only verification commit advanced the branch. The live
+file must name `9f8afa90811ff94c9acff8c5f1c943c5abe052b2`; the exact matching hashes
+are recorded in `.factory/verification-13.md`.
 
 ## Defects and remaining work
 
